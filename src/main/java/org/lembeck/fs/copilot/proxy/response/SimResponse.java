@@ -37,6 +37,7 @@ public abstract class SimResponse {
     public static SimResponse parseResponse(int size, ByteBuffer buffer) {
         int typeId = buffer.getInt(8);
         return switch (typeId) {
+            case 2 -> new HelloResponse(buffer);
             default -> new UnknownResponse(buffer);
         };
     }

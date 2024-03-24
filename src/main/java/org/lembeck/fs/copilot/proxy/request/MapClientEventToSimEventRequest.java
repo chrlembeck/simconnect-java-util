@@ -4,20 +4,19 @@ import org.lembeck.fs.copilot.proxy.SimUtil;
 
 import java.nio.ByteBuffer;
 
-public class SubscribeToSystemEventRequest extends SimRequest {
+public class MapClientEventToSimEventRequest extends SimRequest {
 
-    private final int clientEventID;
-
+    private final int eventID;
     private final String eventName;
 
-    public SubscribeToSystemEventRequest(ByteBuffer buffer) {
+    public MapClientEventToSimEventRequest(ByteBuffer buffer) {
         super(buffer);
-        clientEventID = buffer.getInt();
-        this.eventName = SimUtil.readString(buffer, 256);
+        eventID = buffer.getInt();
+        eventName = SimUtil.readString(buffer, 256);
     }
 
-    public int getClientEventID() {
-        return clientEventID;
+    public int getEventID() {
+        return eventID;
     }
 
     public String getEventName() {
@@ -31,9 +30,8 @@ public class SubscribeToSystemEventRequest extends SimRequest {
                 ", size=" + getSize() +
                 ", version=" + getVersion() +
                 ", identifier=" + getIdentifier() +
-                ", clientEventID=" + clientEventID +
-                ", eventName='" + eventName + "'" +
+                ", eventID='" + eventID + "'" +
+                ", eventName=" + eventName +
                 "}";
     }
-
 }

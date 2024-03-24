@@ -1,6 +1,7 @@
 package org.lembeck.fs.copilot;
 
 import org.lembeck.fs.copilot.instrument.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
@@ -11,7 +12,6 @@ import static org.lembeck.fs.copilot.GraphicsUtil.DECIMAL_0;
 import static org.lembeck.fs.copilot.GraphicsUtil.DECIMAL_2;
 
 public class SimViewer extends JFrame implements SimListener {
-
 
     JTextField tfAltitude;
 
@@ -38,24 +38,24 @@ public class SimViewer extends JFrame implements SimListener {
     JToggleButton tbAutopilotAltitudeLock;
     JTextField tfAutopilotAltitudeLockVar;
 
-    private Compass compass;
-    private VerticalSpeedIndicator verticalSpeedIndicator;
+    private final Compass compass;
+    private final VerticalSpeedIndicator verticalSpeedIndicator;
 
-    private Altimeter altimeter;
+    private final Altimeter altimeter;
 
     SimController controller;
-    private JToggleButton tbAvionicsMaster1;
-    private JToggleButton tbGeneralEngineFuelPump;
-    private JToggleButton tbLightLanding;
-    private JToggleButton tbGeneralEngineMasterAlternator1;
-    private JToggleButton tbLightStrobe;
-    private JToggleButton tbLightBeacon;
-    private JToggleButton tbElectricalMasterBattery;
-    private JToggleButton tbPitotHeat1;
-    private JToggleButton tbLightNav;
-    private JToggleButton tbLightRecognition;
-    private JToggleButton tbLightCabin;
-    private JToggleButton tbParkingBrakes;
+    private final JToggleButton tbAvionicsMaster1;
+    private final JToggleButton tbGeneralEngineFuelPump;
+    private final JToggleButton tbLightLanding;
+    private final JToggleButton tbGeneralEngineMasterAlternator1;
+    private final JToggleButton tbLightStrobe;
+    private final JToggleButton tbLightBeacon;
+    private final JToggleButton tbElectricalMasterBattery;
+    private final JToggleButton tbPitotHeat1;
+    private final JToggleButton tbLightNav;
+    private final JToggleButton tbLightRecognition;
+    private final JToggleButton tbLightCabin;
+    private final JToggleButton tbParkingBrakes;
 
     public static void main(String[] args) throws Exception {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

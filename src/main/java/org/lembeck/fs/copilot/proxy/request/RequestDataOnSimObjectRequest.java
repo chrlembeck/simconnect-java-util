@@ -60,9 +60,10 @@ public class RequestDataOnSimObjectRequest extends SimRequest {
     @Override
     public String toString() {
         return getClass().getSimpleName() +
-                " {Typ: " + Integer.toHexString(getTypeId()) +
-                ", Länge=" + getSize() +
-                ", Version=" + getVersion() +
+                " {typeID: " + Integer.toHexString(getTypeID()) +
+                ", size=" + getSize() +
+                ", version=" + getVersion() +
+                ", identifier=" + getIdentifier() +
                 ", dataRequestID=" + dataRequestID +
                 ", dataDefinitionID=" + dataDefinitionID +
                 ", objectID=" + objectID +

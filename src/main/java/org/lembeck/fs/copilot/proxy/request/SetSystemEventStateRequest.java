@@ -1,27 +1,24 @@
 package org.lembeck.fs.copilot.proxy.request;
 
-import org.lembeck.fs.copilot.proxy.SimUtil;
-
 import java.nio.ByteBuffer;
 
-public class SubscribeToSystemEventRequest extends SimRequest {
+public class SetSystemEventStateRequest extends SimRequest {
 
     private final int clientEventID;
+    private final State state;
 
-    private final String eventName;
-
-    public SubscribeToSystemEventRequest(ByteBuffer buffer) {
+    SetSystemEventStateRequest(ByteBuffer buffer) {
         super(buffer);
         clientEventID = buffer.getInt();
-        this.eventName = SimUtil.readString(buffer, 256);
+        state = State.values()[buffer.getInt()];
     }
 
     public int getClientEventID() {
         return clientEventID;
     }
 
-    public String getEventName() {
-        return eventName;
+    public State getState() {
+        return state;
     }
 
     @Override
@@ -32,8 +29,7 @@ public class SubscribeToSystemEventRequest extends SimRequest {
                 ", version=" + getVersion() +
                 ", identifier=" + getIdentifier() +
                 ", clientEventID=" + clientEventID +
-                ", eventName='" + eventName + "'" +
+                ", state=" + state +
                 "}";
     }
-
 }

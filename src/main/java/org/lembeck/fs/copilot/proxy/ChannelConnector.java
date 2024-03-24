@@ -2,6 +2,7 @@ package org.lembeck.fs.copilot.proxy;
 
 import org.lembeck.fs.copilot.proxy.request.SimRequest;
 import org.lembeck.fs.copilot.proxy.response.SimResponse;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -49,14 +50,11 @@ public class ChannelConnector implements Runnable {
                     throw new RuntimeException("Die Länge des Pakets konnte nicht gelesen werden: " + bytesRead);
                 }
                 int size = buffer.getInt(0);
-                System.out.println("Paketgröße " + size);
                 buffer.position(4);
                 buffer.limit(size);
                 while (bytesRead < size) {
                     bytesRead += sourceChannel.read(buffer);
                 }
-
-                System.out.println(name + ": " + bytesRead + " Bytes gelesen.");
 
                 buffer.position(0);
                 buffer.mark();

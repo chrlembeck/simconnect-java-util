@@ -1,9 +1,18 @@
 package org.lembeck.fs.copilot.proxy.request;
 
 import org.lembeck.fs.copilot.proxy.SimUtil;
+
 import java.nio.ByteBuffer;
 
 public class HelloRequest extends SimRequest {
+
+    public final int MAJOR_VERSION = 11;
+    public final int MINOR_VERSION = 0;
+    public final int MAJOR_BUILD_VERSION = 62651;
+    public final int MINOR_BUILD_VERSION = 3;
+
+    public static final int MAGIC_FSX = (byte) 'F' << 24 | (byte) 'S' << 16 | (byte) 'X' << 8 | 0;
+    public final int MAGIC_FS2020 = 0x4b4b00;
 
     private final String name;
     private final int unknown;
@@ -13,9 +22,9 @@ public class HelloRequest extends SimRequest {
     private final int majorBuildVersion;
     private final int minorBuildVersion;
 
-    public HelloRequest(ByteBuffer buffer) {
+    HelloRequest(ByteBuffer buffer) {
         super(buffer);
-        this.name = SimUtil.readString(buffer, 256);
+        name = SimUtil.readString(buffer, 256);
         unknown = buffer.getInt(); // always 0
         magic = buffer.getInt();
         majorVersion = buffer.getInt();
@@ -55,9 +64,10 @@ public class HelloRequest extends SimRequest {
     @Override
     public String toString() {
         return getClass().getSimpleName() +
-                " {Typ: " + Integer.toHexString(getTypeId()) +
-                ", Länge=" + getSize() +
-                ", Version=" + getVersion() +
+                " {typeID=" + Integer.toHexString(getTypeID()) +
+                ", size=" + getSize() +
+                ", version=" + getVersion() +
+                ", identifier=" + getIdentifier() +
                 ", name='" + name + "'"+
                 ", unknown=" + unknown +
                 ", magic=" + magic +

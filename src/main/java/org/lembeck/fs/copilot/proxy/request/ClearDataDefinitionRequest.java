@@ -1,21 +1,18 @@
 package org.lembeck.fs.copilot.proxy.request;
 
-import org.lembeck.fs.copilot.proxy.response.SimResponse;
-
 import java.nio.ByteBuffer;
 
-public class UnknownRequest extends SimRequest {
+public class ClearDataDefinitionRequest extends SimRequest {
 
-    private final byte[] data;
+    private final int dataDefinitionID;
 
-    public UnknownRequest(ByteBuffer buffer) {
+    ClearDataDefinitionRequest(ByteBuffer buffer) {
         super(buffer);
-        data = new byte[buffer.remaining()];
-        buffer.get(data);
+        dataDefinitionID = buffer.getInt();
     }
 
-    public byte[] getData() {
-        return data;
+    public int getDataDefinitionID() {
+        return dataDefinitionID;
     }
 
     @Override
@@ -25,7 +22,7 @@ public class UnknownRequest extends SimRequest {
                 ", size=" + getSize() +
                 ", version=" + getVersion() +
                 ", identifier=" + getIdentifier() +
-                ", data=" + SimResponse.toString(data) +
+                ", dataDefinitionID=" + dataDefinitionID +
                 "}";
     }
 }
