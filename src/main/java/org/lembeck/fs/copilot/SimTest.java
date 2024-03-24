@@ -1,5 +1,11 @@
 package org.lembeck.fs.copilot;
 
+import flightsim.simconnect.FacilityListType;
+import flightsim.simconnect.SimConnect;
+import flightsim.simconnect.SimConnectDataType;
+import flightsim.simconnect.SimConnectPeriod;
+import flightsim.simconnect.recv.*;
+
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -7,13 +13,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import flightsim.simconnect.*;
-import flightsim.simconnect.recv.*;
-
 public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, FacilitiesListHandler, SimObjectDataHandler {
 
-    private SimConnect sc;
-    private DispatcherTask dt;
+    private final SimConnect sc;
+    private final DispatcherTask dt;
 
     private boolean inSim = false;
 
@@ -24,7 +27,7 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
     private double userAlt;
 
     public SimTest() throws IOException {
-        sc = new SimConnect("NearestAirports", "192.168.0.170", 26011);
+        sc = new SimConnect("NearestAirports", "192.168.0.170", 26010);
 
         sc.subscribeToSystemEvent(1, "Sim");
         sc.subscribeToSystemEvent(2, "4sec");
@@ -57,7 +60,7 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
             } catch (IOException e1) {}
         }
     }
-    private static DecimalFormat df = new DecimalFormat("###.0");
+    private static final DecimalFormat df = new DecimalFormat("###.0");
 
     class Airport implements Comparable<Airport> {
         String icao;

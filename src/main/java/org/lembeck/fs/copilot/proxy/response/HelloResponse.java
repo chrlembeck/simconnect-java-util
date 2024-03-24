@@ -80,9 +80,9 @@ public class HelloResponse extends SimResponse {
     @Override
     public String toString() {
         return getClass().getSimpleName() +
-                " {Typ: " + Integer.toHexString(getTypeId()) +
-                ", Länge=" + getSize() +
-                ", Version=" + getVersion() +
+                " {typeID=" + Integer.toHexString(getTypeID()) +
+                ", size=" + getSize() +
+                ", version=" + getVersion() +
                 ", applicationVersionMajor=" + applicationVersionMajor +
                 ", applicationVersionMinor=" + applicationVersionMinor +
                 ", applicationBuildMajor=" + applicationBuildMajor +
@@ -95,5 +95,4 @@ public class HelloResponse extends SimResponse {
                 ", reserved2=" + reserved2 +
                 "}";
     }
-
 }

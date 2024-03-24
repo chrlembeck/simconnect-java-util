@@ -30,14 +30,22 @@ public abstract class SimResponse {
         return version;
     }
 
-    public int getTypeId() {
+    public int getTypeID() {
         return typeId;
     }
 
     public static SimResponse parseResponse(int size, ByteBuffer buffer) {
         int typeId = buffer.getInt(8);
         return switch (typeId) {
-            case 2 -> new HelloResponse(buffer);
+            case 0x01 -> new ExceptionResponse(buffer);
+            case 0x02 -> new HelloResponse(buffer);
+            case 0x03 -> new QuitResponse(buffer);
+            case 0x04 -> new RecvEventResponse(buffer);
+            case 0x08 -> new RecvSimobjectDataResponse(buffer);
+            case 0x09 -> new RecvSimobjectDataByTypeResponse(buffer);
+            case 0x16 -> new RecvEventMultiplayerServerStartedResponse(buffer);
+            case 0x17 -> new RecvEventMultiplayerClientStartedResponse(buffer);
+            case 0x18 -> new RecvEventMultiplayerSessionEndedResponse(buffer);
             default -> new UnknownResponse(buffer);
         };
     }

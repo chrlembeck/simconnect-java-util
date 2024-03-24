@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 
 public class UnknownResponse extends SimResponse {
 
-    private byte[] data;
+    private final byte[] data;
 
     public UnknownResponse(ByteBuffer buffer) {
         super(buffer);
@@ -18,6 +18,6 @@ public class UnknownResponse extends SimResponse {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + " {Typ: " + Integer.toHexString(getTypeId()) + ", Länge=" + getSize() + ", Version=" + getVersion() + ", data=" + toString(data) + "}";
+        return getClass().getSimpleName() + " {Typ: " + Integer.toHexString(getTypeID()) + ", Länge=" + getSize() + ", Version=" + getVersion() + ", data=" + toString(data) + "}";
     }
 }

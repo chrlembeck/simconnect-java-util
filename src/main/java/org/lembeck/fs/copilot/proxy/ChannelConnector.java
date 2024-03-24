@@ -38,7 +38,7 @@ public class ChannelConnector implements Runnable {
 
     @Override
     public void run() {
-        ByteBuffer buffer = ByteBuffer.allocate(4096);
+        ByteBuffer buffer = ByteBuffer.allocate(64 * 1024);
         buffer.order(ByteOrder.LITTLE_ENDIAN);
         int bytesRead = 0;
         try {
