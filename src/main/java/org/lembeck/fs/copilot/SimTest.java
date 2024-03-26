@@ -91,8 +91,6 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
         }
         System.out.println(list.getEntryNumber() + "/" + list.getOutOf());
 
-        //List<Airport> lap = new ArrayList<Airport>();
-
         for (FacilityAirport fa : list.getFacilities()) {
 
             if (userLat != 0 && userLon != 0) {
@@ -121,12 +119,6 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
             array[i] = airports.get(i).toString();
         }
         System.out.println(Arrays.toString(array));
-
-        try {
-            sender.menu(1.0f, 5, "Airports", "Nearest airports", array);
-        } catch (IOException e) {
-        }
-
     }
 
     public void handleSimObject(SimConnect sender, RecvSimObjectData e) {
