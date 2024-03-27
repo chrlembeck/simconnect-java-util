@@ -67,6 +67,8 @@ public abstract class SimRequest {
             case 0xf000000f -> new RequestDataOnSimObjectTypeRequest(buffer);
             case 0xf0000010 -> new SetDataOnSimObjectRequest(buffer);
             case 0xf0000017 -> new SubscribeToSystemEventRequest(buffer);
+            case 0xf0000041 -> new SubscribeToFacilitiesRequest(buffer);
+            case 0xf0000042 -> new UnsubscribeToFacilitiesRequest(buffer);
             case 0xf0000043 -> new RequestFacilitesListRequest(buffer);
             case 0xf0000044 -> new TransmitClientEventExRequest(buffer);
             default -> new UnknownRequest(buffer);

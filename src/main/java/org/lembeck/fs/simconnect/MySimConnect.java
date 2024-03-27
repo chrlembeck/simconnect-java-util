@@ -1,10 +1,7 @@
 package org.lembeck.fs.simconnect;
 
 
-import org.lembeck.fs.simconnect.request.FacilityListType;
-import org.lembeck.fs.simconnect.request.HelloRequest;
-import org.lembeck.fs.simconnect.request.RequestFacilitesListRequest;
-import org.lembeck.fs.simconnect.request.SimRequest;
+import org.lembeck.fs.simconnect.request.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -57,6 +54,10 @@ public class MySimConnect {
         }
     }
 
+    public ResponseReceiver getRequestReceiver() {
+        return responseReceiver;
+    }
+
     public void write(SimRequest request) throws IOException {
         request.setIdentifier(lastRequestIdentifier.incrementAndGet());
         synchronized (outBuffer) {
@@ -71,7 +72,11 @@ public class MySimConnect {
         write(new RequestFacilitesListRequest(facilityListType, requestId));
     }
 
-    public ResponseReceiver getRequestReceiver() {
-        return responseReceiver;
+    public void subscribeToFacilities(FacilityListType facilityListType, int requestId) throws IOException {
+        write(new SubscribeToFacilitiesRequest(facilityListType, requestId));
+    }
+
+    public void unsubscribeToFacilities(FacilityListType facilityListType) throws IOException {
+        write(new UnsubscribeToFacilitiesRequest(facilityListType));
     }
 }

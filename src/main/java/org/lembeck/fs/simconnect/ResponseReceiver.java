@@ -1,9 +1,7 @@
 package org.lembeck.fs.simconnect;
 
-import org.lembeck.fs.simconnect.handler.AirportListHandler;
-import org.lembeck.fs.simconnect.handler.ResponseHandler;
-import org.lembeck.fs.simconnect.response.RecvAirportListResponse;
-import org.lembeck.fs.simconnect.response.SimResponse;
+import org.lembeck.fs.simconnect.handler.*;
+import org.lembeck.fs.simconnect.response.*;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -18,9 +16,11 @@ public class ResponseReceiver implements Runnable {
 
     private SocketChannel channel;
 
-
     private final HandlerList<ResponseHandler, SimResponse> responseHandlers = new HandlerList<>((handler, response) -> handler.handleResponse(response));
     private final HandlerList<AirportListHandler, RecvAirportListResponse> airportListHandlers = new HandlerList<>((handler, response) -> handler.hanldeAirportList(response));
+    private final HandlerList<WaypointListHandler, RecvWaypointListResponse> waypointListHandlers = new HandlerList<>((handler, response) -> handler.hanldeWaypointList(response));
+    private final HandlerList<NdbListHandler, RecvNdbListResponse> ndbListHandlers = new HandlerList<>((handler, response) -> handler.hanldeNdbList(response));
+    private final HandlerList<VorListHandler, RecvVorListResponse> vorListHandlers = new HandlerList<>((handler, response) -> handler.hanldeVorList(response));
 
     @Override
     public void run() {
@@ -59,6 +59,15 @@ public class ResponseReceiver implements Runnable {
             case RecvAirportListResponse r:
                 airportListHandlers.notifyHandlers(r);
                 break;
+            case RecvWaypointListResponse r:
+                waypointListHandlers.notifyHandlers(r);
+                break;
+            case RecvNdbListResponse r:
+                ndbListHandlers.notifyHandlers(r);
+                break;
+            case RecvVorListResponse r:
+                vorListHandlers.notifyHandlers(r);
+                break;
             default:
                 break;
         }
@@ -66,6 +75,18 @@ public class ResponseReceiver implements Runnable {
 
     public void addAirportListHandler(AirportListHandler airportListHandler) {
         this.airportListHandlers.addHandler(airportListHandler);
+    }
+
+    public void addWaypointListHandler(WaypointListHandler waypointListHandler) {
+        this.waypointListHandlers.addHandler(waypointListHandler);
+    }
+
+    public void addNdbListHandler(NdbListHandler ndbListHandler) {
+        this.ndbListHandlers.addHandler(ndbListHandler);
+    }
+
+    public void addVorListHandler(VorListHandler vorListHandler) {
+        this.vorListHandlers.addHandler(vorListHandler);
     }
 
     public void setChannel(SocketChannel channel) {

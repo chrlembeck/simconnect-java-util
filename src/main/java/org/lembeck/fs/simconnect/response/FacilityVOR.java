@@ -26,7 +26,7 @@ public class FacilityVOR extends FacilityNDB {
 
     @Override
     public String toString() {
-        return "FacilityAirport{" +
+        return getClass().getSimpleName() + "{" +
                 "icao='" + icao + '\'' +
                 ", regionCode='" + regionCode + '\'' +
                 ", latitude=" + latitude +

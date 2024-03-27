@@ -41,5 +41,4 @@ public class SubscribeToSystemEventRequest extends SimRequest {
                 ", eventName='" + eventName + "'" +
                 "}";
     }
-
 }

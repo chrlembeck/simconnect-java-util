@@ -11,7 +11,7 @@ public class RecvWaypointListResponse extends RecvFacilitiesListResponse {
 
     RecvWaypointListResponse(ByteBuffer buffer) {
         super(buffer);
-        waypointList = new FacilityNDB[arraySize];
+        waypointList = new FacilityWaypoint[arraySize];
         for (int i = 0; i < arraySize; i++) {
             String icao = SimUtil.readString(buffer, 6);
             String regionCode = SimUtil.readString(buffer, 3);

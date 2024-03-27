@@ -15,7 +15,7 @@ public class FacilityNDB extends FacilityWaypoint {
 
     @Override
     public String toString() {
-        return "FacilityAirport{" +
+        return getClass().getSimpleName() + "{" +
                 "icao='" + icao + '\'' +
                 ", regionCode='" + regionCode + '\'' +
                 ", latitude=" + latitude +

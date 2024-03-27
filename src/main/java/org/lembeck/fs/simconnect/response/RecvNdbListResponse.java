@@ -24,8 +24,8 @@ public class RecvNdbListResponse extends RecvFacilitiesListResponse {
         }
     }
 
-    public FacilityVOR[] getVorList() {
-        return vorList;
+    public FacilityNDB[] getNdbList() {
+        return ndbList;
     }
 
     @Override
