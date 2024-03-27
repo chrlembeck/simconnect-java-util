@@ -31,7 +31,7 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 
 | ID | Name                                      | Comment                                |
 |----|-------------------------------------------|----------------------------------------|
-| 00 |                                           |                                        |
+| 00 | Open                                      | :heavy_check_mark:                     |
 | 01 |                                           |                                        |
 | 02 |                                           |                                        |
 | 03 |                                           |                                        |
@@ -54,8 +54,8 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 | 14 | ClearInputGroup                           |                                        |
 | 15 | SetInputGroupState                        |                                        |
 | 16 | RequestReservedKey                        |                                        |
-| 17 | SubscribeToSystemEvent                    |                                        |
-| 18 | UnsubscribeFromSystemEvent                |                                        |
+| 17 | SubscribeToSystemEvent                    | :heavy_check_mark:                     |
+| 18 | UnsubscribeFromSystemEvent                | :heavy_check_mark:                     |
 | 19 | WeatherRequestInterpolatedObservation     | :x: _Deprecated_, not implemented here |
 | 1a | WeatherRequestObservationAtStation        | :x: _Deprecated_, not implemented here |
 | 1b | WeatherRequestObservationAtNearestStation | :x: _Deprecated_, not implemented here |

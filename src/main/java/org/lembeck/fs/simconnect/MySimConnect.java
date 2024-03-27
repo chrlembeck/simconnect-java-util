@@ -68,6 +68,19 @@ public class MySimConnect {
         }
     }
 
+
+    public void subscribeToSystemEvent(int eventID, SystemEventName eventName) throws IOException {
+        subscribeToSystemEvent(eventID, eventName.getEventName());
+    }
+
+    public void subscribeToSystemEvent(int eventID, String eventName) throws IOException {
+        write(new SubscribeToSystemEventRequest(eventID, eventName));
+    }
+
+    public void unsubscribeFromSystemEvent(int eventID) throws IOException {
+        write(new UnsubscribeFromSystemEventRequest(eventID));
+    }
+
     public void requestFacilitiesList(FacilityListType facilityListType, int requestId) throws IOException {
         write(new RequestFacilitesListRequest(facilityListType, requestId));
     }

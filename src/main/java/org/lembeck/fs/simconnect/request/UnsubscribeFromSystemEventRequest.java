@@ -1,41 +1,30 @@
 package org.lembeck.fs.simconnect.request;
 
-import org.lembeck.fs.simconnect.SimUtil;
-
 import java.nio.ByteBuffer;
 
-public class SubscribeToSystemEventRequest extends SimRequest {
+public class UnsubscribeFromSystemEventRequest extends SimRequest {
 
-    public static final int TYPE_ID = 0xf0000017;
+    public static final int TYPE_ID = 0xf0000018;
 
     private final int clientEventID;
 
-    private final String eventName;
-
-    SubscribeToSystemEventRequest(ByteBuffer buffer) {
+    UnsubscribeFromSystemEventRequest(ByteBuffer buffer) {
         super(buffer);
         this.clientEventID = buffer.getInt();
-        this.eventName = SimUtil.readString(buffer, 256);
     }
 
-    public SubscribeToSystemEventRequest(int clientEventID, String eventName) {
+    public UnsubscribeFromSystemEventRequest(int clientEventID) {
         super(TYPE_ID);
         this.clientEventID = clientEventID;
-        this.eventName = eventName;
     }
 
     @Override
     protected void writeRequest(ByteBuffer outBuffer) {
         outBuffer.putInt(clientEventID);
-        SimUtil.writeString(outBuffer, eventName, 256);
     }
 
     public int getClientEventID() {
         return clientEventID;
-    }
-
-    public String getEventName() {
-        return eventName;
     }
 
     @Override
@@ -46,7 +35,6 @@ public class SubscribeToSystemEventRequest extends SimRequest {
                 ", version=" + getVersion() +
                 ", identifier=" + getIdentifier() +
                 ", clientEventID=" + clientEventID +
-                ", eventName='" + eventName + "'" +
                 "}";
     }
 }

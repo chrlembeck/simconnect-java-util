@@ -14,7 +14,7 @@ public enum SystemEventName {
     CRASH_RESET("CrashReset"),
     @Deprecated
     CUSTOM_MISSION_ACTION_EXECUTED("CustomMissionActionExecuted"),
-    FLOGHT_LOADED("FlightLoaded"),
+    FLIGHT_LOADED("FlightLoaded"),
     FLIGHT_SAVED("FlightSaved"),
     FLIGHT_PLAN_ACTIVATED("FlightPlanActivated"),
     FLIGHT_PLAN_DEACTIVATED("FlightPlanDeactivated"),

@@ -17,6 +17,9 @@ public class ResponseReceiver implements Runnable {
     private SocketChannel channel;
 
     private final HandlerList<ResponseHandler, SimResponse> responseHandlers = new HandlerList<>((handler, response) -> handler.handleResponse(response));
+    private final HandlerList<ExceptionHandler, ExceptionResponse> exceptionHandlers = new HandlerList<>((handler, response) -> handler.handleException(response));
+    private final HandlerList<EventHandler, RecvEventResponse> eventHandlers = new HandlerList<>((handler, response) -> handler.handleEvent(response));
+    private final HandlerList<EventFilenameHandler, RecvEventFilenameResponse> eventFilenameHandlers = new HandlerList<>((handler, response) -> handler.handleEventFilename(response));
     private final HandlerList<AirportListHandler, RecvAirportListResponse> airportListHandlers = new HandlerList<>((handler, response) -> handler.hanldeAirportList(response));
     private final HandlerList<WaypointListHandler, RecvWaypointListResponse> waypointListHandlers = new HandlerList<>((handler, response) -> handler.hanldeWaypointList(response));
     private final HandlerList<NdbListHandler, RecvNdbListResponse> ndbListHandlers = new HandlerList<>((handler, response) -> handler.hanldeNdbList(response));
@@ -56,6 +59,15 @@ public class ResponseReceiver implements Runnable {
     private void handleResponse(SimResponse response) {
         responseHandlers.notifyHandlers(response);
         switch (response) {
+            case ExceptionResponse r:
+                exceptionHandlers.notifyHandlers(r);
+                break;
+            case RecvEventFilenameResponse r:
+                eventFilenameHandlers.notifyHandlers(r);
+                break;
+            case RecvEventResponse r:
+                eventHandlers.notifyHandlers(r);
+                break;
             case RecvAirportListResponse r:
                 airportListHandlers.notifyHandlers(r);
                 break;
@@ -71,6 +83,18 @@ public class ResponseReceiver implements Runnable {
             default:
                 break;
         }
+    }
+
+    public void addExceptionHandler(ExceptionHandler exceptionHandler) {
+        this.exceptionHandlers.addHandler(exceptionHandler);
+    }
+
+    public void addEventHandler(EventHandler eventHandler) {
+        this.eventHandlers.addHandler(eventHandler);
+    }
+
+    public void addEventFilenameHandler(EventFilenameHandler eventFilenameHandler) {
+        this.eventFilenameHandlers.addHandler(eventFilenameHandler);
     }
 
     public void addAirportListHandler(AirportListHandler airportListHandler) {
