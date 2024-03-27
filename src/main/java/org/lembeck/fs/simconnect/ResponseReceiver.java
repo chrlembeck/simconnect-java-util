@@ -20,6 +20,7 @@ public class ResponseReceiver implements Runnable {
     private final HandlerList<ExceptionHandler, ExceptionResponse> exceptionHandlers = new HandlerList<>((handler, response) -> handler.handleException(response));
     private final HandlerList<EventHandler, RecvEventResponse> eventHandlers = new HandlerList<>((handler, response) -> handler.handleEvent(response));
     private final HandlerList<EventFilenameHandler, RecvEventFilenameResponse> eventFilenameHandlers = new HandlerList<>((handler, response) -> handler.handleEventFilename(response));
+    private final HandlerList<SystemStateHandler, RecvSystemStateResponse> systemStateHandlers = new HandlerList<>((handler, response) -> handler.handleSystemState(response));
     private final HandlerList<AirportListHandler, RecvAirportListResponse> airportListHandlers = new HandlerList<>((handler, response) -> handler.hanldeAirportList(response));
     private final HandlerList<WaypointListHandler, RecvWaypointListResponse> waypointListHandlers = new HandlerList<>((handler, response) -> handler.hanldeWaypointList(response));
     private final HandlerList<NdbListHandler, RecvNdbListResponse> ndbListHandlers = new HandlerList<>((handler, response) -> handler.hanldeNdbList(response));
@@ -68,6 +69,9 @@ public class ResponseReceiver implements Runnable {
             case RecvEventResponse r:
                 eventHandlers.notifyHandlers(r);
                 break;
+            case RecvSystemStateResponse r:
+                systemStateHandlers.notifyHandlers(r);
+                break;
             case RecvAirportListResponse r:
                 airportListHandlers.notifyHandlers(r);
                 break;
@@ -95,6 +99,10 @@ public class ResponseReceiver implements Runnable {
 
     public void addEventFilenameHandler(EventFilenameHandler eventFilenameHandler) {
         this.eventFilenameHandlers.addHandler(eventFilenameHandler);
+    }
+
+    public void addSystemStateHandler(SystemStateHandler systemStateHandler) {
+        this.systemStateHandlers.addHandler(systemStateHandler);
     }
 
     public void addAirportListHandler(AirportListHandler airportListHandler) {

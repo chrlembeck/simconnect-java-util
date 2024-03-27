@@ -24,6 +24,10 @@ public class SubscribeToSystemEventRequest extends SimRequest {
         this.eventName = eventName;
     }
 
+    public SubscribeToSystemEventRequest(int eventID, SystemEventName eventName) {
+        this(eventID, eventName.getEventName());
+    }
+
     @Override
     protected void writeRequest(ByteBuffer outBuffer) {
         outBuffer.putInt(clientEventID);

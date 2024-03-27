@@ -70,7 +70,7 @@ public class MySimConnect {
 
 
     public void subscribeToSystemEvent(int eventID, SystemEventName eventName) throws IOException {
-        subscribeToSystemEvent(eventID, eventName.getEventName());
+        write(new SubscribeToSystemEventRequest(eventID, eventName));
     }
 
     public void subscribeToSystemEvent(int eventID, String eventName) throws IOException {
@@ -79,6 +79,14 @@ public class MySimConnect {
 
     public void unsubscribeFromSystemEvent(int eventID) throws IOException {
         write(new UnsubscribeFromSystemEventRequest(eventID));
+    }
+
+    public void requestSystemState(int requestID, String state) throws IOException {
+        write(new RequestSystemStateRequest(requestID, state));
+    }
+
+    public void requestSystemState(int requestID, SystemState state) throws IOException {
+        write(new RequestSystemStateRequest(requestID, state));
     }
 
     public void requestFacilitiesList(FacilityListType facilityListType, int requestId) throws IOException {

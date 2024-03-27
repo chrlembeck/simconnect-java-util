@@ -47,6 +47,7 @@ public abstract class SimResponse {
             case 0x08 -> new RecvSimobjectDataResponse(buffer);
             case 0x09 -> new RecvSimobjectDataByTypeResponse(buffer);
             case 0x0c -> new RecvAssignedObjectIdResponse(buffer);
+            case 0x0f -> new RecvSystemStateResponse(buffer);
             case 0x12 -> new RecvAirportListResponse(buffer);
             case 0x13 -> new RecvVorListResponse(buffer);
             case 0x14 -> new RecvNdbListResponse(buffer);
