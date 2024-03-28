@@ -9,6 +9,8 @@ import static org.lembeck.fs.simconnect.request.DataSetFlag.TAGGED;
 
 public class SetDataOnSimObjectRequest extends SimRequest {
 
+    public static final int TYPE_ID = 0xf0000010;
+
     private final int dataDefinitionID;
     private final int objectID;
     private final DataSetFlag dataSetFlag;
@@ -16,7 +18,7 @@ public class SetDataOnSimObjectRequest extends SimRequest {
     private final int unitSize;
     private final byte[] data;
 
-    public SetDataOnSimObjectRequest(ByteBuffer buffer) {
+    SetDataOnSimObjectRequest(ByteBuffer buffer) {
         super(buffer);
         dataDefinitionID = buffer.getInt();
         objectID = buffer.getInt();
@@ -26,6 +28,16 @@ public class SetDataOnSimObjectRequest extends SimRequest {
         unitSize = buffer.getInt();
         data = new byte[buffer.remaining()];
         buffer.get(data);
+    }
+
+    public SetDataOnSimObjectRequest(int dataDefinitionID, int objectID, DataSetFlag dataSetFlag, int arrayCount, int unitSize, byte[] data) {
+        super(TYPE_ID);
+        this.dataDefinitionID = dataDefinitionID;
+        this.objectID = objectID;
+        this.dataSetFlag = dataSetFlag;
+        this.arrayCount = arrayCount;
+        this.unitSize = unitSize;
+        this.data = data;
     }
 
     @Override

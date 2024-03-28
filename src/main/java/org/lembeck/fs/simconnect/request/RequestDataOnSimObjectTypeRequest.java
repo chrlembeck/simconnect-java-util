@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 
 public class RequestDataOnSimObjectTypeRequest extends SimRequest {
 
+    public static final int TYPE_ID = 0xf000000f;
+
     private final int requestID;
     private final int defineID;
     private final int radiusMeters;
@@ -15,6 +17,14 @@ public class RequestDataOnSimObjectTypeRequest extends SimRequest {
         defineID = buffer.getInt();
         radiusMeters = buffer.getInt();
         type = SimObjectType.values()[buffer.getInt()];
+    }
+
+    public RequestDataOnSimObjectTypeRequest(int requestID, int defineID, int radiusMeters, SimObjectType type) {
+        super(TYPE_ID);
+        this.requestID = requestID;
+        this.defineID = defineID;
+        this.radiusMeters = radiusMeters;
+        this.type = type;
     }
 
     @Override

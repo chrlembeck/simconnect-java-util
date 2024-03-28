@@ -41,19 +41,19 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 | 07 | AddClientEventToNotificationGroup         | :heavy_check_mark:                                                              |
 | 08 | RemoveClientEvent                         | :heavy_check_mark:                                                              |
 | 09 | SetNotificationGroupPriority              | :heavy_check_mark:                                                              |
-| 0a | ClearNotificationGroup                    |                                                                                 |
-| 0b | RequestNotificationGroup                  |                                                                                 |
-| 0c | AddToDataDefinition                       |                                                                                 |
-| 0d | ClearDataDefinition                       |                                                                                 |
-| 0e | RequestDataOnSimObject                    |                                                                                 |
-| 0f | RequestDataOnSimObjectType                |                                                                                 |
-| 10 | SetDataOnSimObject                        |                                                                                 |
-| 11 | MapInputEventToClientEvent                |                                                                                 |
-| 12 | SetInputGroupPriority                     |                                                                                 |
-| 13 | RemoveInputEvent                          |                                                                                 |
-| 14 | ClearInputGroup                           |                                                                                 |
-| 15 | SetInputGroupState                        |                                                                                 |
-| 16 | RequestReservedKey                        |                                                                                 |
+| 0a | ClearNotificationGroup                    | :heavy_check_mark:                                                              |
+| 0b | RequestNotificationGroup                  | :heavy_check_mark:                                                              |
+| 0c | AddToDataDefinition                       | :heavy_check_mark:                                                              |
+| 0d | ClearDataDefinition                       | :heavy_check_mark:                                                              |
+| 0e | RequestDataOnSimObject                    | :heavy_check_mark:                                                              |
+| 0f | RequestDataOnSimObjectType                | :heavy_check_mark:                                                              |
+| 10 | SetDataOnSimObject                        | :heavy_check_mark:                                                              |
+| 11 | MapInputEventToClientEvent                | :x: _Deprecated_, use MapInputEventToClientEvent_EX1 instead                    |
+| 12 | SetInputGroupPriority                     | :heavy_check_mark:                                                              |
+| 13 | RemoveInputEvent                          | :heavy_check_mark:                                                              |
+| 14 | ClearInputGroup                           | :heavy_check_mark:                                                              |
+| 15 | SetInputGroupState                        | :heavy_check_mark:                                                              |
+| 16 | RequestReservedKey                        | :heavy_check_mark:                                                              |
 | 17 | SubscribeToSystemEvent                    | :heavy_check_mark:                                                              |
 | 18 | UnsubscribeFromSystemEvent                | :heavy_check_mark:                                                              |
 | 19 | WeatherRequestInterpolatedObservation     | :x: _Deprecated_, not implemented here                                          |
@@ -99,7 +99,7 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 | 41 | SubscribeToFacilities                     | :heavy_check_mark:                                                              |
 | 42 | UnsubscribeToFacilities                   | :heavy_check_mark:                                                              |
 | 43 | RequestFacilitiesList                     | :heavy_check_mark:                                                              |
-| 44 | TransmitClientEvent_EX1                   |                                                                                 |
+| 44 | TransmitClientEvent_EX1                   | :heavy_check_mark:                                                              |
 | 45 |                                           |                                                                                 |
 | 46 |                                           |                                                                                 |
 | 47 |                                           |                                                                                 |
@@ -108,7 +108,7 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 | 4a |                                           |                                                                                 |
 | 4b |                                           |                                                                                 |
 | 4c |                                           |                                                                                 |
-| 4d |                                           |                                                                                 |
+| 4d | MapInputEventToClientEvent_EX1            |                                                                                 |
 | 4e |                                           |                                                                                 |
 | 4f |                                           |                                                                                 |
 |    |                                           |                                                                                 |
@@ -121,7 +121,7 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 * RequestFacilityData_EX1
 * RequestJetwayData
 * EnumerateControllers
-* MapInputEventToClientEvent_EX1
+*
 * ExecuteAction
 * EnumerateInputEvents
 * GetInputEvent

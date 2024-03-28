@@ -4,11 +4,18 @@ import java.nio.ByteBuffer;
 
 public class ClearNotificationGroupRequest extends SimRequest {
 
+    public static final int TYPE_ID = 0xf000000a;
+
     private final int notificationGroupID;
 
     ClearNotificationGroupRequest(ByteBuffer buffer) {
         super(buffer);
         notificationGroupID = buffer.getInt();
+    }
+
+    public ClearNotificationGroupRequest(int notificationGroupID) {
+        super(TYPE_ID);
+        this.notificationGroupID = notificationGroupID;
     }
 
     @Override

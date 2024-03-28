@@ -89,8 +89,56 @@ public class MySimConnect {
         return write(new RemoveClientEventRequest(notificationGroupID, clientEventID));
     }
 
-    public SetNotificationGroupPriorityRequest stNotificationGroupPriority(int notificationGroupID, int priority) throws IOException {
+    public SetNotificationGroupPriorityRequest setNotificationGroupPriority(int notificationGroupID, int priority) throws IOException {
         return write(new SetNotificationGroupPriorityRequest(notificationGroupID, priority));
+    }
+
+    public ClearNotificationGroupRequest clearNotificationGroup(int notificationGroupID) throws IOException {
+        return write(new ClearNotificationGroupRequest(notificationGroupID));
+    }
+
+    public RequestNotificationGroupRequest requestNotificationGroup(int notificationGroupID, int reserved, int flags) throws IOException {
+        return write(new RequestNotificationGroupRequest(notificationGroupID, reserved, flags));
+    }
+
+    public AddToDataDefinitionRequest addToDataDefinition(int defineID, String datumName, String unitsName, int datumType, float epsilon, int datumID) throws IOException {
+        return write(new AddToDataDefinitionRequest(defineID, datumName, unitsName, datumType, epsilon, datumID));
+    }
+
+    public ClearDataDefinitionRequest clearDataDefinition(int dataDefinitionID) throws IOException {
+        return write(new ClearDataDefinitionRequest(dataDefinitionID));
+    }
+
+    public RequestDataOnSimObjectRequest requestDataOnSimObject(int dataRequestID, int dataDefinitionID, int objectID, SimconnectPeriod period, int dataRequestFlags, int origin, int interval, int limit) throws IOException {
+        return write(new RequestDataOnSimObjectRequest(dataRequestID, dataDefinitionID, objectID, period, dataRequestFlags, origin, interval, limit));
+    }
+
+    public RequestDataOnSimObjectTypeRequest requestDataOnSimObjectType(int requestID, int defineID, int radiusMeters, SimObjectType type) throws IOException {
+        return write(new RequestDataOnSimObjectTypeRequest(requestID, defineID, radiusMeters, type));
+    }
+
+    public SetDataOnSimObjectRequest setDataOnSimObject(int dataDefinitionID, int objectID, DataSetFlag dataSetFlag, int arrayCount, int unitSize, byte[] data) throws IOException {
+        return write(new SetDataOnSimObjectRequest(dataDefinitionID, objectID, dataSetFlag, arrayCount, unitSize, data));
+    }
+
+    public SetInputGroupPriorityRequest setInputGroupPriority(int groupID, int priority) throws IOException {
+        return write(new SetInputGroupPriorityRequest(groupID, priority));
+    }
+
+    public RemoveInputEventRequest removeInputEvent(int groupID, String inputDefinition) throws IOException {
+        return write(new RemoveInputEventRequest(groupID, inputDefinition));
+    }
+
+    public ClearInputGroupRequest clearInputGroup(int groupID) throws IOException {
+        return write(new ClearInputGroupRequest(groupID));
+    }
+
+    public SetInputGroupStateRequest SetInputGroupState(int groupID, int state) throws IOException {
+        return write(new SetInputGroupStateRequest(groupID, state));
+    }
+
+    public RequestReservedKeyRequest requestReservedKey(int eventID, String keyChoice1, String keyChoice2, String keyChoice3) throws IOException {
+        return write(new RequestReservedKeyRequest(eventID, keyChoice1, keyChoice2, keyChoice3));
     }
 
     public SubscribeToSystemEventRequest subscribeToSystemEvent(int eventID, SystemEventName eventName) throws IOException {
@@ -113,15 +161,23 @@ public class MySimConnect {
         return write(new RequestSystemStateRequest(requestID, state));
     }
 
-    public RequestFacilitesListRequest requestFacilitiesList(FacilityListType facilityListType, int requestId) throws IOException {
-        return write(new RequestFacilitesListRequest(facilityListType, requestId));
-    }
-
     public SubscribeToFacilitiesRequest subscribeToFacilities(FacilityListType facilityListType, int requestId) throws IOException {
         return write(new SubscribeToFacilitiesRequest(facilityListType, requestId));
     }
 
     public UnsubscribeToFacilitiesRequest unsubscribeToFacilities(FacilityListType facilityListType) throws IOException {
         return write(new UnsubscribeToFacilitiesRequest(facilityListType));
+    }
+
+    public RequestFacilitesListRequest requestFacilitiesList(FacilityListType facilityListType, int requestId) throws IOException {
+        return write(new RequestFacilitesListRequest(facilityListType, requestId));
+    }
+
+    public TransmitClientEventEx1Request transmitClientEventEx1Request(int objectID, int eventID, int notificationGroupID, int eventFlag, int data0, int data1, int data2, int data3, int data4) throws IOException {
+        return write(new TransmitClientEventEx1Request(objectID, eventID, notificationGroupID, eventFlag, data0, data1, data2, data3, data4));
+    }
+
+    public MapInputEventToClientEventEx1Request mapInputEventToClientEventEx1(int groupID, String inputDefinition, int downEventID, int downValue, int upEventID, int upValue, boolean bMaskable) throws IOException {
+        return write(new MapInputEventToClientEventEx1Request(groupID, inputDefinition, downEventID, downValue, upEventID, upValue, bMaskable));
     }
 }

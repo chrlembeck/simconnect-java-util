@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 
 public class RequestDataOnSimObjectRequest extends SimRequest {
 
+    public static final int TYPE_ID = 0xf000000e;
+
     private final int dataRequestID;
     private final int dataDefinitionID;
     private final int objectID;
@@ -13,7 +15,7 @@ public class RequestDataOnSimObjectRequest extends SimRequest {
     private final int interval;
     private final int limit;
 
-    public RequestDataOnSimObjectRequest(ByteBuffer buffer) {
+    RequestDataOnSimObjectRequest(ByteBuffer buffer) {
         super(buffer);
         dataRequestID = buffer.getInt();
         dataDefinitionID = buffer.getInt();
@@ -23,6 +25,18 @@ public class RequestDataOnSimObjectRequest extends SimRequest {
         origin = buffer.getInt();
         interval = buffer.getInt();
         limit = buffer.getInt();
+    }
+
+    public RequestDataOnSimObjectRequest(int dataRequestID, int dataDefinitionID, int objectID, SimconnectPeriod period, int dataRequestFlags, int origin, int interval, int limit) {
+        super(TYPE_ID);
+        this.dataRequestID = dataRequestID;
+        this.dataDefinitionID = dataDefinitionID;
+        this.objectID = objectID;
+        this.period = period;
+        this.dataRequestFlags = dataRequestFlags;
+        this.origin = origin;
+        this.interval = interval;
+        this.limit = limit;
     }
 
     @Override

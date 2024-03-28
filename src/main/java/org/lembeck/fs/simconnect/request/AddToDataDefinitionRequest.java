@@ -6,21 +6,33 @@ import java.nio.ByteBuffer;
 
 public class AddToDataDefinitionRequest extends SimRequest {
 
+    public static final int TYPE_ID = 0xf000000c;
+
     private final int defineID;
     private final String datumName;
     private final String unitsName;
     private final int datumType;
-    private final float fEpsilon;
-    private final int datumId;
+    private final float epsilon;
+    private final int datumID;
 
-    public AddToDataDefinitionRequest(ByteBuffer buffer) {
+    AddToDataDefinitionRequest(ByteBuffer buffer) {
         super(buffer);
         defineID = buffer.getInt();
         datumName = SimUtil.readString(buffer, 256);
         unitsName = SimUtil.readString(buffer, 256);
         datumType = buffer.getInt();
-        fEpsilon = buffer.getFloat();
-        datumId = buffer.getInt();
+        epsilon = buffer.getFloat();
+        datumID = buffer.getInt();
+    }
+
+    public AddToDataDefinitionRequest(int defineID, String datumName, String unitsName, int datumType, float epsilon, int datumID) {
+        super(TYPE_ID);
+        this.defineID = defineID;
+        this.datumName = datumName;
+        this.unitsName = unitsName;
+        this.datumType = datumType;
+        this.epsilon = epsilon;
+        this.datumID = datumID;
     }
 
     @Override
@@ -29,8 +41,8 @@ public class AddToDataDefinitionRequest extends SimRequest {
         SimUtil.writeString(outBuffer, datumName, 256);
         SimUtil.writeString(outBuffer, unitsName, 256);
         outBuffer.putInt(datumType);
-        outBuffer.putFloat(fEpsilon);
-        outBuffer.putInt(datumId);
+        outBuffer.putFloat(epsilon);
+        outBuffer.putInt(datumID);
     }
 
     public int getDefineID() {
@@ -49,12 +61,12 @@ public class AddToDataDefinitionRequest extends SimRequest {
         return datumType;
     }
 
-    public float getfEpsilon() {
-        return fEpsilon;
+    public float getEpsilon() {
+        return epsilon;
     }
 
-    public int getDatumId() {
-        return datumId;
+    public int getDatumID() {
+        return datumID;
     }
 
     @Override
@@ -68,8 +80,8 @@ public class AddToDataDefinitionRequest extends SimRequest {
                 ", datumName='" + datumName + "'"+
                 ", unitsName='" + unitsName + "'"+
                 ", datumType=" + datumType +
-                ", fEpsilon=" + fEpsilon +
-                ", datumId=" + datumId +
+                ", fEpsilon=" + epsilon +
+                ", datumId=" + datumID +
                 "}";
     }
 }

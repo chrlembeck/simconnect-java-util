@@ -2,7 +2,10 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
-public class TransmitClientEventExRequest extends SimRequest {
+public class TransmitClientEventEx1Request extends SimRequest {
+
+    public static final int TYPE_ID = 0xf0000044;
+
     private final int objectID;
     private final int eventID;
     private final int notificationGroupID;
@@ -13,7 +16,7 @@ public class TransmitClientEventExRequest extends SimRequest {
     private final int data3;
     private final int data4;
 
-    TransmitClientEventExRequest(ByteBuffer buffer) {
+    TransmitClientEventEx1Request(ByteBuffer buffer) {
         super(buffer);
         objectID = buffer.getInt();
         eventID = buffer.getInt();
@@ -24,6 +27,19 @@ public class TransmitClientEventExRequest extends SimRequest {
         data2 = buffer.getInt();
         data3 = buffer.getInt();
         data4 = buffer.getInt();
+    }
+
+    public TransmitClientEventEx1Request(int objectID, int eventID, int notificationGroupID, int eventFlag, int data0, int data1, int data2, int data3, int data4) {
+        super(TYPE_ID);
+        this.objectID = objectID;
+        this.eventID = eventID;
+        this.notificationGroupID = notificationGroupID;
+        this.eventFlag = eventFlag;
+        this.data0 = data0;
+        this.data1 = data1;
+        this.data2 = data2;
+        this.data3 = data3;
+        this.data4 = data4;
     }
 
     @Override
