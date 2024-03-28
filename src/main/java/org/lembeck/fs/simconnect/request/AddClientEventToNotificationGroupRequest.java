@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 
 public class AddClientEventToNotificationGroupRequest extends SimRequest {
 
+    public static final int TYPE_ID = 0xf0000007;
+
     private final int notificationGroupID;
     private final int clientEventID;
     private final boolean maskable;
@@ -13,6 +15,13 @@ public class AddClientEventToNotificationGroupRequest extends SimRequest {
         notificationGroupID = buffer.getInt();
         clientEventID = buffer.getInt();
         maskable = buffer.getInt() != 0;
+    }
+
+    public AddClientEventToNotificationGroupRequest(int notificationGroupID, int clientEventID, boolean maskable) {
+        super(TYPE_ID);
+        this.notificationGroupID = notificationGroupID;
+        this.clientEventID = clientEventID;
+        this.maskable = maskable;
     }
 
     @Override

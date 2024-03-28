@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 
 public class RemoveClientEventRequest extends SimRequest {
 
+    public static final int TYPE_ID = 0xf0000008;
+
     private final int notificationGroupID;
 
     private final int clientEventID;
@@ -12,6 +14,12 @@ public class RemoveClientEventRequest extends SimRequest {
         super(buffer);
         notificationGroupID = buffer.getInt();
         clientEventID = buffer.getInt();
+    }
+
+    public RemoveClientEventRequest(int notificationGroupID, int clientEventID) {
+        super(TYPE_ID);
+        this.notificationGroupID = notificationGroupID;
+        this.clientEventID = clientEventID;
     }
 
     @Override

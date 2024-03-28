@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 
 public class SetNotificationGroupPriorityRequest extends SimRequest {
 
+    public static int TYPE_ID = 0xf0000009;
+
     private final int notificationGroupID;
     private final int priority;
 
@@ -11,6 +13,12 @@ public class SetNotificationGroupPriorityRequest extends SimRequest {
         super(buffer);
         notificationGroupID = buffer.getInt();
         priority = buffer.getInt();
+    }
+
+    public SetNotificationGroupPriorityRequest(int notificationGroupID, int priority) {
+        super(TYPE_ID);
+        this.notificationGroupID = notificationGroupID;
+        this.priority = priority;
     }
 
     @Override

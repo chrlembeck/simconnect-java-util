@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 
 public class SetSystemEventStateRequest extends SimRequest {
 
+    public static final int TYPE_ID = 0xf0000006;
     private final int clientEventID;
     private final State state;
 
@@ -11,6 +12,12 @@ public class SetSystemEventStateRequest extends SimRequest {
         super(buffer);
         clientEventID = buffer.getInt();
         state = State.values()[buffer.getInt()];
+    }
+
+    public SetSystemEventStateRequest(int clientEventID, State state) {
+        super(TYPE_ID);
+        this.clientEventID = clientEventID;
+        this.state = state;
     }
 
     @Override

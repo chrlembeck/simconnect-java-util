@@ -58,7 +58,7 @@ public class MySimConnect {
         return responseReceiver;
     }
 
-    public void write(SimRequest request) throws IOException {
+    public <T extends SimRequest> T write(T request) throws IOException {
         request.setIdentifier(lastRequestIdentifier.incrementAndGet());
         synchronized (outBuffer) {
             outBuffer.clear();
@@ -66,38 +66,62 @@ public class MySimConnect {
             outBuffer.flip();
             channel.write(outBuffer);
         }
+        return request;
     }
 
-
-    public void subscribeToSystemEvent(int eventID, SystemEventName eventName) throws IOException {
-        write(new SubscribeToSystemEventRequest(eventID, eventName));
+    public MapClientEventToSimEventRequest mapClientEventToSimEvent(int eventID, String eventName) throws IOException {
+        return write(new MapClientEventToSimEventRequest(eventID, eventName));
     }
 
-    public void subscribeToSystemEvent(int eventID, String eventName) throws IOException {
-        write(new SubscribeToSystemEventRequest(eventID, eventName));
+    public TransmitClientEventRequest transmitClientEvent(int objectID, int clientEventID, int data, int notificationGroupID, int eventFlag) throws IOException {
+        return write(new TransmitClientEventRequest(objectID, clientEventID, data, notificationGroupID, eventFlag));
     }
 
-    public void unsubscribeFromSystemEvent(int eventID) throws IOException {
-        write(new UnsubscribeFromSystemEventRequest(eventID));
+    public SetSystemEventStateRequest setSystemEventState(int clientEventID, State state) throws IOException {
+        return write(new SetSystemEventStateRequest(clientEventID, state));
     }
 
-    public void requestSystemState(int requestID, String state) throws IOException {
-        write(new RequestSystemStateRequest(requestID, state));
+    public AddClientEventToNotificationGroupRequest addClientEventToNotificationGroup(int notificationGroupID, int clientEventID, boolean maskable) throws IOException {
+        return write(new AddClientEventToNotificationGroupRequest(notificationGroupID, clientEventID, maskable));
     }
 
-    public void requestSystemState(int requestID, SystemState state) throws IOException {
-        write(new RequestSystemStateRequest(requestID, state));
+    public RemoveClientEventRequest removeClientEvent(int notificationGroupID, int clientEventID) throws IOException {
+        return write(new RemoveClientEventRequest(notificationGroupID, clientEventID));
     }
 
-    public void requestFacilitiesList(FacilityListType facilityListType, int requestId) throws IOException {
-        write(new RequestFacilitesListRequest(facilityListType, requestId));
+    public SetNotificationGroupPriorityRequest stNotificationGroupPriority(int notificationGroupID, int priority) throws IOException {
+        return write(new SetNotificationGroupPriorityRequest(notificationGroupID, priority));
     }
 
-    public void subscribeToFacilities(FacilityListType facilityListType, int requestId) throws IOException {
-        write(new SubscribeToFacilitiesRequest(facilityListType, requestId));
+    public SubscribeToSystemEventRequest subscribeToSystemEvent(int eventID, SystemEventName eventName) throws IOException {
+        return write(new SubscribeToSystemEventRequest(eventID, eventName));
     }
 
-    public void unsubscribeToFacilities(FacilityListType facilityListType) throws IOException {
-        write(new UnsubscribeToFacilitiesRequest(facilityListType));
+    public SubscribeToSystemEventRequest subscribeToSystemEvent(int eventID, String eventName) throws IOException {
+        return write(new SubscribeToSystemEventRequest(eventID, eventName));
+    }
+
+    public UnsubscribeFromSystemEventRequest unsubscribeFromSystemEvent(int eventID) throws IOException {
+        return write(new UnsubscribeFromSystemEventRequest(eventID));
+    }
+
+    public RequestSystemStateRequest requestSystemState(int requestID, String state) throws IOException {
+        return write(new RequestSystemStateRequest(requestID, state));
+    }
+
+    public RequestSystemStateRequest requestSystemState(int requestID, SystemState state) throws IOException {
+        return write(new RequestSystemStateRequest(requestID, state));
+    }
+
+    public RequestFacilitesListRequest requestFacilitiesList(FacilityListType facilityListType, int requestId) throws IOException {
+        return write(new RequestFacilitesListRequest(facilityListType, requestId));
+    }
+
+    public SubscribeToFacilitiesRequest subscribeToFacilities(FacilityListType facilityListType, int requestId) throws IOException {
+        return write(new SubscribeToFacilitiesRequest(facilityListType, requestId));
+    }
+
+    public UnsubscribeToFacilitiesRequest unsubscribeToFacilities(FacilityListType facilityListType) throws IOException {
+        return write(new UnsubscribeToFacilitiesRequest(facilityListType));
     }
 }

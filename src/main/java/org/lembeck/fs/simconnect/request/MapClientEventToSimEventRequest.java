@@ -6,13 +6,21 @@ import java.nio.ByteBuffer;
 
 public class MapClientEventToSimEventRequest extends SimRequest {
 
+    public static final int TYPE_ID = 0xf0000004;
+
     private final int eventID;
     private final String eventName;
 
-    public MapClientEventToSimEventRequest(ByteBuffer buffer) {
+    MapClientEventToSimEventRequest(ByteBuffer buffer) {
         super(buffer);
         eventID = buffer.getInt();
         eventName = SimUtil.readString(buffer, 256);
+    }
+
+    public MapClientEventToSimEventRequest(int eventID, String eventName) {
+        super(TYPE_ID);
+        this.eventID = eventID;
+        this.eventName = eventName;
     }
 
     @Override

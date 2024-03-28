@@ -35,12 +35,12 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 | 01 |                                           |                                                                                 |
 | 02 |                                           |                                                                                 |
 | 03 |                                           |                                                                                 |
-| 04 | MapClientEventToSimEvent                  |                                                                                 |
-| 05 | TransmitClientEvent                       |                                                                                 |
-| 06 | SetSystemEventState                       |                                                                                 |
-| 07 | AddClientEventToNotificationGroup         |                                                                                 |
-| 08 | RemoveClientEvent                         |                                                                                 |
-| 09 | SetNotificationGroupPriority              |                                                                                 |
+| 04 | MapClientEventToSimEvent                  | :heavy_check_mark:                                                              |
+| 05 | TransmitClientEvent                       | :heavy_check_mark:                                                              |
+| 06 | SetSystemEventState                       | :heavy_check_mark:                                                              |
+| 07 | AddClientEventToNotificationGroup         | :heavy_check_mark:                                                              |
+| 08 | RemoveClientEvent                         | :heavy_check_mark:                                                              |
+| 09 | SetNotificationGroupPriority              | :heavy_check_mark:                                                              |
 | 0a | ClearNotificationGroup                    |                                                                                 |
 | 0b | RequestNotificationGroup                  |                                                                                 |
 | 0c | AddToDataDefinition                       |                                                                                 |
