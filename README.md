@@ -96,7 +96,7 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 | 4a |                                           |                                                              |
 | 4b |                                           |                                                              |
 | 4c |                                           |                                                              |
-| 4d | MapInputEventToClientEvent_EX1            |                                                              |
+| 4d | MapInputEventToClientEvent_EX1            | :heavy_check_mark:                                           |
 | 4e |                                           |                                                              |
 | 4f |                                           |                                                              |
 |    |                                           |                                                              |
@@ -161,10 +161,6 @@ projects `pom.xml`:
 </dependencies
 ```
 
-## How does the simconnect interface work?
-
-_TODO_
-
 ## Are there any examples to demonstrate the usage of this project?
 
 Yes, the project contains some example programs to show some of its features.
@@ -173,7 +169,58 @@ package [`org.lembeck.fs.simconnect.examples`](src/main/java/org/lembeck/fs/simc
 
 ## What do I have to do to establish a connection to my flight simulator instance?
 
-_TODO_
+To be able to connect to your instance of Flight Simulator 2020, you have to tell the integrated simconnect server
+interface to listen for incoming IP connections out of your local network. To do so, you have to inspect and possibly
+edit the
+`simconnect.xml` file of your Flight Simulator installation. This file should be located on the computer, the Flight
+Simulator is running on.
+The detailed location is depending on the way, the Flight Simulator was installed.
+
+If you installed the simulator out of the Microsoft Store, the `simconnect.xml` file ist located here:
+
+```
+C:\Users\<user_name>\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalCache\
+```
+
+Installations of the Steam edition have the `simconnect.xml` file here:
+
+```
+C:\Users\<user_name>\AppData\Roaming\Microsoft Flight Simulator\
+```
+
+The `simconnect.xml` file is structured as a usual xml file and should have some `<SimConnect.Comm>` sections in it.
+Each of them defines a way to get into contact with the server. To open a listener on a specific network port (for
+example 12345),
+you have to add a new `SimConnect.Comm` entry into the file as shown below:
+
+```XML
+<?xml version="1.0" encoding="Windows-1252"?>
+<SimBase.Document Type="SimConnect" version="1,0">
+    <Descr>SimConnect Server Configuration</Descr>
+    <Filename>SimConnect.xml</Filename>
+    <SimConnect.Comm>
+        ...
+    </SimConnect.Comm>
+    ...
+    <SimConnect.Comm>
+        <Descr>Static Open IP4 port</Descr>
+        <Protocol>IPv4</Protocol>
+        <Scope>global</Scope>
+        <Port>12345</Port>
+        <MaxClients>64</MaxClients>
+        <MaxRecvSize>41088</MaxRecvSize>
+    </SimConnect.Comm>
+</SimBase.Document>
+```
+
+Feel free to use any unused port that is available on your local installation. For connections from outside the local
+computer it may be necessary to open the port in the firewall of the machine, the flight simulator is running on.
+
+Remember the port, you entered into the `simconnect.xml` file as it will be required when you want to call the `connect`
+method of the simconnect-java-util API.
+
+For more information see the official
+documentation: [https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/SimConnect_XML_Definition.htm](https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/SimConnect_XML_Definition.htm)
 
 ## Does this project support connections to Flight Simulator X (FSX)?
 
