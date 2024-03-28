@@ -31,10 +31,10 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 
 | ID | Name                                      | Comment                                                      |
 |----|-------------------------------------------|--------------------------------------------------------------|
-| 00 | Open                                      | :heavy_check_mark:                                           |
-| 01 |                                           |                                                              |
+| 00 |                                           |                                                              |
+| 01 | Open                                      | :heavy_check_mark:                                           |
 | 02 |                                           |                                                              |
-| 03 |                                           |                                                              |
+| 03 | RequestResponseTimes                      | :x: not yet implemented                                      |
 | 04 | MapClientEventToSimEvent                  | :heavy_check_mark:                                           |
 | 05 | TransmitClientEvent                       | :heavy_check_mark:                                           |
 | 06 | SetSystemEventState                       | :heavy_check_mark:                                           |
