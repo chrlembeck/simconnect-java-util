@@ -16,7 +16,6 @@ public class RecvSimobjectDataResponse extends SimResponse {
     private final int defineCount;
     private final ByteBuffer data;
 
-
     RecvSimobjectDataResponse(ByteBuffer buffer) {
         super(buffer);
         requestID = buffer.getInt();

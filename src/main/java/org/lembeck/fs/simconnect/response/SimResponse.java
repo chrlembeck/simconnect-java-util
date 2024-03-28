@@ -46,14 +46,14 @@ public abstract class SimResponse {
             case 0x07 -> new RecvFrameResponse(buffer);
             case 0x08 -> new RecvSimobjectDataResponse(buffer);
             case 0x09 -> new RecvSimobjectDataByTypeResponse(buffer);
-            // 0x0a: SIMCONNECT_RECV_WEATHER_OBSERVATION
-            // 0x0b: SIMCONNECT_RECV_CLOUD_STATE
+            // 0x0a: *deprecated* SIMCONNECT_RECV_WEATHER_OBSERVATION
+            // 0x0b: *deprecated* SIMCONNECT_RECV_CLOUD_STATE
             case 0x0c -> new RecvAssignedObjectIdResponse(buffer);
-            // 0x0d: SIMCONNECT_RECV_RESERVED_KEY
-            // 0x0e: SIMCONNECT_RECV_CUSTOM_ACTION
+            case 0x0d -> new RecvReservedKeyResponse(buffer);
+            // 0x0e: *deprecated* SIMCONNECT_RECV_CUSTOM_ACTION
             case 0x0f -> new RecvSystemStateResponse(buffer);
-            // 0x10: SIMCONNECT_RECV_CLIENT_DATA
-            // 0x11: SIMCONNECT_RECV_EVENT_WEATHER_MODE
+            case 0x10 -> new RecvClientDataResponse(buffer);
+            // 0x11: *deprecated* SIMCONNECT_RECV_EVENT_WEATHER_MODE
             case 0x12 -> new RecvAirportListResponse(buffer);
             case 0x13 -> new RecvVorListResponse(buffer);
             case 0x14 -> new RecvNdbListResponse(buffer);

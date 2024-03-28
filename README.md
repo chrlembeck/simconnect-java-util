@@ -1,39 +1,24 @@
-# simconnect
+# simconnect-java-util
 
+The simconnect-java-util project contains a java client for the simconnect interface of the microsoft flight simulator
+2020.
+The client connects to the flight simulator directly over an IP network connection, so that it is able to run on the
+same machine as
+the simulator or on another machine in the local network.
 
-**Wichtig**: Vor dem compilieren des Projekts muss die jsimconnect-Library ins lokale maven-repository installiert werden.
-Hierzu das Projekt [jsimconnect aus gitlab](https://github.com/mharj/jsimconnect) clonen und das Modul compilieren und installieren:
-
-```
-git clone https://github.com/mharj/jsimconnect.git
-cd jsimconnect
-mvn install
-```
-
-
-https://github.com/mharj/jsimconnect
+The project is inspired by [Marko Harjulas jsimconnect](https://github.com/mharj/jsimconnect) project, which supports
+the API for Flight Simulator X but does not contain some of the new methods for Flight Simulator 2020.
 
 https://github.com/EvenAR/node-simconnect/tree/master
 
 https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.ts
 
-
-# Protokoll-Infos:
-
-Format der gesendeten Pakete:
-Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit einem 4 int großen Header:
-* int1: Größe des Pakets in Bytes (inklusive header)
-* int2: Protokollversion
-* int3: id des Pakettyps. Die Id wird vor dem Senden mit 0xf0000000 or-verknüpft.
-* int4: fortlaufende Nummer. Diese Nummer wird vom Server verwendet, um diese bei zurückgesendeten Exceptions mitzugeben.
-
-## List of simconnect methods
+## Supported methods of the simconnect API
 
 | ID | Name                                      | Comment                                                      |
 |----|-------------------------------------------|--------------------------------------------------------------|
-| 00 |                                           |                                                              |
 | 01 | Open                                      | :heavy_check_mark:                                           |
-| 02 |                                           |                                                              |
+| 02 | _unknown_                                 | :x:                                                          |
 | 03 | RequestResponseTimes                      | :x: not yet implemented                                      |
 | 04 | MapClientEventToSimEvent                  | :heavy_check_mark:                                           |
 | 05 | TransmitClientEvent                       | :heavy_check_mark:                                           |
@@ -140,4 +125,35 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 * GetNextDispatch
 * RequestResponseTimes
 * InsertString
- 
+
+## Supported Events sent from the simconnect API
+
+| ID | Name | Comment |
+|----|------|---------|
+|    |      |         |
+
+## How to compile the project?
+
+Just clone the project and compile it with your local maven installation:
+
+```Shell
+git clone https://github.com/chrlembeck/simconnect-java-util.git
+cd simconnect-java-util.git
+mvn install
+```
+
+## How to use the utils in your own java project?
+
+To integrate the simconnect-java-util in your own project just add it to the maven dependencies in the
+projects `pom.xml`:
+
+```Maven POM
+<depenencies>
+    <!-- ... other dependencies ... --> 
+    <dependency>
+        <groupId>org.lembeck</groupId>
+        <artifactId>simconnect-java-util</artifactId>
+        <version><!-- Replace this with the lates version of the dependency --></version>
+    </dependency>
+</dependencies
+```
