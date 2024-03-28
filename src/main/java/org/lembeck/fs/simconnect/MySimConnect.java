@@ -153,8 +153,44 @@ public class MySimConnect {
         return write(new UnsubscribeFromSystemEventRequest(eventID));
     }
 
+    public AICreateParkedATCAircraftRequest aiCreateParkedATCAircraft(String containerTitle, String tailNumber, String airportIcaoID, int requestID) throws IOException {
+        return write(new AICreateParkedATCAircraftRequest(containerTitle, tailNumber, airportIcaoID, requestID));
+    }
+
+    public AICreateEnrouteATCAircraftRequest aiCreateEnrouteATCAircraft(String containerTitle, String tailNumber, int flightNumber, String flightPlanPath, float flightPlanPosition, boolean touchAndGo, int requestID) throws IOException {
+        return write(new AICreateEnrouteATCAircraftRequest(containerTitle, tailNumber, flightNumber, flightPlanPath, flightPlanPosition, touchAndGo, requestID));
+    }
+
+    public AICreateNonATCAircraftRequest aiCreateNonATCAircraft(String containerTitle, String tailNumber, InitPosition initPosition, int requestID) throws IOException {
+        return write(new AICreateNonATCAircraftRequest(containerTitle, tailNumber, initPosition, requestID));
+    }
+
+    public AICreateSimulatedObjectRequest aiCreateSimulatedObject(String containerTitle, InitPosition initPosition, int requestID) throws IOException {
+        return write(new AICreateSimulatedObjectRequest(containerTitle, initPosition, requestID));
+    }
+
+    public AIReleaseControlRequest aiReleaseControl(int objectID, int requestID) throws IOException {
+        return write(new AIReleaseControlRequest(objectID, requestID));
+    }
+
+    public AIRemoveObjectRequest aiRemoveObject(int objectID, int requestID) throws IOException {
+        return write(new AIRemoveObjectRequest(objectID, requestID));
+    }
+
+    public AISetAircraftFlightPlanRequest aiSetAircraftFlightPlan(int objectID, String flightPlanPath, int requestID) throws IOException {
+        return write(new AISetAircraftFlightPlanRequest(objectID, flightPlanPath, requestID));
+    }
+
+    public CameraSetRelative6DofRequest cameraSetRelative6DOF(float deltaX, float deltaY, float deltaZ, float pitchDeg, float bankDeg, float headingDeg) throws IOException {
+        return write(new CameraSetRelative6DofRequest(deltaX, deltaY, deltaZ, pitchDeg, bankDeg, headingDeg));
+    }
+
     public RequestSystemStateRequest requestSystemState(int requestID, String state) throws IOException {
         return write(new RequestSystemStateRequest(requestID, state));
+    }
+
+    public SetSystemStateRequest setSystemState(String state, int intParam, float floatParam, String stringParam) throws IOException {
+        return write(new SetSystemStateRequest(state, intParam, floatParam, stringParam));
     }
 
     public RequestSystemStateRequest requestSystemState(int requestID, SystemState state) throws IOException {

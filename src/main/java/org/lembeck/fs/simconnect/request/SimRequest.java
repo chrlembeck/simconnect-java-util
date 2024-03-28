@@ -73,7 +73,17 @@ public abstract class SimRequest {
             case 0xf0000016 -> new RequestReservedKeyRequest(buffer);
             case 0xf0000017 -> new SubscribeToSystemEventRequest(buffer);
             case 0xf0000018 -> new UnsubscribeFromSystemEventRequest(buffer);
+            //19-26 are deprecated
+            case 0x00000027 -> new AICreateParkedATCAircraftRequest(buffer);
+            case 0x00000028 -> new AICreateEnrouteATCAircraftRequest(buffer);
+            case 0x00000029 -> new AICreateNonATCAircraftRequest(buffer);
+            case 0x0000002a -> new AICreateSimulatedObjectRequest(buffer);
+            case 0x0000002b -> new AIReleaseControlRequest(buffer);
+            case 0x0000002c -> new AIRemoveObjectRequest(buffer);
+            case 0x0000002d -> new AISetAircraftFlightPlanRequest(buffer);
+            case 0xf0000030 -> new CameraSetRelative6DofRequest(buffer);
             case 0xf0000035 -> new RequestSystemStateRequest(buffer);
+            case 0xf0000036 -> new SetSystemStateRequest(buffer);
             case 0xf0000041 -> new SubscribeToFacilitiesRequest(buffer);
             case 0xf0000042 -> new UnsubscribeToFacilitiesRequest(buffer);
             case 0xf0000043 -> new RequestFacilitesListRequest(buffer);
