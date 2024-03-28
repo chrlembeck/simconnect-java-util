@@ -5,9 +5,12 @@ The simconnect-java-util project contains a java client for the simconnect inter
 The client connects to the flight simulator directly over an IP network connection, so that it is able to run on the
 same machine as
 the simulator or on another machine in the local network.
+As this java client communicates directly with the flight simulator, it is not necessary to install the Flight
+Simulators
+simconnect API written in C++ or C#.
 
 The project is inspired by [Marko Harjulas jsimconnect](https://github.com/mharj/jsimconnect) project, which supports
-the API for Flight Simulator X but does not contain some of the new methods for Flight Simulator 2020.
+the API for Flight Simulator X but does not contain some of the newer methods for Flight Simulator 2020.
 
 https://github.com/EvenAR/node-simconnect/tree/master
 
@@ -157,3 +160,26 @@ projects `pom.xml`:
     </dependency>
 </dependencies
 ```
+
+## How does the simconnect interface work?
+
+_TODO_
+
+## Are there any examples to demonstrate the usage of this project?
+
+Yes, the project contains some example programs to show some of its features.
+The examples can be found in the
+package [`org.lembeck.fs.simconnect.examples`](src/main/java/org/lembeck/fs/simconnect/examples).
+
+## What do I have to do to establish a connection to my flight simulator instance?
+
+_TODO_
+
+## Does this project support connections to Flight Simulator X (FSX)?
+
+This project mainly aims to implement a java client for the newer Flight Simulator 2020.
+Therefore, methods that were originally used for FSX but are marked as deprecated in the current simconnect API
+specification are not implemented.
+
+It is possible that some methods are backwards compatible with FSX and these can be used for connections to FSX.
+However, this has not been tested and correct functioning cannot be guaranteed.
