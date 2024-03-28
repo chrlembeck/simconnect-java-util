@@ -71,12 +71,12 @@ Alle gesendeten Werte sind im little-endian-Format. Jedes Paket beginnt mit eine
 | 25 | WeatherCreateThermal                      | :x: _Deprecated_, not implemented here                       |
 | 26 | WeatherRemoveThermal                      | :x: _Deprecated_, not implemented here                       |
 | 27 | AICreateParkedATCAircraft                 | :heavy_check_mark:                                           |
-| 28 | AICreateEnrouteATCAircraft                |                                                              |
-| 29 | AICreateNonATCAircraft                    |                                                              |
-| 2a | AICreateSimulatedObject                   |                                                              |
-| 2b | AIReleaseControl                          |                                                              |
-| 2c | AIRemoveObject                            |                                                              |
-| 2d | AISetAircraftFlightPlan                   |                                                              |
+| 28 | AICreateEnrouteATCAircraft                | :heavy_check_mark:                                           |
+| 29 | AICreateNonATCAircraft                    | :heavy_check_mark:                                           |
+| 2a | AICreateSimulatedObject                   | :heavy_check_mark:                                           |
+| 2b | AIReleaseControl                          | :heavy_check_mark:                                           |
+| 2c | AIRemoveObject                            | :heavy_check_mark:                                           |
+| 2d | AISetAircraftFlightPlan                   | :heavy_check_mark:                                           |
 | 2e | ExecuteMissionAction                      | :x: _Deprecated_, not implemented here                       |
 | 2f | CompleteCustomMissionAction               | :x: _Deprecated_, not implemented here                       |
 | 30 | CameraSetRelative6DOF                     | :heavy_check_mark:                                           |
