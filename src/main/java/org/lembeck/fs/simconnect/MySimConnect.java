@@ -253,4 +253,16 @@ public class MySimConnect {
     public MapInputEventToClientEventEx1Request mapInputEventToClientEventEx1(int groupID, String inputDefinition, int downEventID, int downValue, int upEventID, int upValue, boolean bMaskable) throws IOException {
         return write(new MapInputEventToClientEventEx1Request(groupID, inputDefinition, downEventID, downValue, upEventID, upValue, bMaskable));
     }
+
+    public GetInputEventRequest getInputEventRequest(int requestID, long hash) throws IOException {
+        return write(new GetInputEventRequest(requestID, hash));
+    }
+
+    public SetInputEventRequest setInputEvent(long hash, float floatValue) throws IOException {
+        return write(new SetInputEventRequest(hash, floatValue));
+    }
+
+    public SetInputEventRequest setInputEvent(long hash, String stringValue) throws IOException {
+        return write(new SetInputEventRequest(hash, stringValue));
+    }
 }

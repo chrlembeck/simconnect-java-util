@@ -99,6 +99,9 @@ public abstract class SimRequest {
             case 0xf0000043 -> new RequestFacilitesListRequest(buffer);
             case 0xf0000044 -> new TransmitClientEventEx1Request(buffer);
             case 0xf000004d -> new MapInputEventToClientEventEx1Request(buffer);
+
+            case 0xf0000050 -> new GetInputEventRequest(buffer);
+            case 0xf0000051 -> new SetInputEventRequest(buffer);
             default -> new UnknownRequest(buffer);
         };
     }

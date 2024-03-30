@@ -99,7 +99,8 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 | 4d | MapInputEventToClientEvent_EX1            | :heavy_check_mark:                                           |
 | 4e |                                           |                                                              |
 | 4f |                                           |                                                              |
-|    |                                           |                                                              |
+| 50 | GetInputEvent                             | :heavy_check_mark:                                           |
+| 51 | SetInputEvent                             | :heavy_check_mark:                                           |
 
 * AddToFacilityDefinition
 * RequestFacilityData
@@ -112,8 +113,7 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 *
 * ExecuteAction
 * EnumerateInputEvents
-* GetInputEvent
-* SetInputEvent
+*
 * SubscribeInputEvent
 * UnsubscribeInputEvent
 * EnumerateInputEventParams
