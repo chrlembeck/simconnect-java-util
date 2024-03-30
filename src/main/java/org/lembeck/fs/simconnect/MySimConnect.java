@@ -198,11 +198,11 @@ public class MySimConnect {
         return write(new MapClientDataNameToIDRequest(clientDataName, clientDataID));
     }
 
-    public CreateClientDataRequest createClientDataRequest(int clientDataID, int dataSize, boolean readonly) throws IOException {
+    public CreateClientDataRequest createClientData(int clientDataID, int dataSize, boolean readonly) throws IOException {
         return write(new CreateClientDataRequest(clientDataID, dataSize, readonly));
     }
 
-    public AddToClientDataDefinitionRequest addToClientDataDefinitionRequest(int defineID, int offset, int sizeOrType, float epsilon, int datumID) throws IOException {
+    public AddToClientDataDefinitionRequest addToClientDataDefinition(int defineID, int offset, int sizeOrType, float epsilon, int datumID) throws IOException {
         return write(new AddToClientDataDefinitionRequest(defineID, offset, sizeOrType, epsilon, datumID));
     }
 
@@ -246,15 +246,23 @@ public class MySimConnect {
         return write(new RequestFacilitesListRequest(facilityListType, requestId));
     }
 
-    public TransmitClientEventEx1Request transmitClientEventEx1Request(int objectID, int eventID, int notificationGroupID, int eventFlag, int data0, int data1, int data2, int data3, int data4) throws IOException {
+    public TransmitClientEventEx1Request transmitClientEventEx1(int objectID, int eventID, int notificationGroupID, int eventFlag, int data0, int data1, int data2, int data3, int data4) throws IOException {
         return write(new TransmitClientEventEx1Request(objectID, eventID, notificationGroupID, eventFlag, data0, data1, data2, data3, data4));
+    }
+
+    public EnumerateControllersRequest enumerateControllers() throws IOException {
+        return write(new EnumerateControllersRequest());
     }
 
     public MapInputEventToClientEventEx1Request mapInputEventToClientEventEx1(int groupID, String inputDefinition, int downEventID, int downValue, int upEventID, int upValue, boolean bMaskable) throws IOException {
         return write(new MapInputEventToClientEventEx1Request(groupID, inputDefinition, downEventID, downValue, upEventID, upValue, bMaskable));
     }
 
-    public GetInputEventRequest getInputEventRequest(int requestID, long hash) throws IOException {
+    public EnumerateInputEventsRequest enumerateInputEvents(int requestID) throws IOException {
+        return write(new EnumerateInputEventsRequest(requestID));
+    }
+
+    public GetInputEventRequest getInputEvent(int requestID, long hash) throws IOException {
         return write(new GetInputEventRequest(requestID, hash));
     }
 
@@ -264,5 +272,17 @@ public class MySimConnect {
 
     public SetInputEventRequest setInputEvent(long hash, String stringValue) throws IOException {
         return write(new SetInputEventRequest(hash, stringValue));
+    }
+
+    public EnumerateInputEventParamsRequest enumerateInputEventParams(long hash) throws IOException {
+        return write(new EnumerateInputEventParamsRequest(hash));
+    }
+
+    public SubscribeInputEventRequest subscribeInputEvent(long hash) throws IOException {
+        return write(new SubscribeInputEventRequest(hash));
+    }
+
+    public UnsubscribeInputEventRequest unsubscribeInputEvent(long hash) throws IOException {
+        return write(new UnsubscribeInputEventRequest(hash));
     }
 }

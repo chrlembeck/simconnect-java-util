@@ -982,17 +982,17 @@ SIMCONNECTAPI SimConnect_RequestFacilityData(HANDLE hSimConnect, SIMCONNECT_DATA
 SIMCONNECTAPI SimConnect_SubscribeToFacilities_EX1(HANDLE hSimConnect, SIMCONNECT_FACILITY_LIST_TYPE type, SIMCONNECT_DATA_REQUEST_ID newElemInRangeRequestID, SIMCONNECT_DATA_REQUEST_ID oldElemOutRangeRequestID);
 SIMCONNECTAPI SimConnect_UnsubscribeToFacilities_EX1(HANDLE hSimConnect, SIMCONNECT_FACILITY_LIST_TYPE type, bool bUnsubscribeNewInRange, bool bUnsubscribeOldOutRange);
 SIMCONNECTAPI SimConnect_RequestFacilitiesList_EX1(HANDLE hSimConnect, SIMCONNECT_FACILITY_LIST_TYPE type, SIMCONNECT_DATA_REQUEST_ID RequestID);
-4d SIMCONNECTAPI SimConnect_RequestFacilityData_EX1(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID, SIMCONNECT_DATA_REQUEST_ID RequestID, const char * ICAO, const char * Region = "", char Type = 0);
+SIMCONNECTAPI SimConnect_RequestFacilityData_EX1(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID, SIMCONNECT_DATA_REQUEST_ID RequestID, const char * ICAO, const char * Region = "", char Type = 0);
 SIMCONNECTAPI SimConnect_RequestJetwayData(HANDLE hSimConnect, const char * AirportIcao, DWORD ArrayCount, int * Indexes);
-SIMCONNECTAPI SimConnect_EnumerateControllers(HANDLE hSimConnect);
-SIMCONNECTAPI SimConnect_MapInputEventToClientEvent_EX1(HANDLE hSimConnect, SIMCONNECT_INPUT_GROUP_ID GroupID, const char * szInputDefinition, SIMCONNECT_CLIENT_EVENT_ID DownEventID, DWORD DownValue = 0, SIMCONNECT_CLIENT_EVENT_ID UpEventID = (SIMCONNECT_CLIENT_EVENT_ID)SIMCONNECT_UNUSED, DWORD UpValue = 0, BOOL bMaskable = FALSE);
+4c SIMCONNECTAPI SimConnect_EnumerateControllers(HANDLE hSimConnect);
+4d SIMCONNECTAPI SimConnect_MapInputEventToClientEvent_EX1(HANDLE hSimConnect, SIMCONNECT_INPUT_GROUP_ID GroupID, const char * szInputDefinition, SIMCONNECT_CLIENT_EVENT_ID DownEventID, DWORD DownValue = 0, SIMCONNECT_CLIENT_EVENT_ID UpEventID = (SIMCONNECT_CLIENT_EVENT_ID)SIMCONNECT_UNUSED, DWORD UpValue = 0, BOOL bMaskable = FALSE);
 SIMCONNECTAPI SimConnect_ExecuteAction(HANDLE hSimConnect, DWORD cbRequestID, const char * szActionID, DWORD cbUnitSize, void * pParamValues);
-SIMCONNECTAPI SimConnect_EnumerateInputEvents(HANDLE hSimConnect, SIMCONNECT_DATA_REQUEST_ID RequestID);
-SIMCONNECTAPI SimConnect_GetInputEvent(HANDLE hSimConnect, SIMCONNECT_DATA_REQUEST_ID RequestID, UINT64 Hash);
-SIMCONNECTAPI SimConnect_SetInputEvent(HANDLE hSimConnect, UINT64 Hash, DWORD cbUnitSize, void * Value);
-SIMCONNECTAPI SimConnect_SubscribeInputEvent(HANDLE hSimConnect, UINT64 Hash);
-SIMCONNECTAPI SimConnect_UnsubscribeInputEvent(HANDLE hSimConnect, UINT64 Hash);
-SIMCONNECTAPI SimConnect_EnumerateInputEventParams(HANDLE hSimConnect, UINT64 Hash);
+4f SIMCONNECTAPI SimConnect_EnumerateInputEvents(HANDLE hSimConnect, SIMCONNECT_DATA_REQUEST_ID RequestID);
+50 SIMCONNECTAPI SimConnect_GetInputEvent(HANDLE hSimConnect, SIMCONNECT_DATA_REQUEST_ID RequestID, UINT64 Hash);
+51 SIMCONNECTAPI SimConnect_SetInputEvent(HANDLE hSimConnect, UINT64 Hash, DWORD cbUnitSize, void * Value);
+52 SIMCONNECTAPI SimConnect_SubscribeInputEvent(HANDLE hSimConnect, UINT64 Hash);
+53 SIMCONNECTAPI SimConnect_UnsubscribeInputEvent(HANDLE hSimConnect, UINT64 Hash);
+54 SIMCONNECTAPI SimConnect_EnumerateInputEventParams(HANDLE hSimConnect, UINT64 Hash);
 SIMCONNECTAPI SimConnect_AddFacilityDataDefinitionFilter(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID, const char * szFilterPath, DWORD cbUnitSize, void * pFilterData);
 SIMCONNECTAPI SimConnect_ClearAllFacilityDataDefinitionFilters(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID);
 

@@ -98,10 +98,16 @@ public abstract class SimRequest {
             case 0xf0000042 -> new UnsubscribeToFacilitiesRequest(buffer);
             case 0xf0000043 -> new RequestFacilitesListRequest(buffer);
             case 0xf0000044 -> new TransmitClientEventEx1Request(buffer);
+
+            case 0xf000004c -> new EnumerateControllersRequest(buffer);
             case 0xf000004d -> new MapInputEventToClientEventEx1Request(buffer);
 
+            case 0xf000004f -> new EnumerateInputEventsRequest(buffer);
             case 0xf0000050 -> new GetInputEventRequest(buffer);
             case 0xf0000051 -> new SetInputEventRequest(buffer);
+            case 0xf0000052 -> new SubscribeInputEventRequest(buffer);
+            case 0xf0000053 -> new UnsubscribeInputEventRequest(buffer);
+            case 0xf0000054 -> new EnumerateInputEventParamsRequest(buffer);
             default -> new UnknownRequest(buffer);
         };
     }

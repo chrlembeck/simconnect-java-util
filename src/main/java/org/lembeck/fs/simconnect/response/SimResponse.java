@@ -68,9 +68,9 @@ public abstract class SimResponse {
             case 0x1d -> new RecvFacilityDataEndResponse(buffer);
             // 0x1e: SIMCONNECT_RECV_FACILITY_MINIMAL_LIST
             // 0x1f: SIMCONNECT_RECV_JETWAY_DATA
-            // 0x20: SIMCONNECT_RECV_CONTROLLERS_LIST
+            case 0x20 -> new RecvControllersListResponse(buffer);
             // 0x21: SIMCONNECT_RECV_ACTION_CALLBACK
-            // 0x22: SIMCONNECT_RECV_ENUMERATE_INPUT_EVENTS
+            case 0x22 -> new RecvEnumerateInputEventsResponse(buffer);
             // 0x23: SIMCONNECT_RECV_GET_INPUT_EVENT
             // 0x24: SIMCONNECT_RECV_SUBSCRIBE_INPUT_EVENT
             // 0x25: SIMCONNECT_RECV_ENUMERATE_INPUT_EVENT_PARAMS
