@@ -65,7 +65,7 @@ public abstract class SimResponse {
             // 0x1a: SIMCONNECT_RECV_EVENT_RACE_LAP
             case 0x1b -> new RecvEventEx1Response(buffer);
             // 0x1c: SIMCONNECT_RECV_FACILITY_DATA
-            // 0x1d: SIMCONNECT_RECV_FACILITY_DATA_END
+            case 0x1d -> new RecvFacilityDataEndResponse(buffer);
             // 0x1e: SIMCONNECT_RECV_FACILITY_MINIMAL_LIST
             // 0x1f: SIMCONNECT_RECV_JETWAY_DATA
             // 0x20: SIMCONNECT_RECV_CONTROLLERS_LIST

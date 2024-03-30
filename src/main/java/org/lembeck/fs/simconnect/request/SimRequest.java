@@ -84,6 +84,16 @@ public abstract class SimRequest {
             case 0xf0000030 -> new CameraSetRelative6DofRequest(buffer);
             case 0xf0000035 -> new RequestSystemStateRequest(buffer);
             case 0xf0000036 -> new SetSystemStateRequest(buffer);
+            case 0xf0000037 -> new MapClientDataNameToIDRequest(buffer);
+            case 0xf0000038 -> new CreateClientDataRequest(buffer);
+            case 0xf0000039 -> new AddToClientDataDefinitionRequest(buffer);
+            case 0xf000003a -> new ClearClientDataDefinitionRequest(buffer);
+            case 0xf000003b -> new RequestClientDataRequest(buffer);
+            case 0xf000003c -> new SetClientDataDefinitionRequest(buffer);
+            case 0xf000003d -> new FlightLoadRequest(buffer);
+            case 0xf000003e -> new FlightSaveRequest(buffer);
+            case 0xf000003f -> new FlightPlanLoadRequest(buffer);
+            // 0x40 is deprecated
             case 0xf0000041 -> new SubscribeToFacilitiesRequest(buffer);
             case 0xf0000042 -> new UnsubscribeToFacilitiesRequest(buffer);
             case 0xf0000043 -> new RequestFacilitesListRequest(buffer);

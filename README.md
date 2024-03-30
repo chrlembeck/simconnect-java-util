@@ -74,15 +74,15 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 | 34 | SimConnect_MenuDeleteSubItem              | :x: _Deprecated_, not implemented here                       |
 | 35 | RequestSystemState                        | :heavy_check_mark:                                           |
 | 36 | SetSystemState                            | :heavy_check_mark:                                           |
-| 37 | MapClientDataNameToID                     |                                                              |
-| 38 | CreateClientData                          |                                                              |
-| 39 | AddToClientDataDefinition                 |                                                              |
-| 3a | ClearClientDataDefinition                 |                                                              |
-| 3b | RequestClientData                         |                                                              |
-| 3c | SetClientData                             |                                                              |
-| 3d | FlightLoad                                |                                                              |
-| 3e | FlightSave                                |                                                              |
-| 3f | FlightPlanLoad                            |                                                              |
+| 37 | MapClientDataNameToID                     | :heavy_check_mark:                                           |
+| 38 | CreateClientData                          | :heavy_check_mark:                                           |
+| 39 | AddToClientDataDefinition                 | :heavy_check_mark:                                           |
+| 3a | ClearClientDataDefinition                 | :heavy_check_mark:                                           |
+| 3b | RequestClientData                         | :heavy_check_mark:                                           |  
+| 3c | SetClientData                             | :heavy_check_mark:                                           |
+| 3d | FlightLoad                                | :heavy_check_mark:                                           |
+| 3e | FlightSave                                | :heavy_check_mark:                                           |
+| 3f | FlightPlanLoad                            | :heavy_check_mark:                                           |
 | 40 | Text                                      | :x: _Deprecated_, not implemented here                       |
 | 41 | SubscribeToFacilities                     | :heavy_check_mark:                                           |
 | 42 | UnsubscribeToFacilities                   | :heavy_check_mark:                                           |
@@ -131,9 +131,45 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 
 ## Supported Events sent from the simconnect API
 
-| ID | Name | Comment |
-|----|------|---------|
-|    |      |         |
+| ID | Name                                                | Comment                                |
+|----|-----------------------------------------------------|----------------------------------------|
+| 01 | SIMCONNECT_RECV_ID_EXCEPTION                        | :heavy_check_mark:                     |
+| 02 | SIMCONNECT_RECV_ID_OPEN                             | :heavy_check_mark:                     |
+| 03 | SIMCONNECT_RECV_ID_QUIT                             | :heavy_check_mark:                     |
+| 04 | SIMCONNECT_RECV_ID_EVENT                            | :heavy_check_mark:                     |
+| 05 | SIMCONNECT_RECV_ID_EVENT_OBJECT_ADDREMOVE           | :heavy_check_mark:                     |
+| 06 | SIMCONNECT_RECV_ID_EVENT_FILENAME                   | :heavy_check_mark:                     |
+| 07 | SIMCONNECT_RECV_ID_EVENT_FRAME                      | :heavy_check_mark:                     |
+| 08 | SIMCONNECT_RECV_ID_SIMOBJECT_DATA                   | :heavy_check_mark:                     |
+| 09 | SIMCONNECT_RECV_ID_SIMOBJECT_DATA_BYTYPE            | :heavy_check_mark:                     |
+| 0a | SIMCONNECT_RECV_ID_WEATHER_OBSERVATION              | :x: _Deprecated_, not implemented here |
+| 0b | SIMCONNECT_RECV_ID_CLOUD_STATE                      | :x: _Deprecated_, not implemented here |
+| 0c | SIMCONNECT_RECV_ID_ASSIGNED_OBJECT_ID               | :heavy_check_mark:                     |
+| 0d | SIMCONNECT_RECV_ID_RESERVED_KEY                     | :heavy_check_mark:                     |
+| 0e | SIMCONNECT_RECV_ID_CUSTOM_ACTION                    | :x: _Deprecated_, not implemented here |
+| 0f | SIMCONNECT_RECV_ID_SYSTEM_STATE                     | :heavy_check_mark:                     |
+| 10 | SIMCONNECT_RECV_ID_CLIENT_DATA                      | :heavy_check_mark:                     |
+| 11 | SIMCONNECT_RECV_ID_EVENT_WEATHER_MODE               | :x: _Deprecated_, not implemented here |
+| 12 | SIMCONNECT_RECV_ID_AIRPORT_LIST                     | :heavy_check_mark:                     |
+| 13 | SIMCONNECT_RECV_ID_VOR_LIST                         | :heavy_check_mark:                     |
+| 14 | SIMCONNECT_RECV_ID_NDB_LIST                         | :heavy_check_mark:                     |
+| 15 | SIMCONNECT_RECV_ID_WAYPOINT_LIST                    | :heavy_check_mark:                     |
+| 16 | SIMCONNECT_RECV_ID_EVENT_MULTIPLAYER_SERVER_STARTED | :heavy_check_mark:                     |
+| 17 | SIMCONNECT_RECV_ID_EVENT_MULTIPLAYER_CLIENT_STARTED | :heavy_check_mark:                     |
+| 18 | SIMCONNECT_RECV_ID_EVENT_MULTIPLAYER_SESSION_ENDED  | :heavy_check_mark:                     |
+| 19 | SIMCONNECT_RECV_ID_EVENT_RACE_END                   |                                        |
+| 1a | SIMCONNECT_RECV_ID_EVENT_RACE_LAP                   |                                        |
+| 1b | SIMCONNECT_RECV_ID_EVENT_EX1                        | :heavy_check_mark:                     |
+| 1c | SIMCONNECT_RECV_ID_FACILITY_DATA                    |                                        |
+| 1d | SIMCONNECT_RECV_ID_FACILITY_DATA_END                | :heavy_check_mark:                     |
+| 1e | SIMCONNECT_RECV_ID_FACILITY_MINIMAL_LIST            |                                        |
+| 1f | SIMCONNECT_RECV_ID_JETWAY_DATA                      |                                        |
+| 20 | SIMCONNECT_RECV_ID_CONTROLLERS_LIST                 |                                        |
+| 21 | SIMCONNECT_RECV_ID_ACTION_CALLBACK                  |                                        |
+| 22 | SIMCONNECT_RECV_ID_ENUMERATE_INPUT_EVENTS           |                                        |
+| 23 | SIMCONNECT_RECV_ID_GET_INPUT_EVENT                  |                                        |
+| 24 | SIMCONNECT_RECV_ID_SUBSCRIBE_INPUT_EVENT            |                                        |
+| 25 | SIMCONNECT_RECV_ID_ENUMERATE_INPUT_EVENT_PARAMS     |                                        |
 
 ## How to compile the project?
 

@@ -1,6 +1,7 @@
 package org.lembeck.fs.simconnect;
 
 
+import flightsim.simconnect.ClientDataPeriod;
 import org.lembeck.fs.simconnect.request.*;
 
 import java.io.IOException;
@@ -191,6 +192,42 @@ public class MySimConnect {
 
     public SetSystemStateRequest setSystemState(String state, int intParam, float floatParam, String stringParam) throws IOException {
         return write(new SetSystemStateRequest(state, intParam, floatParam, stringParam));
+    }
+
+    public MapClientDataNameToIDRequest mapClientDataNameToID(String clientDataName, int clientDataID) throws IOException {
+        return write(new MapClientDataNameToIDRequest(clientDataName, clientDataID));
+    }
+
+    public CreateClientDataRequest createClientDataRequest(int clientDataID, int dataSize, boolean readonly) throws IOException {
+        return write(new CreateClientDataRequest(clientDataID, dataSize, readonly));
+    }
+
+    public AddToClientDataDefinitionRequest addToClientDataDefinitionRequest(int defineID, int offset, int sizeOrType, float epsilon, int datumID) throws IOException {
+        return write(new AddToClientDataDefinitionRequest(defineID, offset, sizeOrType, epsilon, datumID));
+    }
+
+    public ClearClientDataDefinitionRequest clearClientDataDefinition(int defineID) throws IOException {
+        return write(new ClearClientDataDefinitionRequest(defineID));
+    }
+
+    public RequestClientDataRequest requestClientData(int clientDataID, int requestID, int defineID, ClientDataPeriod period, int flags, int origin, int interval, int limit) throws IOException {
+        return write(new RequestClientDataRequest(clientDataID, requestID, defineID, period, flags, origin, interval, limit));
+    }
+
+    public SetClientDataDefinitionRequest setClientDataDefinition(int clientDataID, int defineID, boolean tagged, int reserved, int dataSize, byte[] data) throws IOException {
+        return write(new SetClientDataDefinitionRequest(clientDataID, defineID, tagged, reserved, dataSize, data));
+    }
+
+    public FlightLoadRequest flightLoad(String filename) throws IOException {
+        return write(new FlightLoadRequest(filename));
+    }
+
+    public FlightSaveRequest flightSave(String filename, String title, String description, int flags) throws IOException {
+        return write(new FlightSaveRequest(filename, title, description, flags));
+    }
+
+    public FlightPlanLoadRequest flightPlanLoad(String filename) throws IOException {
+        return write(new FlightPlanLoadRequest(filename));
     }
 
     public RequestSystemStateRequest requestSystemState(int requestID, SystemState state) throws IOException {
