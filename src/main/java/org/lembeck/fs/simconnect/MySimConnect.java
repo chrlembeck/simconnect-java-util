@@ -250,6 +250,14 @@ public class MySimConnect {
         return write(new TransmitClientEventEx1Request(objectID, eventID, notificationGroupID, eventFlag, data0, data1, data2, data3, data4));
     }
 
+    public SubscribeToFacilitiesEx1Request subscribeToFacilitiesEx1(FacilityListType type, int newElemInRangeRequestID, int oldElemOutRangeRequestID) throws IOException {
+        return write(new SubscribeToFacilitiesEx1Request(type, newElemInRangeRequestID, oldElemOutRangeRequestID));
+    }
+
+    public UnsubscribeToFacilitiesEx1Request unsubscribeToFacilitiesEx1(flightsim.simconnect.FacilityListType type, boolean unsubscribeNewInRange, boolean unsubscribeOldOutRang) throws IOException {
+        return write(new UnsubscribeToFacilitiesEx1Request(type, unsubscribeNewInRange, unsubscribeOldOutRang));
+    }
+
     public EnumerateControllersRequest enumerateControllers() throws IOException {
         return write(new EnumerateControllersRequest());
     }
@@ -284,5 +292,9 @@ public class MySimConnect {
 
     public UnsubscribeInputEventRequest unsubscribeInputEvent(long hash) throws IOException {
         return write(new UnsubscribeInputEventRequest(hash));
+    }
+
+    public ClearAllFacilityDataDefinitionFiltersRequest clearAllFacilityDataDefinitionFilters(int defineID) throws IOException {
+        return write(new ClearAllFacilityDataDefinitionFiltersRequest(defineID));
     }
 }

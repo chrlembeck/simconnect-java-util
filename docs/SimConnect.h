@@ -979,8 +979,8 @@ SIMCONNECTAPI SimConnect_InsertString(char * pDest, DWORD cbDest, void ** ppEnd,
 44 SIMCONNECTAPI SimConnect_TransmitClientEvent_EX1(HANDLE hSimConnect, SIMCONNECT_OBJECT_ID ObjectID, SIMCONNECT_CLIENT_EVENT_ID EventID, SIMCONNECT_NOTIFICATION_GROUP_ID GroupID, SIMCONNECT_EVENT_FLAG Flags, DWORD dwData0, DWORD dwData1 = 0, DWORD dwData2 = 0, DWORD dwData3 = 0, DWORD dwData4 = 0);
 SIMCONNECTAPI SimConnect_AddToFacilityDefinition(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID, const char * FieldName);
 SIMCONNECTAPI SimConnect_RequestFacilityData(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID, SIMCONNECT_DATA_REQUEST_ID RequestID, const char * ICAO, const char * Region = "");
-SIMCONNECTAPI SimConnect_SubscribeToFacilities_EX1(HANDLE hSimConnect, SIMCONNECT_FACILITY_LIST_TYPE type, SIMCONNECT_DATA_REQUEST_ID newElemInRangeRequestID, SIMCONNECT_DATA_REQUEST_ID oldElemOutRangeRequestID);
-SIMCONNECTAPI SimConnect_UnsubscribeToFacilities_EX1(HANDLE hSimConnect, SIMCONNECT_FACILITY_LIST_TYPE type, bool bUnsubscribeNewInRange, bool bUnsubscribeOldOutRange);
+47 SIMCONNECTAPI SimConnect_SubscribeToFacilities_EX1(HANDLE hSimConnect, SIMCONNECT_FACILITY_LIST_TYPE type, SIMCONNECT_DATA_REQUEST_ID newElemInRangeRequestID, SIMCONNECT_DATA_REQUEST_ID oldElemOutRangeRequestID);47
+48 SIMCONNECTAPI SimConnect_UnsubscribeToFacilities_EX1(HANDLE hSimConnect, SIMCONNECT_FACILITY_LIST_TYPE type, bool bUnsubscribeNewInRange, bool bUnsubscribeOldOutRange);
 SIMCONNECTAPI SimConnect_RequestFacilitiesList_EX1(HANDLE hSimConnect, SIMCONNECT_FACILITY_LIST_TYPE type, SIMCONNECT_DATA_REQUEST_ID RequestID);
 SIMCONNECTAPI SimConnect_RequestFacilityData_EX1(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID, SIMCONNECT_DATA_REQUEST_ID RequestID, const char * ICAO, const char * Region = "", char Type = 0);
 SIMCONNECTAPI SimConnect_RequestJetwayData(HANDLE hSimConnect, const char * AirportIcao, DWORD ArrayCount, int * Indexes);
@@ -994,7 +994,7 @@ SIMCONNECTAPI SimConnect_ExecuteAction(HANDLE hSimConnect, DWORD cbRequestID, co
 53 SIMCONNECTAPI SimConnect_UnsubscribeInputEvent(HANDLE hSimConnect, UINT64 Hash);
 54 SIMCONNECTAPI SimConnect_EnumerateInputEventParams(HANDLE hSimConnect, UINT64 Hash);
 SIMCONNECTAPI SimConnect_AddFacilityDataDefinitionFilter(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID, const char * szFilterPath, DWORD cbUnitSize, void * pFilterData);
-SIMCONNECTAPI SimConnect_ClearAllFacilityDataDefinitionFilters(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID);
+56 SIMCONNECTAPI SimConnect_ClearAllFacilityDataDefinitionFilters(HANDLE hSimConnect, SIMCONNECT_DATA_DEFINITION_ID DefineID);
 
 
 #endif // _SIMCONNECT_H_

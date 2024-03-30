@@ -18,97 +18,97 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 
 ## Supported methods of the simconnect API
 
-| ID | Name                                      | Comment                                                      |
-|----|-------------------------------------------|--------------------------------------------------------------|
-| 01 | Open                                      | :heavy_check_mark:                                           |
-| 02 | _unknown_                                 | :x:                                                          |
-| 03 | RequestResponseTimes                      | :x: not yet implemented                                      |
-| 04 | MapClientEventToSimEvent                  | :heavy_check_mark:                                           |
-| 05 | TransmitClientEvent                       | :heavy_check_mark:                                           |
-| 06 | SetSystemEventState                       | :heavy_check_mark:                                           |
-| 07 | AddClientEventToNotificationGroup         | :heavy_check_mark:                                           |
-| 08 | RemoveClientEvent                         | :heavy_check_mark:                                           |
-| 09 | SetNotificationGroupPriority              | :heavy_check_mark:                                           |
-| 0a | ClearNotificationGroup                    | :heavy_check_mark:                                           |
-| 0b | RequestNotificationGroup                  | :heavy_check_mark:                                           |
-| 0c | AddToDataDefinition                       | :heavy_check_mark:                                           |
-| 0d | ClearDataDefinition                       | :heavy_check_mark:                                           |
-| 0e | RequestDataOnSimObject                    | :heavy_check_mark:                                           |
-| 0f | RequestDataOnSimObjectType                | :heavy_check_mark:                                           |
-| 10 | SetDataOnSimObject                        | :heavy_check_mark:                                           |
-| 11 | MapInputEventToClientEvent                | :x: _Deprecated_, use MapInputEventToClientEvent_EX1 instead |
-| 12 | SetInputGroupPriority                     | :heavy_check_mark:                                           |
-| 13 | RemoveInputEvent                          | :heavy_check_mark:                                           |
-| 14 | ClearInputGroup                           | :heavy_check_mark:                                           |
-| 15 | SetInputGroupState                        | :heavy_check_mark:                                           |
-| 16 | RequestReservedKey                        | :heavy_check_mark:                                           |
-| 17 | SubscribeToSystemEvent                    | :heavy_check_mark:                                           |
-| 18 | UnsubscribeFromSystemEvent                | :heavy_check_mark:                                           |
-| 19 | WeatherRequestInterpolatedObservation     | :x: _Deprecated_, not implemented here                       |
-| 1a | WeatherRequestObservationAtStation        | :x: _Deprecated_, not implemented here                       |
-| 1b | WeatherRequestObservationAtNearestStation | :x: _Deprecated_, not implemented here                       |
-| 1c | WeatherCreateStation                      | :x: _Deprecated_, not implemented here                       |
-| 1d | WeatherRemoveStation                      | :x: _Deprecated_, not implemented here                       |
-| 1e | WeatherSetObservation                     | :x: _Deprecated_, not implemented here                       |
-| 1f | WeatherSetModeServer                      | :x: _Deprecated_, not implemented here                       |
-| 20 | WeatherSetModeTheme                       | :x: _Deprecated_, not implemented here                       |
-| 21 | WeatherSetModeGlobal                      | :x: _Deprecated_, not implemented here                       |
-| 22 | WeatherSetModeCustom                      | :x: _Deprecated_, not implemented here                       |
-| 23 | WeatherSetDynamicUpdateRate               | :x: _Deprecated_, not implemented here                       |
-| 24 | WeatherRequestCloudState                  | :x: _Deprecated_, not implemented here                       |
-| 25 | WeatherCreateThermal                      | :x: _Deprecated_, not implemented here                       |
-| 26 | WeatherRemoveThermal                      | :x: _Deprecated_, not implemented here                       |
-| 27 | AICreateParkedATCAircraft                 | :heavy_check_mark:                                           |
-| 28 | AICreateEnrouteATCAircraft                | :heavy_check_mark:                                           |
-| 29 | AICreateNonATCAircraft                    | :heavy_check_mark:                                           |
-| 2a | AICreateSimulatedObject                   | :heavy_check_mark:                                           |
-| 2b | AIReleaseControl                          | :heavy_check_mark:                                           |
-| 2c | AIRemoveObject                            | :heavy_check_mark:                                           |
-| 2d | AISetAircraftFlightPlan                   | :heavy_check_mark:                                           |
-| 2e | ExecuteMissionAction                      | :x: _Deprecated_, not implemented here                       |
-| 2f | CompleteCustomMissionAction               | :x: _Deprecated_, not implemented here                       |
-| 30 | CameraSetRelative6DOF                     | :heavy_check_mark:                                           |
-| 31 | SimConnect_MenuAddItem                    | :x: _Deprecated_, not implemented here                       |
-| 32 | SimConnect_MenuDeleteItem                 | :x: _Deprecated_, not implemented here                       |
-| 33 | SimConnect_MenuAddSubItem                 | :x: _Deprecated_, not implemented here                       |
-| 34 | SimConnect_MenuDeleteSubItem              | :x: _Deprecated_, not implemented here                       |
-| 35 | RequestSystemState                        | :heavy_check_mark:                                           |
-| 36 | SetSystemState                            | :heavy_check_mark:                                           |
-| 37 | MapClientDataNameToID                     | :heavy_check_mark:                                           |
-| 38 | CreateClientData                          | :heavy_check_mark:                                           |
-| 39 | AddToClientDataDefinition                 | :heavy_check_mark:                                           |
-| 3a | ClearClientDataDefinition                 | :heavy_check_mark:                                           |
-| 3b | RequestClientData                         | :heavy_check_mark:                                           |  
-| 3c | SetClientData                             | :heavy_check_mark:                                           |
-| 3d | FlightLoad                                | :heavy_check_mark:                                           |
-| 3e | FlightSave                                | :heavy_check_mark:                                           |
-| 3f | FlightPlanLoad                            | :heavy_check_mark:                                           |
-| 40 | Text                                      | :x: _Deprecated_, not implemented here                       |
-| 41 | SubscribeToFacilities                     | :heavy_check_mark:                                           |
-| 42 | UnsubscribeToFacilities                   | :heavy_check_mark:                                           |
-| 43 | RequestFacilitiesList                     | :heavy_check_mark:                                           |
-| 44 | TransmitClientEvent_EX1                   | :heavy_check_mark:                                           |
-| 45 |                                           |                                                              |
-| 46 |                                           |                                                              |
-| 47 |                                           |                                                              |
-| 48 |                                           |                                                              |
-| 49 |                                           |                                                              |
-| 4a |                                           |                                                              |
-| 4b |                                           |                                                              |
-| 4c | EnumerateControllers                      | :heavy_check_mark:                                           |
-| 4d | MapInputEventToClientEvent_EX1            | :heavy_check_mark:                                           |
-| 4e |                                           |                                                              |
-| 4f | EnumerateInputEvents                      | :heavy_check_mark:                                           |
-| 50 | GetInputEvent                             | :heavy_check_mark:                                           |
-| 51 | SetInputEvent                             | :heavy_check_mark:                                           |
-| 52 | SubscribeInputEvent                       | :heavy_check_mark:                                           |
-| 53 | UnsubscribeInputEvent                     | :heavy_check_mark:                                           |
-| 54 | EnumerateInputEventParams                 | :heavy_check_mark:                                           |
+| ID | Name                                         | Comment                                                      |
+|----|----------------------------------------------|--------------------------------------------------------------|
+| 01 | Open                                         | :heavy_check_mark:                                           |
+| 02 | _unknown_                                    | :x:                                                          |
+| 03 | RequestResponseTimes                         | :x: not yet implemented                                      |
+| 04 | MapClientEventToSimEvent                     | :heavy_check_mark:                                           |
+| 05 | TransmitClientEvent                          | :heavy_check_mark:                                           |
+| 06 | SetSystemEventState                          | :heavy_check_mark:                                           |
+| 07 | AddClientEventToNotificationGroup            | :heavy_check_mark:                                           |
+| 08 | RemoveClientEvent                            | :heavy_check_mark:                                           |
+| 09 | SetNotificationGroupPriority                 | :heavy_check_mark:                                           |
+| 0a | ClearNotificationGroup                       | :heavy_check_mark:                                           |
+| 0b | RequestNotificationGroup                     | :heavy_check_mark:                                           |
+| 0c | AddToDataDefinition                          | :heavy_check_mark:                                           |
+| 0d | ClearDataDefinition                          | :heavy_check_mark:                                           |
+| 0e | RequestDataOnSimObject                       | :heavy_check_mark:                                           |
+| 0f | RequestDataOnSimObjectType                   | :heavy_check_mark:                                           |
+| 10 | SetDataOnSimObject                           | :heavy_check_mark:                                           |
+| 11 | MapInputEventToClientEvent                   | :x: _Deprecated_, use MapInputEventToClientEvent_EX1 instead |
+| 12 | SetInputGroupPriority                        | :heavy_check_mark:                                           |
+| 13 | RemoveInputEvent                             | :heavy_check_mark:                                           |
+| 14 | ClearInputGroup                              | :heavy_check_mark:                                           |
+| 15 | SetInputGroupState                           | :heavy_check_mark:                                           |
+| 16 | RequestReservedKey                           | :heavy_check_mark:                                           |
+| 17 | SubscribeToSystemEvent                       | :heavy_check_mark:                                           |
+| 18 | UnsubscribeFromSystemEvent                   | :heavy_check_mark:                                           |
+| 19 | WeatherRequestInterpolatedObservation        | :x: _Deprecated_, not implemented here                       |
+| 1a | WeatherRequestObservationAtStation           | :x: _Deprecated_, not implemented here                       |
+| 1b | WeatherRequestObservationAtNearestStation    | :x: _Deprecated_, not implemented here                       |
+| 1c | WeatherCreateStation                         | :x: _Deprecated_, not implemented here                       |
+| 1d | WeatherRemoveStation                         | :x: _Deprecated_, not implemented here                       |
+| 1e | WeatherSetObservation                        | :x: _Deprecated_, not implemented here                       |
+| 1f | WeatherSetModeServer                         | :x: _Deprecated_, not implemented here                       |
+| 20 | WeatherSetModeTheme                          | :x: _Deprecated_, not implemented here                       |
+| 21 | WeatherSetModeGlobal                         | :x: _Deprecated_, not implemented here                       |
+| 22 | WeatherSetModeCustom                         | :x: _Deprecated_, not implemented here                       |
+| 23 | WeatherSetDynamicUpdateRate                  | :x: _Deprecated_, not implemented here                       |
+| 24 | WeatherRequestCloudState                     | :x: _Deprecated_, not implemented here                       |
+| 25 | WeatherCreateThermal                         | :x: _Deprecated_, not implemented here                       |
+| 26 | WeatherRemoveThermal                         | :x: _Deprecated_, not implemented here                       |
+| 27 | AICreateParkedATCAircraft                    | :heavy_check_mark:                                           |
+| 28 | AICreateEnrouteATCAircraft                   | :heavy_check_mark:                                           |
+| 29 | AICreateNonATCAircraft                       | :heavy_check_mark:                                           |
+| 2a | AICreateSimulatedObject                      | :heavy_check_mark:                                           |
+| 2b | AIReleaseControl                             | :heavy_check_mark:                                           |
+| 2c | AIRemoveObject                               | :heavy_check_mark:                                           |
+| 2d | AISetAircraftFlightPlan                      | :heavy_check_mark:                                           |
+| 2e | ExecuteMissionAction                         | :x: _Deprecated_, not implemented here                       |
+| 2f | CompleteCustomMissionAction                  | :x: _Deprecated_, not implemented here                       |
+| 30 | CameraSetRelative6DOF                        | :heavy_check_mark:                                           |
+| 31 | SimConnect_MenuAddItem                       | :x: _Deprecated_, not implemented here                       |
+| 32 | SimConnect_MenuDeleteItem                    | :x: _Deprecated_, not implemented here                       |
+| 33 | SimConnect_MenuAddSubItem                    | :x: _Deprecated_, not implemented here                       |
+| 34 | SimConnect_MenuDeleteSubItem                 | :x: _Deprecated_, not implemented here                       |
+| 35 | RequestSystemState                           | :heavy_check_mark:                                           |
+| 36 | SetSystemState                               | :heavy_check_mark:                                           |
+| 37 | MapClientDataNameToID                        | :heavy_check_mark:                                           |
+| 38 | CreateClientData                             | :heavy_check_mark:                                           |
+| 39 | AddToClientDataDefinition                    | :heavy_check_mark:                                           |
+| 3a | ClearClientDataDefinition                    | :heavy_check_mark:                                           |
+| 3b | RequestClientData                            | :heavy_check_mark:                                           |  
+| 3c | SetClientData                                | :heavy_check_mark:                                           |
+| 3d | FlightLoad                                   | :heavy_check_mark:                                           |
+| 3e | FlightSave                                   | :heavy_check_mark:                                           |
+| 3f | FlightPlanLoad                               | :heavy_check_mark:                                           |
+| 40 | Text                                         | :x: _Deprecated_, not implemented here                       |
+| 41 | SubscribeToFacilities                        | :heavy_check_mark:                                           |
+| 42 | UnsubscribeToFacilities                      | :heavy_check_mark:                                           |
+| 43 | RequestFacilitiesList                        | :heavy_check_mark:                                           |
+| 44 | TransmitClientEvent_EX1                      | :heavy_check_mark:                                           |
+| 45 |                                              |                                                              |
+| 46 |                                              |                                                              |
+| 47 | SubscribeToFacilities_EX1                    | :heavy_check_mark:                                           |
+| 48 | UnsubscribeToFacilities_EX1                  | :heavy_check_mark:                                           |
+| 49 |                                              |                                                              |
+| 4a |                                              |                                                              |
+| 4b |                                              |                                                              |
+| 4c | EnumerateControllers                         | :heavy_check_mark:                                           |
+| 4d | MapInputEventToClientEvent_EX1               | :heavy_check_mark:                                           |
+| 4e |                                              |                                                              |
+| 4f | EnumerateInputEvents                         | :heavy_check_mark:                                           |
+| 50 | GetInputEvent                                | :heavy_check_mark:                                           |
+| 51 | SetInputEvent                                | :heavy_check_mark:                                           |
+| 52 | SubscribeInputEvent                          | :heavy_check_mark:                                           |
+| 53 | UnsubscribeInputEvent                        | :heavy_check_mark:                                           |
+| 54 | EnumerateInputEventParams                    | :heavy_check_mark:                                           |
+| 55 |                                              |                                                              |
+| 56 | ClearAllFacilityDataDefinitionFiltersRequest | :heavy_check_mark:                                           |
 
 * AddToFacilityDefinition
 * RequestFacilityData
-* SubscribeToFacilities_EX1
-* UnsubscribeToFacilities_EX1
 * RequestFacilitiesList_EX1
 * RequestFacilityData_EX1
 * RequestJetwayData
@@ -116,7 +116,7 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 * ExecuteAction
 *
 * AddFacilityDataDefinitionFilter
-* ClearAllFacilityDataDefinitionFilters
+
 
 * Close
 * RetrieveString
@@ -164,7 +164,7 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 | 1f | SIMCONNECT_RECV_ID_JETWAY_DATA                      |                                        |
 | 20 | SIMCONNECT_RECV_ID_CONTROLLERS_LIST                 | :heavy_check_mark:                     |
 | 21 | SIMCONNECT_RECV_ID_ACTION_CALLBACK                  |                                        |
-| 22 | SIMCONNECT_RECV_ID_ENUMERATE_INPUT_EVENTS           |                                        |
+| 22 | SIMCONNECT_RECV_ID_ENUMERATE_INPUT_EVENTS           | :heavy_check_mark:                     |
 | 23 | SIMCONNECT_RECV_ID_GET_INPUT_EVENT                  |                                        |
 | 24 | SIMCONNECT_RECV_ID_SUBSCRIBE_INPUT_EVENT            |                                        |
 | 25 | SIMCONNECT_RECV_ID_ENUMERATE_INPUT_EVENT_PARAMS     |                                        |
