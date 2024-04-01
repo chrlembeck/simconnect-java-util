@@ -69,8 +69,8 @@ public class MySimConnect {
         return write(new MapClientEventToSimEventRequest(eventID, eventName));
     }
 
-    public TransmitClientEventRequest transmitClientEvent(int objectID, int clientEventID, int data, int notificationGroupID, int eventFlag) throws IOException {
-        return write(new TransmitClientEventRequest(objectID, clientEventID, data, notificationGroupID, eventFlag));
+    public TransmitClientEventRequest transmitClientEvent(int objectID, int clientEventID, int data, Priority priority, int eventFlag) throws IOException {
+        return write(new TransmitClientEventRequest(objectID, clientEventID, data, priority, eventFlag));
     }
 
     public SetSystemEventStateRequest setSystemEventState(int clientEventID, State state) throws IOException {
@@ -245,8 +245,8 @@ public class MySimConnect {
         return write(new RequestFacilitesListRequest(facilityListType, requestId));
     }
 
-    public TransmitClientEventEx1Request transmitClientEventEx1(int objectID, int eventID, int notificationGroupID, int eventFlag, int data0, int data1, int data2, int data3, int data4) throws IOException {
-        return write(new TransmitClientEventEx1Request(objectID, eventID, notificationGroupID, eventFlag, data0, data1, data2, data3, data4));
+    public TransmitClientEventEx1Request transmitClientEventEx1(int objectID, int eventID, Priority priority, int eventFlag, int data0, int data1, int data2, int data3, int data4) throws IOException {
+        return write(new TransmitClientEventEx1Request(objectID, eventID, priority, eventFlag, data0, data1, data2, data3, data4));
     }
 
     public AddToFacilityDefinitionRequest addToFacilityDefinition(int defineID, String fieldName) throws IOException {

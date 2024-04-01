@@ -259,7 +259,6 @@ public class SimViewer extends JFrame implements SimListener {
         pack();
         controller = new SimController();
         controller.addListener(this);
-        controller.start();
 
 
     }

@@ -8,7 +8,7 @@ public class TransmitClientEventRequest extends SimRequest {
     private final int objectID;
     private final int clientEventID;
     private final int data;
-    private final int notificationGroupID;
+    private final Priority priority;
     private final int eventFlag;
 
     TransmitClientEventRequest(ByteBuffer buffer) {
@@ -16,16 +16,16 @@ public class TransmitClientEventRequest extends SimRequest {
         objectID = buffer.getInt();
         clientEventID = buffer.getInt();
         data = buffer.getInt();
-        notificationGroupID = buffer.getInt();
+        priority = new Priority(buffer.getInt());
         eventFlag = buffer.getInt();
     }
 
-    public TransmitClientEventRequest(int objectID, int clientEventID, int data, int notificationGroupID, int eventFlag) {
+    public TransmitClientEventRequest(int objectID, int clientEventID, int data, Priority priority, int eventFlag) {
         super(TYPE_ID);
         this.objectID = objectID;
         this.clientEventID = clientEventID;
         this.data = data;
-        this.notificationGroupID = notificationGroupID;
+        this.priority = priority;
         this.eventFlag = eventFlag;
     }
 
@@ -35,7 +35,7 @@ public class TransmitClientEventRequest extends SimRequest {
         outBuffer.putInt(objectID);
         outBuffer.putInt(clientEventID);
         outBuffer.putInt(data);
-        outBuffer.putInt(notificationGroupID);
+        outBuffer.putInt(priority.getPriorityValue());
         outBuffer.putInt(eventFlag);
     }
 
@@ -51,8 +51,8 @@ public class TransmitClientEventRequest extends SimRequest {
         return data;
     }
 
-    public int getNotificationGroupID() {
-        return notificationGroupID;
+    public Priority getPriority() {
+        return priority;
     }
 
     public int getEventFlag() {
@@ -69,7 +69,7 @@ public class TransmitClientEventRequest extends SimRequest {
                 ", objectID=" + objectID +
                 ", clientEventID=" + clientEventID +
                 ", data=" + data +
-                ", notificationGroupID=" + notificationGroupID +
+                ", priority=" + priority +
                 ", eventFlag=" + eventFlag +
                 "}";
     }

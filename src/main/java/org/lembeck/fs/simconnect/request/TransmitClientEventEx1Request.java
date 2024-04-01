@@ -8,7 +8,7 @@ public class TransmitClientEventEx1Request extends SimRequest {
 
     private final int objectID;
     private final int eventID;
-    private final int notificationGroupID;
+    private final Priority priority;
     private final int eventFlag;
     private final int data0;
     private final int data1;
@@ -20,7 +20,7 @@ public class TransmitClientEventEx1Request extends SimRequest {
         super(buffer);
         objectID = buffer.getInt();
         eventID = buffer.getInt();
-        notificationGroupID = buffer.getInt();
+        priority = new Priority(buffer.getInt());
         eventFlag = buffer.getInt();
         data0 = buffer.getInt();
         data1 = buffer.getInt();
@@ -29,11 +29,11 @@ public class TransmitClientEventEx1Request extends SimRequest {
         data4 = buffer.getInt();
     }
 
-    public TransmitClientEventEx1Request(int objectID, int eventID, int notificationGroupID, int eventFlag, int data0, int data1, int data2, int data3, int data4) {
+    public TransmitClientEventEx1Request(int objectID, int eventID, Priority priority, int eventFlag, int data0, int data1, int data2, int data3, int data4) {
         super(TYPE_ID);
         this.objectID = objectID;
         this.eventID = eventID;
-        this.notificationGroupID = notificationGroupID;
+        this.priority = priority;
         this.eventFlag = eventFlag;
         this.data0 = data0;
         this.data1 = data1;
@@ -46,7 +46,7 @@ public class TransmitClientEventEx1Request extends SimRequest {
     protected void writeRequest(ByteBuffer outBuffer) {
         outBuffer.putInt(objectID);
         outBuffer.putInt(eventID);
-        outBuffer.putInt(notificationGroupID);
+        outBuffer.putInt(priority.getPriorityValue());
         outBuffer.putInt(eventFlag);
         outBuffer.putInt(data0);
         outBuffer.putInt(data1);
@@ -63,8 +63,8 @@ public class TransmitClientEventEx1Request extends SimRequest {
         return eventID;
     }
 
-    public int getNotificationGroupID() {
-        return notificationGroupID;
+    public Priority getPriority() {
+        return priority;
     }
 
     public int getEventFlag() {
@@ -100,7 +100,7 @@ public class TransmitClientEventEx1Request extends SimRequest {
                 ", identifier=" + getIdentifier() +
                 ", objectID='" + objectID + "'" +
                 ", eventID=" + eventID +
-                ", notificationGroupID=" + notificationGroupID +
+                ", priority=" + priority +
                 ", eventFlag=" + eventFlag +
                 ", data0=" + data0 +
                 ", data1=" + data1 +
