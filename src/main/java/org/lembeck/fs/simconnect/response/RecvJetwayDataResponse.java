@@ -3,11 +3,11 @@ package org.lembeck.fs.simconnect.response;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-public class RecvJetwayData extends RecvListTemplate {
+public class RecvJetwayDataResponse extends RecvListTemplate {
 
     private final JetwayData[] jetways;
 
-    RecvJetwayData(ByteBuffer buffer) {
+    RecvJetwayDataResponse(ByteBuffer buffer) {
         super(buffer);
         jetways = new JetwayData[getArraySize()];
         for (int i = 0; i < getArraySize(); i++) {

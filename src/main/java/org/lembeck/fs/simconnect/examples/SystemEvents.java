@@ -26,6 +26,7 @@ public class SystemEvents {
         simConnect.subscribeToSystemEvent(2, SystemEventName.FOUR_SEC);
         simConnect.subscribeToSystemEvent(3, SystemEventName.FLIGHT_LOADED);
         simConnect.subscribeToSystemEvent(4, SystemEventName.FLIGHT_SAVED);
+
     }
 
     private void handleEvent(RecvEventResponse recvEventResponse) {

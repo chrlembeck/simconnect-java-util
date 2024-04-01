@@ -37,13 +37,13 @@ public abstract class SimResponse {
     public static SimResponse parseResponse(int size, ByteBuffer buffer) {
         int typeId = buffer.getInt(8);
         return switch (typeId) {
-            case 0x01 -> new ExceptionResponse(buffer);
-            case 0x02 -> new HelloResponse(buffer);
-            case 0x03 -> new QuitResponse(buffer);
+            case 0x01 -> new RecvExceptionResponse(buffer);
+            case 0x02 -> new RecvOpenResponse(buffer);
+            case 0x03 -> new RecvQuitResponse(buffer);
             case 0x04 -> new RecvEventResponse(buffer);
             case 0x05 -> new RecvEventObjectAddRemoveResponse(buffer);
             case 0x06 -> new RecvEventFilenameResponse(buffer);
-            case 0x07 -> new RecvFrameResponse(buffer);
+            case 0x07 -> new RecvEventFrameResponse(buffer);
             case 0x08 -> new RecvSimobjectDataResponse(buffer);
             case 0x09 -> new RecvSimobjectDataByTypeResponse(buffer);
             // 0x0a: *deprecated* SIMCONNECT_RECV_WEATHER_OBSERVATION
@@ -67,7 +67,7 @@ public abstract class SimResponse {
             case 0x1c -> new RecvFacilityDataResponse(buffer);
             case 0x1d -> new RecvFacilityDataEndResponse(buffer);
             // 0x1e: SIMCONNECT_RECV_FACILITY_MINIMAL_LIST
-            case 0x1f -> new RecvJetwayData(buffer);
+            case 0x1f -> new RecvJetwayDataResponse(buffer);
             case 0x20 -> new RecvControllersListResponse(buffer);
             // 0x21: SIMCONNECT_RECV_ACTION_CALLBACK
             case 0x22 -> new RecvEnumerateInputEventsResponse(buffer);

@@ -2,6 +2,8 @@ package org.lembeck.fs.simconnect.response;
 
 import java.nio.ByteBuffer;
 
+import static java.nio.ByteOrder.LITTLE_ENDIAN;
+
 public class RecvSimobjectDataResponse extends SimResponse {
 
     public static final int DATA_REQUEST_FLAG_DEFAULT = 0;
@@ -14,7 +16,7 @@ public class RecvSimobjectDataResponse extends SimResponse {
     private final int entryNumber;
     private final int outOf;
     private final int defineCount;
-    private final ByteBuffer data;
+    private final byte[] data;
 
     RecvSimobjectDataResponse(ByteBuffer buffer) {
         super(buffer);
@@ -25,9 +27,8 @@ public class RecvSimobjectDataResponse extends SimResponse {
         entryNumber = buffer.getInt();
         outOf = buffer.getInt();
         defineCount = buffer.getInt();
-        byte[] dataTmp = new byte[buffer.remaining()];
-        buffer.get(dataTmp);
-        data = ByteBuffer.wrap(dataTmp);
+        data = new byte[buffer.remaining()];
+        buffer.get(data);
     }
 
     public int getRequestID() {
@@ -59,7 +60,9 @@ public class RecvSimobjectDataResponse extends SimResponse {
     }
 
     public ByteBuffer getData() {
-        return data;
+        ByteBuffer buffer = ByteBuffer.wrap(data);
+        buffer.order(LITTLE_ENDIAN);
+        return buffer;
     }
 
     @Override
@@ -75,7 +78,7 @@ public class RecvSimobjectDataResponse extends SimResponse {
                 ", entryNumber=" + entryNumber +
                 ", outOf=" + outOf +
                 ", defineCount=" + defineCount +
-                ", data=" + SimResponse.toString(data.array()) +
+                ", data=" + SimResponse.toString(data) +
                 "}";
     }
 }

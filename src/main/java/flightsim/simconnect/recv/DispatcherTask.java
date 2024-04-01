@@ -1,14 +1,14 @@
 package flightsim.simconnect.recv;
 
+import flightsim.simconnect.Dispatcher;
+import flightsim.simconnect.SimConnect;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
-import flightsim.simconnect.Dispatcher;
-import flightsim.simconnect.SimConnect;
 
 /**
  * A dispatcher that can run in its own thread and dispatch received messages into 
@@ -307,10 +307,10 @@ public class DispatcherTask implements Runnable, Dispatcher {
 			
 			/* 0.7 (SP2) */
 		case ID_EVENT_MULTIPLAYER_CLIENT_STARTED:
-			if (MultiplayerClientStartedHandlerList != null && MultiplayerClientStartedHandlerList.size() > 0) {
-				synchronized (MultiplayerClientStartedHandlerList) {
+			if (recvMultiplayerClientStartedHandlerList != null && recvMultiplayerClientStartedHandlerList.size() > 0) {
+				synchronized (recvMultiplayerClientStartedHandlerList) {
 					RecvEventMultiplayerClientStarted ev = new RecvEventMultiplayerClientStarted(data);
-					for (MultiplayerClientStartedHandler hndle : MultiplayerClientStartedHandlerList) {
+					for (RecvMultiplayerClientStartedHandler hndle : recvMultiplayerClientStartedHandlerList) {
 						hndle.handleMultiplayerClientStarted(simConnect, ev);
 					}
 				}
@@ -318,10 +318,10 @@ public class DispatcherTask implements Runnable, Dispatcher {
 			break;
 
 		case ID_EVENT_MULTIPLAYER_SERVER_STARTED:
-			if (MultiplayerServerStartedHandlerList != null && MultiplayerServerStartedHandlerList.size() > 0) {
-				synchronized (MultiplayerServerStartedHandlerList) {
+			if (recvMultiplayerServerStartedHandlerList != null && recvMultiplayerServerStartedHandlerList.size() > 0) {
+				synchronized (recvMultiplayerServerStartedHandlerList) {
 					RecvEventMultiplayerServerStarted ev = new RecvEventMultiplayerServerStarted(data);
-					for (MultiplayerServerStartedHandler hndle : MultiplayerServerStartedHandlerList) {
+					for (RecvMultiplayerServerStartedHandler hndle : recvMultiplayerServerStartedHandlerList) {
 						hndle.handleMultiplayerServerStarted(simConnect, ev);
 					}
 				}
@@ -329,10 +329,10 @@ public class DispatcherTask implements Runnable, Dispatcher {
 			break;
 
 		case ID_EVENT_MULTIPLAYER_SESSION_ENDED:
-			if (MultiplayerSessionEndedHandlerList != null && MultiplayerSessionEndedHandlerList.size() > 0) {
-				synchronized (MultiplayerSessionEndedHandlerList) {
+			if (recvMultiplayerSessionEndedHandlerList != null && recvMultiplayerSessionEndedHandlerList.size() > 0) {
+				synchronized (recvMultiplayerSessionEndedHandlerList) {
 					RecvEventMultiplayerSessionEnded ev = new RecvEventMultiplayerSessionEnded(data);
-					for (MultiplayerSessionEndedHandler hndle : MultiplayerSessionEndedHandlerList) {
+					for (RecvMultiplayerSessionEndedHandler hndle : recvMultiplayerSessionEndedHandlerList) {
 						hndle.handleMultiplayerSessionEnded(simConnect, ev);
 					}
 				}
@@ -391,9 +391,9 @@ public class DispatcherTask implements Runnable, Dispatcher {
 	private List<WeatherObservationHandler> WeatherObservationHandlerList;
 	private List<EventWeatherModeHandler> EventWeatherModeList;
 	private List<FacilitiesListHandler> FacilitiesListHandlerList;
-	private List<MultiplayerClientStartedHandler> MultiplayerClientStartedHandlerList;
-	private List<MultiplayerServerStartedHandler> MultiplayerServerStartedHandlerList;
-	private List<MultiplayerSessionEndedHandler> MultiplayerSessionEndedHandlerList;
+	private List<RecvMultiplayerClientStartedHandler> recvMultiplayerClientStartedHandlerList;
+	private List<RecvMultiplayerServerStartedHandler> recvMultiplayerServerStartedHandlerList;
+	private List<RecvMultiplayerSessionEndedHandler> recvMultiplayerSessionEndedHandlerList;
 	private List<RaceEndHandler> RaceEndHandlerList;
 	private List<RaceLapHandler> RaceLapHandlerList;
 
@@ -581,50 +581,50 @@ public class DispatcherTask implements Runnable, Dispatcher {
 	/**
 	 * @since 0.7
 	 */
-	public void addMultiplayerClientStartedHandler(MultiplayerClientStartedHandler ev) {
-		if (MultiplayerClientStartedHandlerList == null) 
-			MultiplayerClientStartedHandlerList = new ArrayList<MultiplayerClientStartedHandler>();
-		queueds.add(new LateAdd<MultiplayerClientStartedHandler>(MultiplayerClientStartedHandlerList, ev));
+	public void addMultiplayerClientStartedHandler(RecvMultiplayerClientStartedHandler ev) {
+		if (recvMultiplayerClientStartedHandlerList == null)
+			recvMultiplayerClientStartedHandlerList = new ArrayList<RecvMultiplayerClientStartedHandler>();
+		queueds.add(new LateAdd<RecvMultiplayerClientStartedHandler>(recvMultiplayerClientStartedHandlerList, ev));
 	}
 
 	/**
 	 * @since 0.7
 	 */
-	public void removeMultiplayerClientStartedHandler(MultiplayerClientStartedHandler ev) {
-		queueds.add(new LateRemoval<MultiplayerClientStartedHandler>(MultiplayerClientStartedHandlerList, ev));
+	public void removeMultiplayerClientStartedHandler(RecvMultiplayerClientStartedHandler ev) {
+		queueds.add(new LateRemoval<RecvMultiplayerClientStartedHandler>(recvMultiplayerClientStartedHandlerList, ev));
 	}
 
 	/**
 	 * @since 0.7
 	 */
-	public void addMultiplayerServerStartedHandler(MultiplayerServerStartedHandler ev) {
-		if (MultiplayerServerStartedHandlerList == null) 
-			MultiplayerServerStartedHandlerList = new ArrayList<MultiplayerServerStartedHandler>();
-		queueds.add(new LateAdd<MultiplayerServerStartedHandler>(MultiplayerServerStartedHandlerList, ev));
+	public void addMultiplayerServerStartedHandler(RecvMultiplayerServerStartedHandler ev) {
+		if (recvMultiplayerServerStartedHandlerList == null)
+			recvMultiplayerServerStartedHandlerList = new ArrayList<RecvMultiplayerServerStartedHandler>();
+		queueds.add(new LateAdd<RecvMultiplayerServerStartedHandler>(recvMultiplayerServerStartedHandlerList, ev));
 	}
 
 	/**
 	 * @since 0.7
 	 */
-	public void removeMultiplayerServerStartedHandler(MultiplayerServerStartedHandler ev) {
-		queueds.add(new LateRemoval<MultiplayerServerStartedHandler>(MultiplayerServerStartedHandlerList, ev));
+	public void removeMultiplayerServerStartedHandler(RecvMultiplayerServerStartedHandler ev) {
+		queueds.add(new LateRemoval<RecvMultiplayerServerStartedHandler>(recvMultiplayerServerStartedHandlerList, ev));
 	}
 
 
 	/**
 	 * @since 0.7
 	 */
-	public void addMultiplayerSessionEndedHandler(MultiplayerSessionEndedHandler ev) {
-		if (MultiplayerSessionEndedHandlerList == null) 
-			MultiplayerSessionEndedHandlerList = new ArrayList<MultiplayerSessionEndedHandler>();
-		queueds.add(new LateAdd<MultiplayerSessionEndedHandler>(MultiplayerSessionEndedHandlerList, ev));
+	public void addMultiplayerSessionEndedHandler(RecvMultiplayerSessionEndedHandler ev) {
+		if (recvMultiplayerSessionEndedHandlerList == null)
+			recvMultiplayerSessionEndedHandlerList = new ArrayList<RecvMultiplayerSessionEndedHandler>();
+		queueds.add(new LateAdd<RecvMultiplayerSessionEndedHandler>(recvMultiplayerSessionEndedHandlerList, ev));
 	}
 
 	/**
 	 * @since 0.7
 	 */
-	public void removeMultiplayerSessionEndedHandler(MultiplayerSessionEndedHandler ev) {
-		queueds.add(new LateRemoval<MultiplayerSessionEndedHandler>(MultiplayerSessionEndedHandlerList, ev));
+	public void removeMultiplayerSessionEndedHandler(RecvMultiplayerSessionEndedHandler ev) {
+		queueds.add(new LateRemoval<RecvMultiplayerSessionEndedHandler>(recvMultiplayerSessionEndedHandlerList, ev));
 	}
 
 	/**
@@ -725,7 +725,7 @@ public class DispatcherTask implements Runnable, Dispatcher {
 	}
 
 	@SuppressWarnings("unchecked")
-	private Queue<LateProcessItem> queueds = new LinkedList<LateProcessItem>();
+	private final Queue<LateProcessItem> queueds = new LinkedList<LateProcessItem>();
 	
 	@SuppressWarnings("unchecked")
 	protected synchronized void processQueuedListeners() {
@@ -801,14 +801,14 @@ public class DispatcherTask implements Runnable, Dispatcher {
 			removeFacilitiesListHandler((FacilitiesListHandler) o);
 		}
 		/* 0.7 (SP2) */
-		if (o instanceof MultiplayerClientStartedHandler) {
-			removeMultiplayerClientStartedHandler((MultiplayerClientStartedHandler) o);
+		if (o instanceof RecvMultiplayerClientStartedHandler) {
+			removeMultiplayerClientStartedHandler((RecvMultiplayerClientStartedHandler) o);
 		}
-		if (o instanceof MultiplayerServerStartedHandler) {
-			removeMultiplayerServerStartedHandler((MultiplayerServerStartedHandler) o);
+		if (o instanceof RecvMultiplayerServerStartedHandler) {
+			removeMultiplayerServerStartedHandler((RecvMultiplayerServerStartedHandler) o);
 		}
-		if (o instanceof MultiplayerSessionEndedHandler) {
-			removeMultiplayerSessionEndedHandler((MultiplayerSessionEndedHandler) o);
+		if (o instanceof RecvMultiplayerSessionEndedHandler) {
+			removeMultiplayerSessionEndedHandler((RecvMultiplayerSessionEndedHandler) o);
 		}
 		if (o instanceof RaceLapHandler) {
 			removeRaceLapHandler((RaceLapHandler) o);
@@ -882,14 +882,14 @@ public class DispatcherTask implements Runnable, Dispatcher {
 			addFacilitiesListHandler((FacilitiesListHandler) o);
 		}
 		/* 0.7 (SP2) */
-		if (o instanceof MultiplayerClientStartedHandler) {
-			removeMultiplayerClientStartedHandler((MultiplayerClientStartedHandler) o);
+		if (o instanceof RecvMultiplayerClientStartedHandler) {
+			removeMultiplayerClientStartedHandler((RecvMultiplayerClientStartedHandler) o);
 		}
-		if (o instanceof MultiplayerServerStartedHandler) {
-			removeMultiplayerServerStartedHandler((MultiplayerServerStartedHandler) o);
+		if (o instanceof RecvMultiplayerServerStartedHandler) {
+			removeMultiplayerServerStartedHandler((RecvMultiplayerServerStartedHandler) o);
 		}
-		if (o instanceof MultiplayerSessionEndedHandler) {
-			removeMultiplayerSessionEndedHandler((MultiplayerSessionEndedHandler) o);
+		if (o instanceof RecvMultiplayerSessionEndedHandler) {
+			removeMultiplayerSessionEndedHandler((RecvMultiplayerSessionEndedHandler) o);
 		}
 		if (o instanceof RaceEndHandler) {
 			removeRaceEndHandler((RaceEndHandler) o);

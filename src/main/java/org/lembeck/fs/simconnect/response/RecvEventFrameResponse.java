@@ -4,13 +4,13 @@ import java.nio.ByteBuffer;
 
 import static org.lembeck.fs.simconnect.SimUtil.UNKNOWN_GROUP;
 
-public class RecvFrameResponse extends RecvEventResponse {
+public class RecvEventFrameResponse extends RecvEventResponse {
 
     private final float frameRate;
 
     private final float simSpeed;
 
-    RecvFrameResponse(ByteBuffer buffer) {
+    RecvEventFrameResponse(ByteBuffer buffer) {
         super(buffer);
         frameRate = buffer.getFloat();
         simSpeed = buffer.getFloat();

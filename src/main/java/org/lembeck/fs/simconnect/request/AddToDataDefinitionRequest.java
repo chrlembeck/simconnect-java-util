@@ -8,10 +8,12 @@ public class AddToDataDefinitionRequest extends SimRequest {
 
     public static final int TYPE_ID = 0xf000000c;
 
+    public static final int UNUSED = 0xffffffff;
+
     private final int defineID;
     private final String datumName;
     private final String unitsName;
-    private final int datumType;
+    private final DataType datumType;
     private final float epsilon;
     private final int datumID;
 
@@ -20,12 +22,16 @@ public class AddToDataDefinitionRequest extends SimRequest {
         defineID = buffer.getInt();
         datumName = SimUtil.readString(buffer, 256);
         unitsName = SimUtil.readString(buffer, 256);
-        datumType = buffer.getInt();
+        datumType = DataType.values()[buffer.getInt()];
         epsilon = buffer.getFloat();
         datumID = buffer.getInt();
     }
 
-    public AddToDataDefinitionRequest(int defineID, String datumName, String unitsName, int datumType, float epsilon, int datumID) {
+    public AddToDataDefinitionRequest(int defineID, String datumName, String unitsName, DataType datumType, float epsilon) {
+        this(defineID, datumName, unitsName, datumType, epsilon, UNUSED);
+    }
+
+    public AddToDataDefinitionRequest(int defineID, String datumName, String unitsName, DataType datumType, float epsilon, int datumID) {
         super(TYPE_ID);
         this.defineID = defineID;
         this.datumName = datumName;
@@ -40,7 +46,7 @@ public class AddToDataDefinitionRequest extends SimRequest {
         outBuffer.putInt(defineID);
         SimUtil.writeString(outBuffer, datumName, 256);
         SimUtil.writeString(outBuffer, unitsName, 256);
-        outBuffer.putInt(datumType);
+        outBuffer.putInt(datumType.ordinal());
         outBuffer.putFloat(epsilon);
         outBuffer.putInt(datumID);
     }
@@ -57,7 +63,7 @@ public class AddToDataDefinitionRequest extends SimRequest {
         return unitsName;
     }
 
-    public int getDatumType() {
+    public DataType getDatumType() {
         return datumType;
     }
 

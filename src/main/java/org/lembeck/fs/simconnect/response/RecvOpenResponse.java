@@ -4,7 +4,7 @@ import org.lembeck.fs.simconnect.SimUtil;
 
 import java.nio.ByteBuffer;
 
-public class HelloResponse extends SimResponse {
+public class RecvOpenResponse extends SimResponse {
 
     private final String applicationName;
     private final int applicationVersionMajor;
@@ -18,7 +18,7 @@ public class HelloResponse extends SimResponse {
     private final int reserved1;
     private final int reserved2;
 
-    HelloResponse(ByteBuffer buffer) {
+    RecvOpenResponse(ByteBuffer buffer) {
         super(buffer);
         applicationName = SimUtil.readString(buffer, 256);
         applicationVersionMajor = buffer.getInt();

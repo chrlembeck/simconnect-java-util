@@ -24,11 +24,6 @@ public class MySimConnect {
 
     private final AtomicInteger lastRequestIdentifier = new AtomicInteger(0);
 
-    public static void main(String[] args) throws IOException {
-        MySimConnect mySimConnect = new MySimConnect();
-        mySimConnect.connect("192.168.0.170", 26011, "MySimConnect");
-    }
-
     public MySimConnect() {
         responseReceiver = new ResponseReceiver();
         this.inBuffer = ByteBuffer.allocateDirect(64 * 1024);
@@ -40,11 +35,11 @@ public class MySimConnect {
     public void connect(String hostname, int port, String appName) throws IOException {
         channel = SocketChannel.open(new InetSocketAddress(hostname, port));
         responseReceiver.setChannel(channel);
+        write(new HelloRequest(appName));
         Thread thread = new Thread(responseReceiver);
         thread.setDaemon(false);
         thread.setName("Simconnect Request Receiver");
         thread.start();
-        write(new HelloRequest(appName));
     }
 
     public void close() {
@@ -102,7 +97,11 @@ public class MySimConnect {
         return write(new RequestNotificationGroupRequest(notificationGroupID, reserved, flags));
     }
 
-    public AddToDataDefinitionRequest addToDataDefinition(int defineID, String datumName, String unitsName, int datumType, float epsilon, int datumID) throws IOException {
+    public AddToDataDefinitionRequest addToDataDefinition(int defineID, String datumName, String unitsName, DataType datumType, float epsilon) throws IOException {
+        return write(new AddToDataDefinitionRequest(defineID, datumName, unitsName, datumType, epsilon));
+    }
+
+    public AddToDataDefinitionRequest addToDataDefinition(int defineID, String datumName, String unitsName, DataType datumType, float epsilon, int datumID) throws IOException {
         return write(new AddToDataDefinitionRequest(defineID, datumName, unitsName, datumType, epsilon, datumID));
     }
 
@@ -321,4 +320,5 @@ public class MySimConnect {
     public ClearAllFacilityDataDefinitionFiltersRequest clearAllFacilityDataDefinitionFilters(int defineID) throws IOException {
         return write(new ClearAllFacilityDataDefinitionFiltersRequest(defineID));
     }
+
 }

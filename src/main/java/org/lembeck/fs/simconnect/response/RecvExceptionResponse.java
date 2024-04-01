@@ -4,13 +4,13 @@ import org.lembeck.fs.simconnect.ExceptionType;
 
 import java.nio.ByteBuffer;
 
-public class ExceptionResponse extends SimResponse {
+public class RecvExceptionResponse extends SimResponse {
 
     private final int exceptionTypeIdx;
     private final int sendID;
     private final int index;
 
-    ExceptionResponse(ByteBuffer buffer) {
+    RecvExceptionResponse(ByteBuffer buffer) {
         super(buffer);
         exceptionTypeIdx = buffer.getInt();
         sendID = buffer.getInt();

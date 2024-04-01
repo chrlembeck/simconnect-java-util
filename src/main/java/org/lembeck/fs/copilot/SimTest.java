@@ -1,22 +1,21 @@
 package org.lembeck.fs.copilot;
 
-import flightsim.simconnect.FacilityListType;
-import flightsim.simconnect.SimConnect;
-import flightsim.simconnect.SimConnectDataType;
-import flightsim.simconnect.SimConnectPeriod;
-import flightsim.simconnect.recv.*;
+import org.lembeck.fs.simconnect.MySimConnect;
+import org.lembeck.fs.simconnect.request.DataType;
+import org.lembeck.fs.simconnect.request.SimconnectPeriod;
+import org.lembeck.fs.simconnect.response.*;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, FacilitiesListHandler, SimObjectDataHandler {
+public class SimTest {
 
-    private final SimConnect sc;
-    private final DispatcherTask dt;
+    private final MySimConnect msc;
 
     private boolean inSim = false;
 
@@ -27,39 +26,37 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
     private double userAlt;
 
     public SimTest() throws IOException {
-        sc = new SimConnect("NearestAirports", "192.168.0.170", 26010);
+        msc = new MySimConnect();
+        msc.getRequestReceiver().addExceptionHandler(this::handleException);
+        msc.getRequestReceiver().addEventHandler(this::handleEvent);
+        msc.getRequestReceiver().addOpenHandler(this::handleOpen);
+        msc.getRequestReceiver().addAirportListHandler(this::handleAirportList);
+        msc.getRequestReceiver().addSimobjectDataHandler(this::handleSimObject);
 
-        sc.subscribeToSystemEvent(1, "Sim");
-        sc.subscribeToSystemEvent(2, "4sec");
+        msc.connect("192.168.0.170", 26010, "NearestAirports");
 
-        sc.addToDataDefinition(1, "PLANE LATITUDE", "DEGREES", SimConnectDataType.FLOAT64);
-        sc.addToDataDefinition(1, "PLANE LONGITUDE", "DEGREES", SimConnectDataType.FLOAT64);
-        sc.addToDataDefinition(1, "PLANE ALTITUDE", "FEET", SimConnectDataType.FLOAT64);
+        msc.subscribeToSystemEvent(1, "Sim");
+        msc.subscribeToSystemEvent(2, "4sec");
 
-        sc.requestDataOnSimObject(1, 1, 0, SimConnectPeriod.SIM_FRAME);
+        msc.addToDataDefinition(1, "PLANE LATITUDE", "DEGREES", DataType.FLOAT64, 0);
+        msc.addToDataDefinition(1, "PLANE LONGITUDE", "DEGREES", DataType.FLOAT64, 0);
+        msc.addToDataDefinition(1, "PLANE ALTITUDE", "FEET", DataType.FLOAT64, 0);
 
-        dt = new DispatcherTask(sc);
-        dt.addOpenHandler(this);
-        dt.addExceptionHandler(this);
-        dt.addEventHandler(this);
-        dt.addFacilitiesListHandler(this);
-        dt.addSimObjectDataHandler(this);
+        msc.requestDataOnSimObject(1, 1, 0, SimconnectPeriod.SIM_FRAME, 0, 0, 0, 0);
 
     }
 
-    public void start(){
-        dt.createThread().start();
-    }
-
-    public void handleEvent(SimConnect sender, RecvEvent e) {
+    public void handleEvent(RecvEventResponse e) {
         if (e.getEventID() == 1) {
             inSim = e.getData() == 1;
-        } else if (e.getEventID() == 2 && inSim){
+        } else if (e.getEventID() == 2 && inSim) {
             try {
-                sender.requestFacilitiesList(FacilityListType.AIRPORT, 3);
-            } catch (IOException e1) {}
+                msc.requestFacilitiesList(org.lembeck.fs.simconnect.request.FacilityListType.AIRPORT, 3);
+            } catch (IOException e1) {
+            }
         }
     }
+
     private static final DecimalFormat df = new DecimalFormat("###.0");
 
     class Airport implements Comparable<Airport> {
@@ -75,7 +72,7 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
 
         @Override
         public String toString() {
-            return icao +" (" + df.format(dist/1000.0) + " nm)";
+            return icao + " (" + df.format(dist / 1000.0) + " nm)";
         }
 
         public int compareTo(Airport o) {
@@ -85,13 +82,13 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
 
     List<Airport> airports = new ArrayList<>();
 
-    public void handleAirportList(SimConnect sender, RecvAirportList list) {
+    public void handleAirportList(RecvAirportListResponse list) {
         if (list.getEntryNumber() == 0) {
             airports.clear();
         }
         System.out.println(list.getEntryNumber() + "/" + list.getOutOf());
 
-        for (FacilityAirport fa : list.getFacilities()) {
+        for (FacilityAirport fa : list.getAirportList()) {
 
             if (userLat != 0 && userLon != 0) {
                 double apLat = fa.getLatitude();
@@ -112,45 +109,40 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
             }
         }
         if (airports.isEmpty()) return;
-        Collections.sort(airports);
-        int n = Math.min(6, airports.size());
-        String [] array = new String[n];
-        for (int i = 0; i < n; i++) {
-            array[i] = airports.get(i).toString();
+        if (list.getEntryNumber() == list.getOutOf() - 1) {
+            Collections.sort(airports);
+            int n = Math.min(10, airports.size());
+            String[] array = new String[n];
+            for (int i = 0; i < n; i++) {
+                array[i] = airports.get(i).toString();
+            }
+            System.out.println(Arrays.toString(array));
         }
-        System.out.println(Arrays.toString(array));
     }
 
-    public void handleSimObject(SimConnect sender, RecvSimObjectData e) {
-        userLat = e.getDataFloat64();
-        userLon = e.getDataFloat64();
-        userAlt = e.getDataFloat64();
+    public void handleSimObject(RecvSimobjectDataResponse response) {
+        ByteBuffer data = response.getData();
+        userLat = data.getDouble();
+        userLon = data.getDouble();
+        userAlt = data.getDouble();
         System.out.println(userLat + " " + userLon + " " + userAlt);
     }
 
-    public void handleNDBList(SimConnect sender, RecvNDBList list) {
-    }
-    public void handleVORList(SimConnect sender, RecvVORList list) {
-    }
-    public void handleWaypointList(SimConnect sender, RecvWaypointList list) {
+    public void handleException(RecvExceptionResponse e) {
+        System.out.println("Exception : " + e);
     }
 
-
-    public void handleException(SimConnect sender, RecvException e) {
-        System.out.println("Exception : " +e.getException());
-    }
-
-    public void handleOpen(SimConnect sender, RecvOpen e) {
+    public void handleOpen(RecvOpenResponse e) {
         System.out.println("Connected to " + e.getApplicationName());
     }
 
     public static void main(String[] args) throws Exception {
         SimTest nn = new SimTest();
-        nn.start();
     }
 
     /**
      * Distance in METERS between points with lat/lon in DEGREES
+     *
      * @param lat1
      * @param lon1
      * @param lat2
@@ -164,12 +156,12 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
         lon2 = Math.toRadians(lon2);
 
         return RADIUS_EARTH_M *
-                Math.acos(Math.cos(lat1) * 	Math.cos(lat2) * Math.cos(lon1-lon2) +
-                        Math.sin(lat1)*Math.sin(lat2));
+                Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2) +
+                        Math.sin(lat1) * Math.sin(lat2));
     }
 
     // in METERS
-    public static final double RADIUS_EARTH_M	=	6378137;//	6367176.0
+    public static final double RADIUS_EARTH_M = 6378137;//	6367176.0
 
     /**
      * Heading in RADIANS between two points in DEGREES (sorry)
@@ -190,8 +182,8 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
             return h;
         }
 
-        double b = Math.atan2(Math.sin(lon2-lon1) * Math.cos(lat2), Math.cos(lat1)*Math.sin(lat2) -
-                Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1));
+        double b = Math.atan2(Math.sin(lon2 - lon1) * Math.cos(lat2),
+                Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1));
         if (b < 0) b = Math.PI * 2 + b;
 
         return b;
@@ -199,6 +191,7 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
 
     /**
      * Heading in RADIANS between two points in RADIANS
+     *
      * @param p1
      * @param p2
      * @return
@@ -220,9 +213,10 @@ public class SimTest implements OpenHandler, ExceptionHandler, EventHandler, Fac
             return h;
         }
 
-        double b = Math.atan2(Math.sin(lon2-lon1) * Math.cos(lat2), Math.cos(lat1)*Math.sin(lat2) -
-                Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1));
+        double b = Math.atan2(Math.sin(lon2 - lon1) * Math.cos(lat2),
+                Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1));
         if (b < 0) b = Math.PI * 2 + b;
 
         return b;
-    }}
+    }
+}

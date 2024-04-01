@@ -2,9 +2,9 @@ package org.lembeck.fs.simconnect.response;
 
 import java.nio.ByteBuffer;
 
-public class QuitResponse extends SimResponse {
+public class RecvQuitResponse extends SimResponse {
 
-    QuitResponse(ByteBuffer buffer) {
+    RecvQuitResponse(ByteBuffer buffer) {
         super(buffer);
     }
 
