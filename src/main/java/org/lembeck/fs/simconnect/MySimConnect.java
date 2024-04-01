@@ -1,7 +1,6 @@
 package org.lembeck.fs.simconnect;
 
 
-import flightsim.simconnect.ClientDataPeriod;
 import org.lembeck.fs.simconnect.request.*;
 
 import java.io.IOException;
@@ -209,7 +208,7 @@ public class MySimConnect {
         return write(new ClearClientDataDefinitionRequest(defineID));
     }
 
-    public RequestClientDataRequest requestClientData(int clientDataID, int requestID, int defineID, ClientDataPeriod period, int flags, int origin, int interval, int limit) throws IOException {
+    public RequestClientDataRequest requestClientData(int clientDataID, int requestID, int defineID, SimconnectPeriod period, int flags, int origin, int interval, int limit) throws IOException {
         return write(new RequestClientDataRequest(clientDataID, requestID, defineID, period, flags, origin, interval, limit));
     }
 
@@ -261,7 +260,7 @@ public class MySimConnect {
         return write(new SubscribeToFacilitiesEx1Request(type, newElemInRangeRequestID, oldElemOutRangeRequestID));
     }
 
-    public UnsubscribeToFacilitiesEx1Request unsubscribeToFacilitiesEx1(flightsim.simconnect.FacilityListType type, boolean unsubscribeNewInRange, boolean unsubscribeOldOutRang) throws IOException {
+    public UnsubscribeToFacilitiesEx1Request unsubscribeToFacilitiesEx1(FacilityListType type, boolean unsubscribeNewInRange, boolean unsubscribeOldOutRang) throws IOException {
         return write(new UnsubscribeToFacilitiesEx1Request(type, unsubscribeNewInRange, unsubscribeOldOutRang));
     }
 

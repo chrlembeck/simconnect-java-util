@@ -15,7 +15,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import static flightsim.simconnect.SimConnectConstants.OBJECT_ID_USER;
+import static org.lembeck.fs.simconnect.SimUtil.OBJECT_ID_USER;
 
 public class SimController {
 

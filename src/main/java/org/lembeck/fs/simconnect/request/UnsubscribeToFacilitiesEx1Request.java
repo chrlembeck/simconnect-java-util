@@ -1,7 +1,5 @@
 package org.lembeck.fs.simconnect.request;
 
-import flightsim.simconnect.FacilityListType;
-
 import java.nio.ByteBuffer;
 
 public class UnsubscribeToFacilitiesEx1Request extends SimRequest {

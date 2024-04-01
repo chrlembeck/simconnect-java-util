@@ -6,6 +6,8 @@ import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
 public class SimUtil {
 
+    public static final int OBJECT_ID_USER = 0;
+
     public final static int MAX_PATH = 260;
 
     public static final int UNKNOWN_GROUP = 0xffffffff;

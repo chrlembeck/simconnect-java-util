@@ -1,7 +1,5 @@
 package org.lembeck.fs.simconnect.request;
 
-import flightsim.simconnect.ClientDataPeriod;
-
 import java.nio.ByteBuffer;
 
 public class RequestClientDataRequest extends SimRequest {
@@ -10,7 +8,7 @@ public class RequestClientDataRequest extends SimRequest {
     private final int clientDataID;
     private final int requestID;
     private final int defineID;
-    private final ClientDataPeriod period;
+    private final SimconnectPeriod period;
     private final int flags;
     private final int origin;
     private final int interval;
@@ -21,14 +19,14 @@ public class RequestClientDataRequest extends SimRequest {
         clientDataID = buffer.getInt();
         requestID = buffer.getInt();
         defineID = buffer.getInt();
-        period = ClientDataPeriod.values()[buffer.getInt()];
+        period = SimconnectPeriod.values()[buffer.getInt()];
         flags = buffer.getInt();
         origin = buffer.getInt();
         interval = buffer.getInt();
         limit = buffer.getInt();
     }
 
-    public RequestClientDataRequest(int clientDataID, int requestID, int defineID, ClientDataPeriod period, int flags, int origin, int interval, int limit) {
+    public RequestClientDataRequest(int clientDataID, int requestID, int defineID, SimconnectPeriod period, int flags, int origin, int interval, int limit) {
         super(TYPE_ID);
         this.clientDataID = clientDataID;
         this.requestID = requestID;
@@ -64,7 +62,7 @@ public class RequestClientDataRequest extends SimRequest {
         return defineID;
     }
 
-    public ClientDataPeriod getPeriod() {
+    public SimconnectPeriod getPeriod() {
         return period;
     }
 
