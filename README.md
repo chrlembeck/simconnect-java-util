@@ -88,34 +88,25 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 | 42 | UnsubscribeToFacilities                      | :heavy_check_mark:                                           |
 | 43 | RequestFacilitiesList                        | :heavy_check_mark:                                           |
 | 44 | TransmitClientEvent_EX1                      | :heavy_check_mark:                                           |
-| 45 |                                              |                                                              |
-| 46 |                                              |                                                              |
+| 45 | AddToFacilityDefinition                      | :heavy_check_mark:                                           |
+| 46 | RequestFacilityData                          | :heavy_check_mark:                                           |
 | 47 | SubscribeToFacilities_EX1                    | :heavy_check_mark:                                           |
 | 48 | UnsubscribeToFacilities_EX1                  | :heavy_check_mark:                                           |
-| 49 |                                              |                                                              |
-| 4a |                                              |                                                              |
-| 4b |                                              |                                                              |
+| 49 | RequestFacilitiesList_EX1                    | :heavy_check_mark:                                           |
+| 4a | RequestFacilityData_EX1                      | :heavy_check_mark:                                           |
+| 4b | RequestJetwayData                            | :heavy_check_mark:                                           |
 | 4c | EnumerateControllers                         | :heavy_check_mark:                                           |
 | 4d | MapInputEventToClientEvent_EX1               | :heavy_check_mark:                                           |
-| 4e |                                              |                                                              |
+| 4e | ? ExecuteAction ?                            | :x: not implemented due to lack of documentation             |
 | 4f | EnumerateInputEvents                         | :heavy_check_mark:                                           |
 | 50 | GetInputEvent                                | :heavy_check_mark:                                           |
 | 51 | SetInputEvent                                | :heavy_check_mark:                                           |
 | 52 | SubscribeInputEvent                          | :heavy_check_mark:                                           |
 | 53 | UnsubscribeInputEvent                        | :heavy_check_mark:                                           |
 | 54 | EnumerateInputEventParams                    | :heavy_check_mark:                                           |
-| 55 |                                              |                                                              |
+| 55 | AddFacilityDataDefinitionFilter              | :heavy_check_mark:                                           |
 | 56 | ClearAllFacilityDataDefinitionFiltersRequest | :heavy_check_mark:                                           |
 
-* AddToFacilityDefinition
-* RequestFacilityData
-* RequestFacilitiesList_EX1
-* RequestFacilityData_EX1
-* RequestJetwayData
-*
-* ExecuteAction
-*
-* AddFacilityDataDefinitionFilter
 
 
 * Close
@@ -158,10 +149,10 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 | 19 | SIMCONNECT_RECV_ID_EVENT_RACE_END                   |                                        |
 | 1a | SIMCONNECT_RECV_ID_EVENT_RACE_LAP                   |                                        |
 | 1b | SIMCONNECT_RECV_ID_EVENT_EX1                        | :heavy_check_mark:                     |
-| 1c | SIMCONNECT_RECV_ID_FACILITY_DATA                    |                                        |
+| 1c | SIMCONNECT_RECV_ID_FACILITY_DATA                    | :heavy_check_mark:                     |
 | 1d | SIMCONNECT_RECV_ID_FACILITY_DATA_END                | :heavy_check_mark:                     |
 | 1e | SIMCONNECT_RECV_ID_FACILITY_MINIMAL_LIST            |                                        |
-| 1f | SIMCONNECT_RECV_ID_JETWAY_DATA                      |                                        |
+| 1f | SIMCONNECT_RECV_ID_JETWAY_DATA                      | :heavy_check_mark:                     |
 | 20 | SIMCONNECT_RECV_ID_CONTROLLERS_LIST                 | :heavy_check_mark:                     |
 | 21 | SIMCONNECT_RECV_ID_ACTION_CALLBACK                  |                                        |
 | 22 | SIMCONNECT_RECV_ID_ENUMERATE_INPUT_EVENTS           | :heavy_check_mark:                     |

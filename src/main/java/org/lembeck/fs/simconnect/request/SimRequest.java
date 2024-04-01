@@ -6,13 +6,13 @@ import static org.lembeck.fs.simconnect.SimUtil.SIMCONNECT_PROTOCOL_FS2020;
 
 public abstract class SimRequest {
 
-    private int size = -1;
+    protected int size = -1;
 
-    private final int version;
+    protected final int version;
 
-    private final int typeID;
+    protected final int typeID;
 
-    private int identifier;
+    protected int identifier;
 
     SimRequest(int size, int version, int typeID, int identifier) {
         this.size = size;
@@ -98,10 +98,13 @@ public abstract class SimRequest {
             case 0xf0000042 -> new UnsubscribeToFacilitiesRequest(buffer);
             case 0xf0000043 -> new RequestFacilitesListRequest(buffer);
             case 0xf0000044 -> new TransmitClientEventEx1Request(buffer);
-
+            case 0xf0000045 -> new AddToFacilityDefinitionRequest(buffer);
+            case 0xf0000046 -> new RequestFacilityDataRequest(buffer);
             case 0xf0000047 -> new SubscribeToFacilitiesEx1Request(buffer);
             case 0xf0000048 -> new UnsubscribeToFacilitiesEx1Request(buffer);
-
+            case 0xf0000049 -> new RequestFacilitiesListEx1Request(buffer);
+            case 0xf000004a -> new RequestFacilityDataEx1Request(buffer);
+            case 0xf000004b -> new RequestJetwayDataRequest(buffer);
             case 0xf000004c -> new EnumerateControllersRequest(buffer);
             case 0xf000004d -> new MapInputEventToClientEventEx1Request(buffer);
 
@@ -111,7 +114,7 @@ public abstract class SimRequest {
             case 0xf0000052 -> new SubscribeInputEventRequest(buffer);
             case 0xf0000053 -> new UnsubscribeInputEventRequest(buffer);
             case 0xf0000054 -> new EnumerateInputEventParamsRequest(buffer);
-
+            case 0xf0000055 -> new AddFacilityDataDefinitionFilterRequest(buffer);
             case 0xf0000056 -> new ClearAllFacilityDataDefinitionFiltersRequest(buffer);
             default -> new UnknownRequest(buffer);
         };

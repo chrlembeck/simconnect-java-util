@@ -4,11 +4,11 @@ import java.nio.ByteBuffer;
 
 public abstract class SimResponse {
 
-    private final int size;
+    protected final int size;
 
-    private final int version;
+    protected final int version;
 
-    private final int typeId;
+    protected final int typeId;
 
     public SimResponse(int size, int version, int typeId) {
         this.size = size;
@@ -64,10 +64,10 @@ public abstract class SimResponse {
             // 0x19: SIMCONNECT_RECV_EVENT_RACE_END
             // 0x1a: SIMCONNECT_RECV_EVENT_RACE_LAP
             case 0x1b -> new RecvEventEx1Response(buffer);
-            // 0x1c: SIMCONNECT_RECV_FACILITY_DATA
+            case 0x1c -> new RecvFacilityDataResponse(buffer);
             case 0x1d -> new RecvFacilityDataEndResponse(buffer);
             // 0x1e: SIMCONNECT_RECV_FACILITY_MINIMAL_LIST
-            // 0x1f: SIMCONNECT_RECV_JETWAY_DATA
+            case 0x1f -> new RecvJetwayData(buffer);
             case 0x20 -> new RecvControllersListResponse(buffer);
             // 0x21: SIMCONNECT_RECV_ACTION_CALLBACK
             case 0x22 -> new RecvEnumerateInputEventsResponse(buffer);

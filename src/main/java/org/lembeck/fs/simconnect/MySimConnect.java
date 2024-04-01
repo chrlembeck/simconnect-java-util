@@ -250,12 +250,32 @@ public class MySimConnect {
         return write(new TransmitClientEventEx1Request(objectID, eventID, notificationGroupID, eventFlag, data0, data1, data2, data3, data4));
     }
 
+    public AddToFacilityDefinitionRequest addToFacilityDefinition(int defineID, String fieldName) throws IOException {
+        return write(new AddToFacilityDefinitionRequest(defineID, fieldName));
+    }
+
+    public RequestFacilityDataRequest RequestFacilityData(int defineID, int requestID, String icao, String region) throws IOException {
+        return write(new RequestFacilityDataRequest(defineID, requestID, icao, region));
+    }
+
     public SubscribeToFacilitiesEx1Request subscribeToFacilitiesEx1(FacilityListType type, int newElemInRangeRequestID, int oldElemOutRangeRequestID) throws IOException {
         return write(new SubscribeToFacilitiesEx1Request(type, newElemInRangeRequestID, oldElemOutRangeRequestID));
     }
 
     public UnsubscribeToFacilitiesEx1Request unsubscribeToFacilitiesEx1(flightsim.simconnect.FacilityListType type, boolean unsubscribeNewInRange, boolean unsubscribeOldOutRang) throws IOException {
         return write(new UnsubscribeToFacilitiesEx1Request(type, unsubscribeNewInRange, unsubscribeOldOutRang));
+    }
+
+    public RequestFacilitiesListEx1Request requestFacilitiesListEx1(FacilityListType type, int requestID) throws IOException {
+        return write(new RequestFacilitiesListEx1Request(type, requestID));
+    }
+
+    public RequestFacilityDataEx1Request requestFacilityDataEx1(int defineID, int requestID, String icao, String region, RequestFacilityDataEx1Request.FacilityType type) throws IOException {
+        return write(new RequestFacilityDataEx1Request(defineID, requestID, icao, region, type));
+    }
+
+    public RequestJetwayDataRequest requestJetwayData(String icao, int... indexes) throws IOException {
+        return write(new RequestJetwayDataRequest(icao, indexes));
     }
 
     public EnumerateControllersRequest enumerateControllers() throws IOException {
@@ -292,6 +312,10 @@ public class MySimConnect {
 
     public UnsubscribeInputEventRequest unsubscribeInputEvent(long hash) throws IOException {
         return write(new UnsubscribeInputEventRequest(hash));
+    }
+
+    public AddFacilityDataDefinitionFilterRequest addFacilityDataDefinitionFilter(int defineID, String filterPath, byte[] filterData) throws IOException {
+        return write(new AddFacilityDataDefinitionFilterRequest(defineID, filterPath, filterData));
     }
 
     public ClearAllFacilityDataDefinitionFiltersRequest clearAllFacilityDataDefinitionFilters(int defineID) throws IOException {

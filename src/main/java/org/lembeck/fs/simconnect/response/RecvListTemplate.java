@@ -4,10 +4,10 @@ import java.nio.ByteBuffer;
 
 public class RecvListTemplate extends SimResponse {
 
-    private final int requestID;
-    private final int arraySize;
-    private final int entryNumber;
-    private final int outOf;
+    protected final int requestID;
+    protected final int arraySize;
+    protected final int entryNumber;
+    protected final int outOf;
 
     RecvListTemplate(ByteBuffer buffer) {
         super(buffer);
