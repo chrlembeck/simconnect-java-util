@@ -107,17 +107,6 @@ https://github.com/EvenAR/node-simconnect/blob/master/src/SimConnectConnection.t
 | 55 | AddFacilityDataDefinitionFilter              | :heavy_check_mark:                                           |
 | 56 | ClearAllFacilityDataDefinitionFiltersRequest | :heavy_check_mark:                                           |
 
-
-
-* Close
-* RetrieveString
-* GetLastSentPacketID
-* Open
-* CallDispatch
-* GetNextDispatch
-* RequestResponseTimes
-* InsertString
-
 ## Supported Events sent from the simconnect API
 
 | ID | Name                                                | Comment                                |

@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.nio.ByteOrder.LITTLE_ENDIAN;
 
-public class MySimConnect {
+public class SimConnect {
 
     private SocketChannel channel;
 
@@ -23,7 +23,7 @@ public class MySimConnect {
 
     private final AtomicInteger lastRequestIdentifier = new AtomicInteger(0);
 
-    public MySimConnect() {
+    public SimConnect() {
         responseReceiver = new ResponseReceiver();
         this.inBuffer = ByteBuffer.allocateDirect(64 * 1024);
         this.outBuffer = ByteBuffer.allocateDirect(64 * 1024);

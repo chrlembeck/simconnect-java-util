@@ -1,6 +1,6 @@
 package org.lembeck.fs.copilot;
 
-import org.lembeck.fs.simconnect.MySimConnect;
+import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.request.DataType;
 import org.lembeck.fs.simconnect.request.EventFlag;
 import org.lembeck.fs.simconnect.request.Priority;
@@ -19,7 +19,7 @@ import static org.lembeck.fs.simconnect.SimUtil.OBJECT_ID_USER;
 
 public class SimController {
 
-    private MySimConnect msc;
+    private SimConnect msc;
 
     boolean simulationRunning = false;
 
@@ -64,7 +64,7 @@ public class SimController {
 
     public SimController() {
         try {
-            msc = new MySimConnect();
+            msc = new SimConnect();
 
             msc.getRequestReceiver().addOpenHandler(this::handleOpen);
             msc.getRequestReceiver().addExceptionHandler(this::handleException);

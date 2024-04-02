@@ -1,6 +1,6 @@
 package org.lembeck.fs.simconnect.examples;
 
-import org.lembeck.fs.simconnect.MySimConnect;
+import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.request.SystemEventName;
 import org.lembeck.fs.simconnect.response.RecvEventFilenameResponse;
 import org.lembeck.fs.simconnect.response.RecvEventResponse;
@@ -11,14 +11,14 @@ public class SystemEvents {
 
     int counter = 0;
 
-    private MySimConnect simConnect;
+    private SimConnect simConnect;
 
     public static void main(String[] args) throws IOException {
         new SystemEvents().run();
     }
 
     private void run() throws IOException {
-        simConnect = new MySimConnect();
+        simConnect = new SimConnect();
         simConnect.getRequestReceiver().addEventHandler(this::handleEvent);
         simConnect.getRequestReceiver().addEventFilenameHandler(this::handleEventFilename);
         simConnect.connect("localhost", 26010, "SystemEvents");

@@ -1,6 +1,6 @@
 package org.lembeck.fs.copilot;
 
-import org.lembeck.fs.simconnect.MySimConnect;
+import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.request.DataType;
 import org.lembeck.fs.simconnect.request.SimconnectPeriod;
 import org.lembeck.fs.simconnect.response.*;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class SimTest {
 
-    private final MySimConnect msc;
+    private final SimConnect msc;
 
     private boolean inSim = false;
 
@@ -26,7 +26,7 @@ public class SimTest {
     private double userAlt;
 
     public SimTest() throws IOException {
-        msc = new MySimConnect();
+        msc = new SimConnect();
         msc.getRequestReceiver().addExceptionHandler(this::handleException);
         msc.getRequestReceiver().addEventHandler(this::handleEvent);
         msc.getRequestReceiver().addOpenHandler(this::handleOpen);

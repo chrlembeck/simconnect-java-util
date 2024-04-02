@@ -1,6 +1,6 @@
 package org.lembeck.fs.simconnect.examples;
 
-import org.lembeck.fs.simconnect.MySimConnect;
+import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.response.RecvSystemStateResponse;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ public class SystemState {
     }
 
     private void run() throws IOException {
-        MySimConnect simConnect = new MySimConnect();
+        SimConnect simConnect = new SimConnect();
         simConnect.getRequestReceiver().addSystemStateHandler(this::handleSystemState);
         simConnect.connect("localhost", 26010, "SystemState");
         simConnect.requestSystemState(1, org.lembeck.fs.simconnect.SystemState.AIRCRAFT_LOADED);

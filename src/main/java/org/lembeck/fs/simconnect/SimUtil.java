@@ -14,8 +14,6 @@ public class SimUtil {
 
     public static final int SIMCONNECT_PROTOCOL_FS2020 = 5;
 
-
-
     public static String readString(ByteBuffer buffer, int length) {
         byte[] data = new byte[length];
         buffer.get(data);

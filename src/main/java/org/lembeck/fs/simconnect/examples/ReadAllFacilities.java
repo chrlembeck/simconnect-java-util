@@ -1,6 +1,6 @@
 package org.lembeck.fs.simconnect.examples;
 
-import org.lembeck.fs.simconnect.MySimConnect;
+import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.request.FacilityListType;
 import org.lembeck.fs.simconnect.response.*;
 
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class ReadAllFacilities {
 
-    private final MySimConnect simConnect = new MySimConnect();
+    private final SimConnect simConnect = new SimConnect();
 
     private final List<FacilityAirport> airports = new ArrayList<>();
     private final List<FacilityWaypoint> waypoints = new ArrayList<>();
