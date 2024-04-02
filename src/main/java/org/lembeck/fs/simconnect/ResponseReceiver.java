@@ -75,6 +75,10 @@ public class ResponseReceiver implements Runnable {
         }
     }
 
+    public void setChannel(SocketChannel channel) {
+        this.channel = channel;
+    }
+
     private void handleResponse(SimResponse response) {
         responseHandlers.notifyHandlers(response);
         switch (response) {
@@ -165,51 +169,103 @@ public class ResponseReceiver implements Runnable {
         assignedObjectIdHandlers.addHandler(handler);
     }
 
+    public void removeAssignedObjectIdHandler(AssignedObjectIdHandler handler) {
+        assignedObjectIdHandlers.removeHandler(handler);
+    }
+
     public void addClientDataHandler(ClientDataHandler handler) {
         clientDataHandlers.addHandler(handler);
+    }
+
+    public void removeClientDataHandler(ClientDataHandler handler) {
+        clientDataHandlers.removeHandler(handler);
     }
 
     public void addControllersListHandler(ControllersListHandler handler) {
         controllersListHandlers.addHandler(handler);
     }
 
+    public void removeControllersListHandler(ControllersListHandler handler) {
+        controllersListHandlers.removeHandler(handler);
+    }
+
     public void addEnumerateInputEventsHandler(EnumerateInputEventsHandler handler) {
         enumerateInputEventsHandlers.addHandler(handler);
+    }
+
+    public void removeEnumerateInputEventsHandler(EnumerateInputEventsHandler handler) {
+        enumerateInputEventsHandlers.removeHandler(handler);
     }
 
     public void addEventEx1Handler(EventEx1Handler handler) {
         eventEx1Handlers.addHandler(handler);
     }
 
+    public void removeEventEx1Handler(EventEx1Handler handler) {
+        eventEx1Handlers.removeHandler(handler);
+    }
+
     public void addEventFrameHandler(EventFrameHandler handler) {
         eventFrameHandlers.addHandler(handler);
+    }
+
+    public void removeEventFrameHandler(EventFrameHandler handler) {
+        eventFrameHandlers.removeHandler(handler);
     }
 
     public void addEventMultiplayerServerStartedHandler(EventMultiplayerServerStartedHandler handler) {
         eventMultiplayerServerStartedHandlers.addHandler(handler);
     }
 
+    public void removeEventMultiplayerServerStartedHandler(EventMultiplayerServerStartedHandler handler) {
+        eventMultiplayerServerStartedHandlers.removeHandler(handler);
+    }
+
     public void addEventMultiplayerClientStartedHandler(EventMultiplayerClientStartedHandler handler) {
         eventMultiplayerClientStartedHandlers.addHandler(handler);
+    }
+
+    public void removeEventMultiplayerClientStartedHandler(EventMultiplayerClientStartedHandler handler) {
+        eventMultiplayerClientStartedHandlers.removeHandler(handler);
     }
 
     public void addEventMultiplayerSessionEndedHandler(EventMultiplayerSessionEndedHandler handler) {
         eventMultiplayerSessionEndedHandlers.addHandler(handler);
     }
 
+    public void removeEventMultiplayerSessionEndedHandler(EventMultiplayerSessionEndedHandler handler) {
+        eventMultiplayerSessionEndedHandlers.removeHandler(handler);
+    }
+
     public void addEventObjectAddRemoveHandler(EventObjectAddRemoveHandler handler) {
         eventObjectAddRemoveHandlers.addHandler(handler);
+    }
+
+    public void removeEventObjectAddRemoveHandler(EventObjectAddRemoveHandler handler) {
+        eventObjectAddRemoveHandlers.removeHandler(handler);
     }
 
     public void addFacilityDataHandler(FacilityDataHandler handler) {
         facilityDataHandlers.addHandler(handler);
     }
 
+    public void removeFacilityDataHandler(FacilityDataHandler handler) {
+        facilityDataHandlers.removeHandler(handler);
+    }
+
     public void addFacilityDataEndHandler(FacilityDataEndHandler handler) {
         facilityDataEndHandlers.addHandler(handler);
     }
 
+    public void removeFacilityDataEndHandler(FacilityDataEndHandler handler) {
+        facilityDataEndHandlers.removeHandler(handler);
+    }
+
     public void addJetwayDataHandler(JetwayDataHandler handler) {
+        jetwayDataHandlers.addHandler(handler);
+    }
+
+    public void removeJetwayDataHandler(JetwayDataHandler handler) {
         jetwayDataHandlers.addHandler(handler);
     }
 
@@ -217,63 +273,115 @@ public class ResponseReceiver implements Runnable {
         quitHandlers.addHandler(handler);
     }
 
+    public void removeQuitHandler(QuitHandler handler) {
+        quitHandlers.removeHandler(handler);
+    }
+
     public void addReservedKeyHandler(ReservedKeyHandler handler) {
         reservedKeyHandlers.addHandler(handler);
+    }
+
+    public void removeReservedKeyHandler(ReservedKeyHandler handler) {
+        reservedKeyHandlers.removeHandler(handler);
     }
 
     public void addExceptionHandler(ExceptionHandler exceptionHandler) {
         this.exceptionHandlers.addHandler(exceptionHandler);
     }
 
+    public void removeExceptionHandler(ExceptionHandler exceptionHandler) {
+        this.exceptionHandlers.removeHandler(exceptionHandler);
+    }
+
     public void addEventHandler(EventHandler eventHandler) {
         this.eventHandlers.addHandler(eventHandler);
+    }
+
+    public void removeEventHandler(EventHandler eventHandler) {
+        this.eventHandlers.removeHandler(eventHandler);
     }
 
     public void addEventFilenameHandler(EventFilenameHandler eventFilenameHandler) {
         this.eventFilenameHandlers.addHandler(eventFilenameHandler);
     }
 
+    public void removeEventFilenameHandler(EventFilenameHandler eventFilenameHandler) {
+        this.eventFilenameHandlers.removeHandler(eventFilenameHandler);
+    }
+
     public void addSystemStateHandler(SystemStateHandler systemStateHandler) {
         this.systemStateHandlers.addHandler(systemStateHandler);
+    }
+
+    public void removeSystemStateHandler(SystemStateHandler systemStateHandler) {
+        this.systemStateHandlers.removeHandler(systemStateHandler);
     }
 
     public void addAirportListHandler(AirportListHandler airportListHandler) {
         this.airportListHandlers.addHandler(airportListHandler);
     }
 
+    public void removeAirportListHandler(AirportListHandler airportListHandler) {
+        this.airportListHandlers.removeHandler(airportListHandler);
+    }
+
     public void addWaypointListHandler(WaypointListHandler waypointListHandler) {
         this.waypointListHandlers.addHandler(waypointListHandler);
+    }
+
+    public void removeWaypointListHandler(WaypointListHandler waypointListHandler) {
+        this.waypointListHandlers.removeHandler(waypointListHandler);
     }
 
     public void addNdbListHandler(NdbListHandler ndbListHandler) {
         this.ndbListHandlers.addHandler(ndbListHandler);
     }
 
+    public void removeNdbListHandler(NdbListHandler ndbListHandler) {
+        this.ndbListHandlers.removeHandler(ndbListHandler);
+    }
+
     public void addVorListHandler(VorListHandler vorListHandler) {
         this.vorListHandlers.addHandler(vorListHandler);
     }
 
-    public void setChannel(SocketChannel channel) {
-        this.channel = channel;
+    public void removeVorListHandler(VorListHandler vorListHandler) {
+        this.vorListHandlers.removeHandler(vorListHandler);
     }
 
     public void addOpenHandler(OpenHandler openHandler) {
         this.openHandlers.addHandler(openHandler);
     }
 
+    public void removeOpenHandler(OpenHandler openHandler) {
+        this.openHandlers.removeHandler(openHandler);
+    }
+
     public void addSimobjectDataHandler(SimobjectDataHandler simobjectDataHandler) {
         this.simobjectDataHandlers.addHandler(simobjectDataHandler);
+    }
+
+    public void removeSimobjectDataHandler(SimobjectDataHandler simobjectDataHandler) {
+        this.simobjectDataHandlers.removeHandler(simobjectDataHandler);
     }
 
     public void addResponseHandler(ResponseHandler handler) {
         this.responseHandlers.addHandler(handler);
     }
 
+    public void removeResponseHandler(ResponseHandler handler) {
+        this.responseHandlers.removeHandler(handler);
+    }
+
     public void addSimobjectDataByTypeHandler(SimobjectDataByTypeHandler simobjectDataByTypeHandler) {
         this.simobjectDataByTypeHandlers.addHandler(simobjectDataByTypeHandler);
     }
 
-    static class HandlerList<H, R> {
+    public void removeSimobjectDataByTypeHandler(SimobjectDataByTypeHandler simobjectDataByTypeHandler) {
+        this.simobjectDataByTypeHandlers.removeHandler(simobjectDataByTypeHandler);
+    }
+
+    private static class HandlerList<H, R> {
 
         private final BiConsumer<H, R> handleMethod;
         private final List<H> handlers = new ArrayList<>();
@@ -290,6 +398,10 @@ public class ResponseReceiver implements Runnable {
         }
 
         public void addHandler(H handler) {
+            handlers.add(handler);
+        }
+
+        public void removeHandler(H handler) {
             handlers.add(handler);
         }
     }
