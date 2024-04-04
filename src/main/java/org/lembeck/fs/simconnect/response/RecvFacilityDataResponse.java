@@ -1,6 +1,9 @@
 package org.lembeck.fs.simconnect.response;
 
+import org.lembeck.fs.simconnect.constants.FacilityDataType;
+
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 
 public class RecvFacilityDataResponse extends SimResponse {
@@ -57,6 +60,12 @@ public class RecvFacilityDataResponse extends SimResponse {
 
     public byte[] getData() {
         return data;
+    }
+
+    public ByteBuffer getDataBuffer() {
+        ByteBuffer buffer = ByteBuffer.wrap(data);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+        return buffer;
     }
 
     @Override

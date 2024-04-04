@@ -1,5 +1,7 @@
 package org.lembeck.fs.simconnect.request;
 
+import org.lembeck.fs.simconnect.constants.SimObjectType;
+
 import java.nio.ByteBuffer;
 
 public class RequestDataOnSimObjectTypeRequest extends SimRequest {

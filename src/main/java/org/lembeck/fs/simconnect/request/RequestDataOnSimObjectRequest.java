@@ -1,5 +1,7 @@
 package org.lembeck.fs.simconnect.request;
 
+import org.lembeck.fs.simconnect.constants.SimconnectPeriod;
+
 import java.nio.ByteBuffer;
 
 public class RequestDataOnSimObjectRequest extends SimRequest {

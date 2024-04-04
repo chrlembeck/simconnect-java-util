@@ -15,11 +15,11 @@ public class SystemState {
         SimConnect simConnect = new SimConnect();
         simConnect.getRequestReceiver().addSystemStateHandler(this::handleSystemState);
         simConnect.connect("localhost", 26010, "SystemState");
-        simConnect.requestSystemState(1, org.lembeck.fs.simconnect.SystemState.AIRCRAFT_LOADED);
-        simConnect.requestSystemState(2, org.lembeck.fs.simconnect.SystemState.DIALOG_MODE);
-        simConnect.requestSystemState(3, org.lembeck.fs.simconnect.SystemState.FLIGHT_LOADED);
-        simConnect.requestSystemState(4, org.lembeck.fs.simconnect.SystemState.FLIGHT_PLAN);
-        simConnect.requestSystemState(5, org.lembeck.fs.simconnect.SystemState.SIM);
+        simConnect.requestSystemState(1, org.lembeck.fs.simconnect.constants.SystemState.AIRCRAFT_LOADED);
+        simConnect.requestSystemState(2, org.lembeck.fs.simconnect.constants.SystemState.DIALOG_MODE);
+        simConnect.requestSystemState(3, org.lembeck.fs.simconnect.constants.SystemState.FLIGHT_LOADED);
+        simConnect.requestSystemState(4, org.lembeck.fs.simconnect.constants.SystemState.FLIGHT_PLAN);
+        simConnect.requestSystemState(5, org.lembeck.fs.simconnect.constants.SystemState.SIM);
     }
 
     private void handleSystemState(RecvSystemStateResponse recvSystemStateResponse) {

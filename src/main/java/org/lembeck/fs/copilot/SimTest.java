@@ -1,8 +1,9 @@
 package org.lembeck.fs.copilot;
 
 import org.lembeck.fs.simconnect.SimConnect;
+import org.lembeck.fs.simconnect.SimUtil;
+import org.lembeck.fs.simconnect.constants.SimconnectPeriod;
 import org.lembeck.fs.simconnect.request.DataType;
-import org.lembeck.fs.simconnect.request.SimconnectPeriod;
 import org.lembeck.fs.simconnect.response.*;
 
 import java.io.IOException;
@@ -93,8 +94,8 @@ public class SimTest {
             if (userLat != 0 && userLon != 0) {
                 double apLat = fa.getLatitude();
                 double apLon = fa.getLongitude();
-                double dist = distance(userLat, userLon, apLat, apLon);
-                double hdg = heading(userLat, userLon, apLat, apLon);
+                double dist = SimUtil.distance(userLat, userLon, apLat, apLon);
+                double hdg = SimUtil.heading(userLat, userLon, apLat, apLon);
 
 
                 Airport ap = new Airport();
@@ -138,85 +139,5 @@ public class SimTest {
 
     public static void main(String[] args) throws Exception {
         SimTest nn = new SimTest();
-    }
-
-    /**
-     * Distance in METERS between points with lat/lon in DEGREES
-     *
-     * @param lat1
-     * @param lon1
-     * @param lat2
-     * @param lon2
-     * @return
-     */
-    public static double distance(double lat1, double lon1, double lat2, double lon2) {
-        lat1 = Math.toRadians(lat1);
-        lat2 = Math.toRadians(lat2);
-        lon1 = Math.toRadians(lon1);
-        lon2 = Math.toRadians(lon2);
-
-        return RADIUS_EARTH_M *
-                Math.acos(Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2) +
-                        Math.sin(lat1) * Math.sin(lat2));
-    }
-
-    // in METERS
-    public static final double RADIUS_EARTH_M = 6378137;//	6367176.0
-
-    /**
-     * Heading in RADIANS between two points in DEGREES (sorry)
-     */
-    public static double heading(double lat1, double lon1, double lat2, double lon2) {
-        double h;
-
-        lat1 = Math.toRadians(lat1);
-        lat2 = Math.toRadians(lat2);
-        lon1 = Math.toRadians(lon1);
-        lon2 = Math.toRadians(lon2);
-
-        if (Math.cos(lat1) < 0.0001) {
-            // prevent overflow
-            if (lat1 > 0) h = 180;
-            else h = 0;
-
-            return h;
-        }
-
-        double b = Math.atan2(Math.sin(lon2 - lon1) * Math.cos(lat2),
-                Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1));
-        if (b < 0) b = Math.PI * 2 + b;
-
-        return b;
-    }
-
-    /**
-     * Heading in RADIANS between two points in RADIANS
-     *
-     * @param p1
-     * @param p2
-     * @return
-     */
-    public static double heading(Point2D p1, Point2D p2) {
-        double h;
-
-        double lat1 = p1.x;
-        double lon1 = p1.y;
-        double lat2 = p2.x;
-        double lon2 = p2.y;
-
-
-        if (Math.cos(lat1) < 0.0001) {
-            // prevent overflow
-            if (lat1 > 0) h = 180;
-            else h = 0;
-
-            return h;
-        }
-
-        double b = Math.atan2(Math.sin(lon2 - lon1) * Math.cos(lat2),
-                Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1));
-        if (b < 0) b = Math.PI * 2 + b;
-
-        return b;
     }
 }

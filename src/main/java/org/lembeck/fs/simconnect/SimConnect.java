@@ -1,6 +1,7 @@
 package org.lembeck.fs.simconnect;
 
 
+import org.lembeck.fs.simconnect.constants.*;
 import org.lembeck.fs.simconnect.request.*;
 
 import java.io.IOException;
@@ -21,7 +22,10 @@ public class SimConnect {
 
     private final ByteBuffer outBuffer;
 
-    private final AtomicInteger lastRequestIdentifier = new AtomicInteger(0);
+    private final AtomicInteger lastUniqueRequestIdentifier = new AtomicInteger(0);
+
+    private final static AtomicInteger lastUserRequestIdentifier = new AtomicInteger(0);
+    private final static AtomicInteger lastUserDefineIdentifier = new AtomicInteger(0);
 
     public SimConnect() {
         responseReceiver = new ResponseReceiver();
@@ -54,7 +58,7 @@ public class SimConnect {
     }
 
     public <T extends SimRequest> T write(T request) throws IOException {
-        request.setIdentifier(lastRequestIdentifier.incrementAndGet());
+        request.setIdentifier(lastUniqueRequestIdentifier.incrementAndGet());
         synchronized (outBuffer) {
             outBuffer.clear();
             request.write(outBuffer);
@@ -320,4 +324,11 @@ public class SimConnect {
         return write(new ClearAllFacilityDataDefinitionFiltersRequest(defineID));
     }
 
+    public static int getNextUserRequestID() {
+        return lastUserRequestIdentifier.incrementAndGet();
+    }
+
+    public static int getNextUserDefineID() {
+        return lastUserDefineIdentifier.incrementAndGet();
+    }
 }

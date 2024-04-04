@@ -1,5 +1,7 @@
 package org.lembeck.fs.simconnect.request;
 
+import org.lembeck.fs.simconnect.constants.State;
+
 import java.nio.ByteBuffer;
 
 public class SetSystemEventStateRequest extends SimRequest {

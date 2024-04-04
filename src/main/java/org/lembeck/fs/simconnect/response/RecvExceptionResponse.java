@@ -1,6 +1,6 @@
 package org.lembeck.fs.simconnect.response;
 
-import org.lembeck.fs.simconnect.ExceptionType;
+import org.lembeck.fs.simconnect.constants.ExceptionType;
 
 import java.nio.ByteBuffer;
 

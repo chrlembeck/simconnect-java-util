@@ -1,4 +1,4 @@
-package org.lembeck.fs.simconnect.response;
+package org.lembeck.fs.simconnect.constants;
 
 public enum FacilityDataType {
     AIRPORT,

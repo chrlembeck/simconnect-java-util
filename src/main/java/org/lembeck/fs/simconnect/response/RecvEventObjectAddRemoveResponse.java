@@ -1,6 +1,8 @@
 package org.lembeck.fs.simconnect.response;
 
 
+import org.lembeck.fs.simconnect.constants.SimObjectType;
+
 import java.nio.ByteBuffer;
 
 import static org.lembeck.fs.simconnect.SimUtil.UNKNOWN_GROUP;

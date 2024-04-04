@@ -34,7 +34,7 @@ public class SetInputEventRequest extends SimRequest {
     public SetInputEventRequest(long hash, String value) {
         super(TYPE_ID);
         this.hash = hash;
-        byte[] valueBytes = value.getBytes(StandardCharsets.ISO_8859_1);
+        byte[] valueBytes = value.getBytes(StandardCharsets.UTF_8);
         data = new byte[valueBytes.length + 1];
         this.unitSize = data.length;
         System.arraycopy(valueBytes, 0, data, 0, valueBytes.length);
@@ -66,7 +66,7 @@ public class SetInputEventRequest extends SimRequest {
     }
 
     public String getStringValue() {
-        return new String(data, 0, data.length - 1, StandardCharsets.ISO_8859_1);
+        return new String(data, 0, data.length - 1, StandardCharsets.UTF_8);
     }
 
     @Override

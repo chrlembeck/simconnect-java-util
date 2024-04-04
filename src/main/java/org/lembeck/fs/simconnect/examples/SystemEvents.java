@@ -1,7 +1,7 @@
 package org.lembeck.fs.simconnect.examples;
 
 import org.lembeck.fs.simconnect.SimConnect;
-import org.lembeck.fs.simconnect.request.SystemEventName;
+import org.lembeck.fs.simconnect.constants.SystemEventName;
 import org.lembeck.fs.simconnect.response.RecvEventFilenameResponse;
 import org.lembeck.fs.simconnect.response.RecvEventResponse;
 

@@ -1,7 +1,7 @@
 package org.lembeck.fs.simconnect.request;
 
 import org.lembeck.fs.simconnect.SimUtil;
-import org.lembeck.fs.simconnect.SystemState;
+import org.lembeck.fs.simconnect.constants.SystemState;
 
 import java.nio.ByteBuffer;
 

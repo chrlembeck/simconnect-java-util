@@ -1,6 +1,7 @@
 package org.lembeck.fs.copilot;
 
 import org.lembeck.fs.copilot.instrument.*;
+import org.lembeck.fs.simconnect.response.LatLonAlt;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,6 +57,10 @@ public class SimViewer extends JFrame implements SimListener {
     private final JToggleButton tbLightRecognition;
     private final JToggleButton tbLightCabin;
     private final JToggleButton tbParkingBrakes;
+
+    private final AirportsPanel airportsPanel;
+
+    private LatLonAlt position;
 
     public static void main(String[] args) throws Exception {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -254,12 +259,14 @@ public class SimViewer extends JFrame implements SimListener {
 
         valuesPanel.add(altPanel);
 
+        controller = new SimController();
+        this.airportsPanel = new AirportsPanel(controller.getSimConnect(), this);
+        valuesPanel.add(airportsPanel);
+
 
         getContentPane().add(valuesPanel, BorderLayout.CENTER);
         pack();
-        controller = new SimController();
         controller.addListener(this);
-
 
     }
 
@@ -282,6 +289,7 @@ public class SimViewer extends JFrame implements SimListener {
             tfAltitude.setText(DECIMAL_0.format(planePositionEvent.getAltitudeInFeet()) + " ft");
             tfLongitude.setText(nf.format(planePositionEvent.getLongitude()));
             tfLatitude.setText(nf.format(planePositionEvent.getLatitude()));
+            this.position = new LatLonAlt(planePositionEvent.getLatitude(), planePositionEvent.getLongitude(), planePositionEvent.getAltitudeInFeet());
             tfAltitudeAboveGround.setText(nf.format(planePositionEvent.getAltitudeAboveGroundInFeet()));
             tfAltitudeAboveGroundMinusCG.setText(nf.format(planePositionEvent.getAltitudeAboveGroundMinusCenterOfGravityInFeet()));
             tfAirspeed.setText(nf.format(planePositionEvent.getAirspeedIndicated()));
@@ -333,5 +341,9 @@ public class SimViewer extends JFrame implements SimListener {
             tbLightCabin.setSelected(switchesEvent.isLightCabin());
             tbParkingBrakes.setSelected(switchesEvent.isBrakeParkingPosition());
         });
+    }
+
+    public LatLonAlt getLastPosition() {
+        return position;
     }
 }

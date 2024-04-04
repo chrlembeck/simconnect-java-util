@@ -1,4 +1,4 @@
-package org.lembeck.fs.simconnect;
+package org.lembeck.fs.simconnect.constants;
 
 public enum ExceptionType {
 
