@@ -4,6 +4,7 @@ import org.lembeck.fs.copilot.instrument.*;
 import org.lembeck.fs.simconnect.response.LatLonAlt;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -74,8 +75,7 @@ public class SimViewer extends JFrame implements SimListener {
     private SimViewer() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
-        JPanel valuesPanel = new JPanel();
-        valuesPanel.setLayout(new FlowLayout());
+
         tfLatitude = new JTextField(10);
         tfLongitude = new JTextField(10);
         tfAltitude = new JTextField(10);
@@ -130,38 +130,28 @@ public class SimViewer extends JFrame implements SimListener {
         tbLightCabin.addActionListener(event -> controller.cabineLightsSet(tbLightCabin.isSelected() ? 1 : 0, 0));
         tbParkingBrakes.addActionListener(event -> controller.toggleParkingBrakes());
 
-        valuesPanel.add(new JLabel("latitude"));
-        valuesPanel.add(tfLatitude);
-        valuesPanel.add(new JLabel("longitude"));
-        valuesPanel.add(tfLongitude);
-        valuesPanel.add(new JLabel("altitude above ground (ft)"));
-        valuesPanel.add(tfAltitudeAboveGround);
-        valuesPanel.add(new JLabel("altitude above ground minus CG (ft)"));
-        valuesPanel.add(tfAltitudeAboveGroundMinusCG);
+        JPanel valuesPanel = new JPanel();
+        valuesPanel.setLayout(new GridBagLayout());
+        valuesPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Values"));
 
-        valuesPanel.add(new JLabel("airspeed"));
-        valuesPanel.add(tfAirspeed);
-        valuesPanel.add(new JLabel("airspeed true"));
-        valuesPanel.add(tfAirspeedTrue);
-        valuesPanel.add(new JLabel("bank"));
-        valuesPanel.add(tfBank);
-        valuesPanel.add(new JLabel("pitch"));
-        valuesPanel.add(tfPitch);
-        valuesPanel.add(new JLabel("heading magnetic"));
-        valuesPanel.add(tfHeadingMagnetic);
-        valuesPanel.add(new JLabel("heading true"));
-        valuesPanel.add(tfHeadingTrue);
+        valuesPanel.add(new JLabel("latitude"), new GridBagConstraints(0, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(tfLatitude, new GridBagConstraints(1, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(new JLabel("longitude"), new GridBagConstraints(0, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(tfLongitude, new GridBagConstraints(1, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(new JLabel("altitude above ground (ft)"), new GridBagConstraints(0, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(tfAltitudeAboveGround, new GridBagConstraints(1, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 
+        valuesPanel.add(new JLabel("airspeed"), new GridBagConstraints(0, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(tfAirspeed, new GridBagConstraints(1, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(new JLabel("airspeed true"), new GridBagConstraints(0, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(tfAirspeedTrue, new GridBagConstraints(1, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(new JLabel("bank"), new GridBagConstraints(0, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(tfBank, new GridBagConstraints(1, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(new JLabel("pitch"), new GridBagConstraints(0, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+        valuesPanel.add(tfPitch, new GridBagConstraints(1, GridBagConstraints.RELATIVE, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 
-        valuesPanel.add(tbAutopilotHeadingLock);
-        valuesPanel.add(tbAutopilotNav1Lock);
-        valuesPanel.add(tbAutopilotVerticalHold);
-        valuesPanel.add(tbAutopilotAltitudeLock);
-        valuesPanel.add(new JLabel("altitude lock var"));
-        valuesPanel.add(tfAutopilotAltitudeLockVar);
 
         JPanel switchesPanel1 = new JPanel();
-        switchesPanel1.setBorder(BorderFactory.createEtchedBorder());
         switchesPanel1.setLayout(new FlowLayout());
         switchesPanel1.add(tbElectricalMasterBattery);
         switchesPanel1.add(tbGeneralEngineMasterAlternator1);
@@ -172,12 +162,8 @@ public class SimViewer extends JFrame implements SimListener {
         switchesPanel1.add(tbLightBeacon);
         switchesPanel1.add(tbLightRecognition);
         switchesPanel1.add(tbPitotHeat1);
-        valuesPanel.add(switchesPanel1);
 
-        valuesPanel.add(tbAvionicsMaster1);
-        valuesPanel.add(tbAutopilotMaster);
-        valuesPanel.add(tbLightCabin);
-        valuesPanel.add(tbParkingBrakes);
+
 
         compass = new Compass();
         compass.setSize(compass.getPreferredSize());
@@ -212,6 +198,7 @@ public class SimViewer extends JFrame implements SimListener {
         JPanel headingPanel = new JPanel();
         headingPanel.setLayout(new GridLayout(1, 2));
         compassPanel.add(headingPanel, BorderLayout.SOUTH);
+
         headingPanel.add(tfAutopilotHeadingLockVar);
         headingPanel.add(tfHeadingGyro);
         tfAutopilotHeadingLockVar.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5), BorderFactory.createLoweredBevelBorder()));
@@ -223,7 +210,6 @@ public class SimViewer extends JFrame implements SimListener {
         tfHeadingGyro.setHorizontalAlignment(CENTER);
         tfAutopilotHeadingLockVar.setHorizontalAlignment(CENTER);
 
-        valuesPanel.add(compassPanel);
 
         JPanel vsPanel = new JPanel();
         vsPanel.setBorder(BorderFactory.createEtchedBorder());
@@ -243,7 +229,6 @@ public class SimViewer extends JFrame implements SimListener {
         tfVerticalSpeed.setHorizontalAlignment(CENTER);
         tfAutopilotVerticalHoldVar.setHorizontalAlignment(CENTER);
 
-        valuesPanel.add(vsPanel);
 
         altimeter = new Altimeter();
         JPanel altPanel = new JPanel();
@@ -256,15 +241,52 @@ public class SimViewer extends JFrame implements SimListener {
         tfAltitude.setHorizontalAlignment(CENTER);
         tfAltitude.setOpaque(false);
 
+        JPanel instrumentPanel = new JPanel();
+        instrumentPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Instruments"));
+        instrumentPanel.setLayout(new GridLayout(1, 3));
+        instrumentPanel.add(compassPanel);
 
-        valuesPanel.add(altPanel);
+        instrumentPanel.add(vsPanel);
+        instrumentPanel.add(altPanel);
+
+        JPanel switchesPanel2 = new JPanel();
+        switchesPanel2.setLayout(new FlowLayout());
+        switchesPanel2.add(tbAvionicsMaster1);
+        switchesPanel2.add(tbAutopilotMaster);
+        switchesPanel2.add(tbAutopilotHeadingLock);
+        switchesPanel2.add(tbAutopilotNav1Lock);
+        switchesPanel2.add(tbAutopilotVerticalHold);
+        switchesPanel2.add(tbAutopilotAltitudeLock);
+        switchesPanel2.add(tbLightCabin);
+        switchesPanel2.add(tbParkingBrakes);
+
+        JPanel switchesPanel = new JPanel();
+        switchesPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Switches"));
+        switchesPanel.setLayout(new GridLayout(2, 1));
+        switchesPanel.add(switchesPanel1);
+        switchesPanel.add(switchesPanel2);
+
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        leftPanel.add(instrumentPanel);
+        leftPanel.add(switchesPanel);
+        leftPanel.add(switchesPanel);
+
+
+        leftPanel.add(valuesPanel);
 
         controller = new SimController();
-        this.airportsPanel = new AirportsPanel(controller.getSimConnect(), this);
-        valuesPanel.add(airportsPanel);
+        airportsPanel = new AirportsPanel(controller.getSimConnect(), this);
+        airportsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Nearest Airports"));
+
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new GridLayout(2, 1));
+        rightPanel.add(airportsPanel);
 
 
-        getContentPane().add(valuesPanel, BorderLayout.CENTER);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, rightPanel);
+        splitPane.setDividerLocation(0.67d);
+        getContentPane().add(splitPane, BorderLayout.CENTER);
         pack();
         controller.addListener(this);
 

@@ -18,12 +18,37 @@ public enum DataType {
     MARKERSTATE(68),
     WAYPOINT(48),
     LATLONALT(24),
-    XYZ(24);
+    XYZ(24),
+    UNKNOWN(-1);
+
 
     private final int size;
 
     DataType(int size) {
         this.size = size;
+    }
+
+    public static DataType ofId(int id) {
+        return switch (id) {
+            case 0 -> INVALID;
+            case 1 -> INT32;
+            case 2 -> INT64;
+            case 3 -> FLOAT32;
+            case 4 -> FLOAT64;
+            case 5 -> STRING8;
+            case 6 -> STRING32;
+            case 7 -> STRING64;
+            case 8 -> STRING128;
+            case 9 -> STRING256;
+            case 10 -> STRING260;
+            case 11 -> STRINGV;
+            case 12 -> INITPOSITION;
+            case 13 -> MARKERSTATE;
+            case 14 -> WAYPOINT;
+            case 15 -> LATLONALT;
+            case 16 -> XYZ;
+            default -> UNKNOWN;
+        };
     }
 
     public int getSize() {

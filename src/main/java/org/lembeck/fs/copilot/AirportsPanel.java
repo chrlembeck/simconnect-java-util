@@ -35,7 +35,9 @@ public class AirportsPanel extends JPanel {
 
     private final AirportsTableModel airportsTableModel = new AirportsTableModel();
 
-    private final HashMap<String, AirportFacilityData> airportDataCache = new HashMap();
+    private final HashMap<String, AirportFacilityData> airportDataCache = new HashMap<>();
+
+    final java.util.List<AirportInfo> airportBuffer = new ArrayList<>();
 
     public AirportsPanel(SimConnect simConnect, SimViewer simViewer) {
         this.simConnect = simConnect;
@@ -63,10 +65,12 @@ public class AirportsPanel extends JPanel {
             TableCellRenderer cellRenderer = new DefaultTableCellRenderer();
             Dimension preferredSize = cellRenderer.getTableCellRendererComponent(airportsTable, value, false, false, row, 6).getPreferredSize();
             airportsTable.setRowHeight(row, preferredSize.height);
+            int minWidth = airportsTable.getColumnModel().getColumn(6).getMinWidth();
+            if (preferredSize.width > minWidth) {
+                airportsTable.getColumnModel().getColumn(6).setMinWidth(preferredSize.width);
+            }
         }
     }
-
-    final java.util.List<AirportInfo> airportBuffer = new ArrayList<>();
 
     private void handleAirportsList(RecvAirportListResponse recvAirportListResponse) {
         if (recvAirportListResponse.getRequestID() == LOAD_AIRPORTS_REQUEST_ID) {
@@ -76,7 +80,6 @@ public class AirportsPanel extends JPanel {
             final LatLonAlt position = simViewer.getLastPosition();
             Arrays.stream(recvAirportListResponse.getAirportList()).map(airport -> convertAirport(airport, position)).forEach(airportBuffer::add);
 
-            System.out.println(recvAirportListResponse);
             if (recvAirportListResponse.getEntryNumber() == recvAirportListResponse.getOutOf() - 1) {
                 airportBuffer.sort(Comparator.comparing(AirportInfo::getDistance));
 
@@ -98,7 +101,6 @@ public class AirportsPanel extends JPanel {
             airportsTableModel.addDetails(airportFacilityData);
         }
     }
-
 
     private AirportInfo convertAirport(FacilityAirport airport, LatLonAlt position) {
         double distance = position == null ? 0 : SimUtil.meterToNM(SimUtil.distance(position.getLatitude(), position.getLongitude(), airport.getLatitude(), airport.getLongitude()));
@@ -148,15 +150,12 @@ public class AirportsPanel extends JPanel {
     private AirportFacilityData currentAirportData;
 
     private void handleFacilityData(RecvFacilityDataResponse facilityDataResponse) {
-        System.out.println(facilityDataResponse);
         if (facilityDataResponse.getRequestID() == LOAD_AIRPORT_DATA_REQUEST_ID && facilityDataResponse.getType() == FacilityDataType.AIRPORT) {
             ByteBuffer buffer = facilityDataResponse.getDataBuffer();
             String icao = SimUtil.readString(buffer, 8);
             String name = SimUtil.readString(buffer, 64);
             int nRunways = buffer.getInt();
             currentAirportData = new AirportFacilityData(icao, name);
-
-            System.out.println(icao + ", " + name + ", " + nRunways);
         }
         if (facilityDataResponse.getRequestID() == LOAD_AIRPORT_DATA_REQUEST_ID && facilityDataResponse.getType() == FacilityDataType.RUNWAY) {
             ByteBuffer buffer = facilityDataResponse.getDataBuffer();
@@ -170,12 +169,10 @@ public class AirportsPanel extends JPanel {
             RunwaySurface surface = RunwaySurface.ofId(buffer.getInt());
             RunwayFacilityData runway = new RunwayFacilityData(icao, primaryNumber, primaryDesignator, secondaryNumber, secondaryDesignator, heading, length, surface);
             currentAirportData.addRunway(runway);
-            System.out.println(icao + ", " + primaryNumber + ", " + primaryDesignator + ", " + secondaryNumber + ", " + secondaryDesignator + ", " + heading + ", " + length);
         }
     }
 
     private void handleFacilityDataEnd(RecvFacilityDataEndResponse recvFacilityDataEndResponse) {
-        System.out.println(recvFacilityDataEndResponse);
         if (recvFacilityDataEndResponse.getRequestID() == LOAD_AIRPORT_DATA_REQUEST_ID) {
             airportDataCache.put(currentAirportData.getIcao(), currentAirportData);
             airportsTableModel.addDetails(currentAirportData);
@@ -213,66 +210,16 @@ public class AirportsPanel extends JPanel {
         }
     }
 
-    static class RunwayFacilityData {
-
-        private final String icao;
-        private final int primaryNumber;
-        private final RunwayDesignator primaryDesignator;
-        private final int secondaryNumber;
-        private final RunwayDesignator secondaryDesignator;
-        private final float heading;
-        private final float length;
-        private final RunwaySurface surface;
-
-        public RunwayFacilityData(String icao, int primaryNumber, RunwayDesignator primaryDesignator, int secondaryNumber, RunwayDesignator secondaryDesignator, float heading, float length, RunwaySurface surface) {
-            this.icao = icao;
-            this.primaryNumber = primaryNumber;
-            this.primaryDesignator = primaryDesignator;
-            this.secondaryNumber = secondaryNumber;
-            this.secondaryDesignator = secondaryDesignator;
-            this.heading = heading;
-            this.length = length;
-            this.surface = surface;
-        }
-
-        public String getIcao() {
-            return icao;
-        }
-
-        public int getPrimaryNumber() {
-            return primaryNumber;
-        }
-
-        public RunwayDesignator getPrimaryDesignator() {
-            return primaryDesignator;
-        }
-
-        public int getSecondaryNumber() {
-            return secondaryNumber;
-        }
-
-        public RunwayDesignator getSecondaryDesignator() {
-            return secondaryDesignator;
-        }
-
-        public float getHeading() {
-            return heading;
-        }
-
-        public float getLength() {
-            return length;
-        }
-
-        public RunwaySurface getSurface() {
-            return surface;
-        }
+    record RunwayFacilityData(String icao, int primaryNumber, RunwayDesignator primaryDesignator, int secondaryNumber,
+                              RunwayDesignator secondaryDesignator, float heading, float length,
+                              RunwaySurface surface) {
 
         @Override
         public String toString() {
             return primaryNumber + primaryDesignator.getShortName() + "/" +
                     secondaryNumber + secondaryDesignator.getShortName() + " " +
                     (int) length + "m" + " " + surface +
-                    (icao == null || icao.length() == 0 ? "" : ("(" + icao + ")"));
+                    (icao == null || icao.isBlank() ? "" : ("(" + icao + ")"));
         }
     }
 }

@@ -22,7 +22,7 @@ public class AddToDataDefinitionRequest extends SimRequest {
         defineID = buffer.getInt();
         datumName = SimUtil.readString(buffer, 256);
         unitsName = SimUtil.readString(buffer, 256);
-        datumType = DataType.values()[buffer.getInt()];
+        datumType = DataType.ofId(buffer.getInt());
         epsilon = buffer.getFloat();
         datumID = buffer.getInt();
     }

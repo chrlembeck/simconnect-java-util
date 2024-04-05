@@ -13,7 +13,7 @@ public class RecvEventObjectAddRemoveResponse extends RecvEventResponse {
 
     RecvEventObjectAddRemoveResponse(ByteBuffer buffer) {
         super(buffer);
-        type = SimObjectType.values()[buffer.getInt()];
+        type = SimObjectType.ofId(buffer.getInt());
     }
 
     public SimObjectType getType() {

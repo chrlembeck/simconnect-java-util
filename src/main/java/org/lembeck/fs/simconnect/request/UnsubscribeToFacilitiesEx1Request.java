@@ -12,7 +12,7 @@ public class UnsubscribeToFacilitiesEx1Request extends SimRequest {
 
     UnsubscribeToFacilitiesEx1Request(ByteBuffer buffer) {
         super(buffer);
-        type = FacilityListType.values()[buffer.getInt()];
+        type = FacilityListType.ofId(buffer.getInt());
         unsubscribeNewInRange = buffer.get() != 0;
         unsubscribeOldOutRange = buffer.get() != 0;
     }

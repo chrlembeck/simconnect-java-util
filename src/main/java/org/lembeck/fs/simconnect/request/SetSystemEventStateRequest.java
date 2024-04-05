@@ -13,7 +13,7 @@ public class SetSystemEventStateRequest extends SimRequest {
     SetSystemEventStateRequest(ByteBuffer buffer) {
         super(buffer);
         clientEventID = buffer.getInt();
-        state = State.values()[buffer.getInt()];
+        state = State.ofId(buffer.getInt());
     }
 
     public SetSystemEventStateRequest(int clientEventID, State state) {

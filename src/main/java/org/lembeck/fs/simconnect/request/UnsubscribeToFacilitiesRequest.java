@@ -10,7 +10,7 @@ public class UnsubscribeToFacilitiesRequest extends SimRequest {
 
     UnsubscribeToFacilitiesRequest(ByteBuffer buffer) {
         super(buffer);
-        facilitiesListType = FacilityListType.values()[buffer.getInt()];
+        facilitiesListType = FacilityListType.ofId(buffer.getInt());
     }
 
     public UnsubscribeToFacilitiesRequest(FacilityListType facilitiesListType) {

@@ -30,9 +30,7 @@ public class RecvExceptionResponse extends SimResponse {
     }
 
     public ExceptionType getExceptionType() {
-        return (exceptionTypeIdx >= 0 && exceptionTypeIdx < ExceptionType.values().length)
-                ? ExceptionType.values()[exceptionTypeIdx]
-                : null;
+        return ExceptionType.ofId(exceptionTypeIdx);
     }
 
     @Override

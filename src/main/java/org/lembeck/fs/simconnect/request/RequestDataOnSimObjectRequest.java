@@ -22,7 +22,7 @@ public class RequestDataOnSimObjectRequest extends SimRequest {
         dataRequestID = buffer.getInt();
         dataDefinitionID = buffer.getInt();
         objectID = buffer.getInt();
-        period = SimconnectPeriod.values()[buffer.getInt()];
+        period = SimconnectPeriod.ofId(buffer.getInt());
         dataRequestFlags = buffer.getInt();
         origin = buffer.getInt();
         interval = buffer.getInt();

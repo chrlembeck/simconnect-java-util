@@ -22,7 +22,7 @@ public class RecvFacilityDataResponse extends SimResponse {
         requestID = buffer.getInt();
         uniqueRequestID = buffer.getInt();
         parentUniqueRequestID = buffer.getInt();
-        type = FacilityDataType.values()[buffer.getInt()];
+        type = FacilityDataType.ofId(buffer.getInt());
         listItem = buffer.getInt() != 0;
         itemIndex = buffer.getInt();
         listSize = buffer.getInt();

@@ -27,5 +27,18 @@ public enum SimconnectPeriod {
     /**
      * Specifies that the data should be sent once every second.
      */
-    SECOND
+    SECOND,
+
+    UNKNOWN;
+
+    public static SimconnectPeriod ofId(int id) {
+        return switch (id) {
+            case 0 -> NEVER;
+            case 1 -> ONCE;
+            case 2 -> VISUAL_FRAME;
+            case 3 -> SIM_FRAME;
+            case 4 -> SECOND;
+            default -> UNKNOWN;
+        };
+    }
 }

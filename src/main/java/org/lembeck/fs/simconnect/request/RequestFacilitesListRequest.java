@@ -11,7 +11,7 @@ public class RequestFacilitesListRequest extends SimRequest {
 
     RequestFacilitesListRequest(ByteBuffer buffer) {
         super(buffer);
-        facilityListType = FacilityListType.values()[buffer.getInt()];
+        facilityListType = FacilityListType.ofId(buffer.getInt());
         dataRequestId = buffer.getInt();
     }
 

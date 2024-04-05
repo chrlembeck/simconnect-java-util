@@ -11,7 +11,7 @@ public class SubscribeToFacilitiesEx1Request extends SimRequest {
 
     SubscribeToFacilitiesEx1Request(ByteBuffer buffer) {
         super(buffer);
-        type = FacilityListType.values()[buffer.getInt()];
+        type = FacilityListType.ofId(buffer.getInt());
         newElemInRangeRequestID = buffer.getInt();
         oldElemOutRangeRequestID = buffer.getInt();
     }

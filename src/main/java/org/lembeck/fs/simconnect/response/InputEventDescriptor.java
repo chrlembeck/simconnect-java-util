@@ -14,7 +14,7 @@ public class InputEventDescriptor {
     public InputEventDescriptor(ByteBuffer buffer) {
         name = SimUtil.readString(buffer, 64);
         hash = buffer.getLong();
-        inputEventType = InputEventType.values()[buffer.getInt()];
+        inputEventType = InputEventType.ofId(buffer.getInt());
     }
 
     public String getName() {

@@ -12,7 +12,7 @@ public class RequestFacilitiesListEx1Request extends SimRequest {
 
     RequestFacilitiesListEx1Request(ByteBuffer buffer) {
         super(buffer);
-        type = FacilityListType.values()[buffer.getInt()];
+        type = FacilityListType.ofId(buffer.getInt());
         requestID = buffer.getInt();
     }
 

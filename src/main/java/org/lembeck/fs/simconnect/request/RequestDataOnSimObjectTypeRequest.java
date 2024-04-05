@@ -18,7 +18,7 @@ public class RequestDataOnSimObjectTypeRequest extends SimRequest {
         requestID = buffer.getInt();
         defineID = buffer.getInt();
         radiusMeters = buffer.getInt();
-        type = SimObjectType.values()[buffer.getInt()];
+        type = SimObjectType.ofId(buffer.getInt());
     }
 
     public RequestDataOnSimObjectTypeRequest(int requestID, int defineID, int radiusMeters, SimObjectType type) {

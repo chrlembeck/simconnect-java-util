@@ -63,6 +63,9 @@ public class SimUtil {
         double x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(lon2 - lon1);
         double y = cos(lat2) * sin(lon2 - lon1);
         double beta = Math.atan2(y, x);
+        if (beta < 0) {
+            beta += 2 * Math.PI;
+        }
         return Math.toDegrees(beta);
     }
 
@@ -76,5 +79,4 @@ public class SimUtil {
     public static double meterToNM(double meter) {
         return meter / 1852d;
     }
-
 }

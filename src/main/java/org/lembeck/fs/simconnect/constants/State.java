@@ -4,5 +4,15 @@ public enum State {
 
     OFF,
 
-    ON
+    ON,
+
+    UNKNOWN;
+
+    public static State ofId(int id) {
+        return switch (id) {
+            case 0 -> OFF;
+            case 1 -> ON;
+            default -> UNKNOWN;
+        };
+    }
 }

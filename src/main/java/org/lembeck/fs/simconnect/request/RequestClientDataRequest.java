@@ -21,7 +21,7 @@ public class RequestClientDataRequest extends SimRequest {
         clientDataID = buffer.getInt();
         requestID = buffer.getInt();
         defineID = buffer.getInt();
-        period = SimconnectPeriod.values()[buffer.getInt()];
+        period = SimconnectPeriod.ofId(buffer.getInt());
         flags = buffer.getInt();
         origin = buffer.getInt();
         interval = buffer.getInt();
