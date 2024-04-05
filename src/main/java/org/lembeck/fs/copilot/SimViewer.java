@@ -6,6 +6,8 @@ import org.lembeck.fs.simconnect.response.LatLonAlt;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
@@ -74,7 +76,8 @@ public class SimViewer extends JFrame implements SimListener {
     }
 
     private SimViewer() {
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new SimWindowListener());
         setLayout(new BorderLayout());
 
         tfLatitude = new JTextField(10);
@@ -371,5 +374,14 @@ public class SimViewer extends JFrame implements SimListener {
 
     public LatLonAlt getLastPosition() {
         return position;
+    }
+
+    class SimWindowListener extends WindowAdapter {
+
+        @Override
+        public void windowClosing(WindowEvent e) {
+            controller.getSimConnect().close();
+            dispose();
+        }
     }
 }

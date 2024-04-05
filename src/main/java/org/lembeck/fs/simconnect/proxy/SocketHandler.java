@@ -2,7 +2,7 @@ package org.lembeck.fs.simconnect.proxy;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -19,14 +19,14 @@ public class SocketHandler implements Runnable {
 
     private final PrintStream debugStream;
 
-    private SocketHandler(SocketChannel clientSocketChannel, PrintStream debugStream) throws IOException {
+    private SocketHandler(SocketChannel clientSocketChannel, SocketAddress simulatorAddress, PrintStream debugStream) throws IOException {
         this.clientSocketChannel = clientSocketChannel;
-        this.serverSocketChannel = SocketChannel.open(new InetSocketAddress("192.168.0.170", 26011));
+        this.serverSocketChannel = SocketChannel.open(simulatorAddress);
         this.debugStream = debugStream;
     }
 
-    public static void create(SocketChannel socketChannel) throws IOException{
-        SocketHandler handler = new SocketHandler(socketChannel, System.out);
+    public static void create(SocketChannel socketChannel, SocketAddress simulatorAddress) throws IOException {
+        SocketHandler handler = new SocketHandler(socketChannel, simulatorAddress, System.out);
         Thread thread = new Thread(handler, "Socket Handler " + counter.incrementAndGet());
         thread.setDaemon(false);
         thread.start();

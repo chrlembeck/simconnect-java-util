@@ -9,7 +9,6 @@ import org.lembeck.fs.simconnect.request.RequestFacilityDataEx1Request;
 import org.lembeck.fs.simconnect.response.*;
 
 import javax.swing.*;
-import javax.swing.event.TableModelEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -52,21 +51,6 @@ public class VORsPanel extends JPanel {
         } catch (IOException ioe) {
             ioe.printStackTrace(System.err);
         }
-        vorsTableModel.addTableModelListener(this::tableModelChanged);
-    }
-
-    private void tableModelChanged(TableModelEvent tableModelEvent) {
-/*        for (int row = tableModelEvent.getFirstRow(); row <= Math.min(vorsTableModel.getRowCount() - 1, tableModelEvent.getLastRow()); row++) {
-            Object value = vorsTableModel.getValueAt(row, 6);
-            TableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-            Dimension preferredSize = cellRenderer.getTableCellRendererComponent(vorsTable, value, false, false, row, 6).getPreferredSize();
-            vorsTable.setRowHeight(row, preferredSize.height);
-            int minWidth = vorsTable.getColumnModel().getColumn(6).getMinWidth();
-            if (preferredSize.width > minWidth) {
-                vorsTable.getColumnModel().getColumn(6).setMinWidth(preferredSize.width);
-            }
-        }
-        */
     }
 
     private void handleVorsList(RecvVorListResponse recvVorListResponse) {
@@ -81,7 +65,7 @@ public class VORsPanel extends JPanel {
                 vorBuffer.sort(Comparator.comparing(VorInfo::getDistanceNM));
 
                 ((VORsTableModel) vorsTable.getModel()).replaceValues(vorBuffer);
-                vorBuffer.stream().forEach(vorInfo -> this.loadVorDetails(vorInfo.getIcao(), vorInfo.getRegionCode()));
+                vorBuffer.forEach(vorInfo -> this.loadVorDetails(vorInfo.getIcao(), vorInfo.getRegionCode()));
             }
         }
     }
@@ -162,77 +146,14 @@ public class VORsPanel extends JPanel {
 
     private void handleFacilityDataEnd(RecvFacilityDataEndResponse recvFacilityDataEndResponse) {
         if (requestMap.containsKey(recvFacilityDataEndResponse.getRequestID())) {
-            vorDataCache.put(new IcaoRegion(currentVorData.getIcao(), currentVorData.getRegion()), currentVorData);
+            vorDataCache.put(new IcaoRegion(currentVorData.icao(), currentVorData.region()), currentVorData);
             vorsTableModel.addDetails(currentVorData);
             currentVorData = null;
         }
     }
 
-    static class VorFacilityData {
-
-        private final String name;
-        private final boolean nav;
-        private final boolean dme;
-        private final boolean tacan;
-        private final int frequency;
-        private final VorType type;
-        private final float navRangeMeters;
-        private final float magVar;
-        private final String icao;
-        private final String region;
-
-        public VorFacilityData(String icao, String region, String name, boolean nav, boolean dme, boolean tacan, int frequency, VorType type, float navRangeMeters, float magVar) {
-            this.icao = icao;
-            this.region = region;
-            this.name = name;
-            this.nav = nav;
-            this.dme = dme;
-            this.tacan = tacan;
-            this.frequency = frequency;
-            this.type = type;
-            this.navRangeMeters = navRangeMeters;
-            this.magVar = magVar;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public boolean isNav() {
-            return nav;
-        }
-
-        public boolean isDme() {
-            return dme;
-        }
-
-        public boolean isTacan() {
-            return tacan;
-        }
-
-        public int getFrequency() {
-            return frequency;
-        }
-
-        public VorType getType() {
-            return type;
-        }
-
-        public float getNavRangeMeters() {
-            return navRangeMeters;
-        }
-
-        public float getMagVar() {
-            return magVar;
-        }
-
-        public String getIcao() {
-            return icao;
-        }
-
-        public String getRegion() {
-            return region;
-        }
+    record VorFacilityData(String icao, String region, String name, boolean nav, boolean dme, boolean tacan,
+                           int frequency, VorType type, float navRangeMeters, float magVar) {
     }
 
     record IcaoRegion(String icao, String reagion) {

@@ -27,6 +27,10 @@ public class SimConnect {
     private final static AtomicInteger lastUserRequestIdentifier = new AtomicInteger(0);
     private final static AtomicInteger lastUserDefineIdentifier = new AtomicInteger(0);
 
+    private final static AtomicInteger lastUserEventIdentifier = new AtomicInteger(0);
+
+    private Thread responseReceiverThread;
+
     public SimConnect() {
         responseReceiver = new ResponseReceiver();
         this.inBuffer = ByteBuffer.allocateDirect(64 * 1024);
@@ -39,14 +43,15 @@ public class SimConnect {
         channel = SocketChannel.open(new InetSocketAddress(hostname, port));
         responseReceiver.setChannel(channel);
         write(new HelloRequest(appName));
-        Thread thread = new Thread(responseReceiver);
-        thread.setDaemon(false);
-        thread.setName("Simconnect Request Receiver");
-        thread.start();
+        responseReceiverThread = new Thread(responseReceiver);
+        responseReceiverThread.setDaemon(false);
+        responseReceiverThread.setName("Simconnect Request Receiver");
+        responseReceiverThread.start();
     }
 
     public void close() {
         try {
+            responseReceiver.stop();
             channel.close();
         } catch (IOException ioe) {
             // ignore
@@ -330,5 +335,9 @@ public class SimConnect {
 
     public static int getNextUserDefineID() {
         return lastUserDefineIdentifier.incrementAndGet();
+    }
+
+    public static int getNextUserEventID() {
+        return lastUserEventIdentifier.incrementAndGet();
     }
 }

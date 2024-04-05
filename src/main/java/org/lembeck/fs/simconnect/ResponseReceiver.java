@@ -16,6 +16,8 @@ public class ResponseReceiver implements Runnable {
 
     private SocketChannel channel;
 
+    private boolean running;
+
     private final HandlerList<ResponseHandler, SimResponse> responseHandlers = new HandlerList<>((handler, response) -> handler.handleResponse(response));
     private final HandlerList<ExceptionHandler, RecvExceptionResponse> exceptionHandlers = new HandlerList<>((handler, response) -> handler.handleException(response));
     private final HandlerList<EventHandler, RecvEventResponse> eventHandlers = new HandlerList<>((handler, response) -> handler.handleEvent(response));
@@ -46,11 +48,12 @@ public class ResponseReceiver implements Runnable {
 
     @Override
     public void run() {
+        running = true;
         ByteBuffer readBuffer = ByteBuffer.allocate(64 * 1024);
         readBuffer.order(ByteOrder.LITTLE_ENDIAN);
         int bytesRead = 0;
         try {
-            while (true) {
+            while (running) {
                 readBuffer.limit(4);
                 readBuffer.position(0);
                 bytesRead = channel.read(readBuffer);
@@ -73,6 +76,10 @@ public class ResponseReceiver implements Runnable {
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);
         }
+    }
+
+    public void stop() {
+        running = false;
     }
 
     public void setChannel(SocketChannel channel) {

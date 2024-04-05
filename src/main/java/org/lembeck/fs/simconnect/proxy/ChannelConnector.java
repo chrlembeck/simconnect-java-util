@@ -17,8 +17,6 @@ public class ChannelConnector implements Runnable {
 
     private final SocketChannel targetChannel;
 
-    private final String name;
-
     private final PrintStream debugStream;
 
     enum Direction {
@@ -31,7 +29,6 @@ public class ChannelConnector implements Runnable {
     private ChannelConnector(String name, SocketChannel sourceChannel, SocketChannel targetChannel, Direction direction, PrintStream debugStream) {
         this.sourceChannel = Objects.requireNonNull(sourceChannel);
         this.targetChannel = Objects.requireNonNull(targetChannel);
-        this.name = name;
         this.debugStream = debugStream;
         this.direction = direction;
     }

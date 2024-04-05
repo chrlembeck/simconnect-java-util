@@ -117,20 +117,20 @@ public class VORsTableModel implements TableModel {
     }
 
     public void addDetails(VORsPanel.VorFacilityData vorFacilityData) {
-        String icao = vorFacilityData.getIcao();
-        String region = vorFacilityData.getRegion();
+        String icao = vorFacilityData.icao();
+        String region = vorFacilityData.region();
         List<VorInfo> vorInfos = this.vors;
         for (int i = 0; i < vorInfos.size(); i++) {
             VorInfo vor = vorInfos.get(i);
             if (vor.getIcao().equalsIgnoreCase(icao) && vor.getRegionCode().equalsIgnoreCase(region)) {
-                vor.setName(vorFacilityData.getName());
-                vor.setFrequency(vorFacilityData.getFrequency());
-                vor.setRangeMeters(vorFacilityData.getNavRangeMeters());
-                vor.setDme(vorFacilityData.isDme());
-                vor.setNav(vorFacilityData.isNav());
-                vor.setTacan(vorFacilityData.isTacan());
-                vor.setMagVar(vorFacilityData.getMagVar());
-                vor.setType(vorFacilityData.getType());
+                vor.setName(vorFacilityData.name());
+                vor.setFrequency(vorFacilityData.frequency());
+                vor.setRangeMeters(vorFacilityData.navRangeMeters());
+                vor.setDme(vorFacilityData.dme());
+                vor.setNav(vorFacilityData.nav());
+                vor.setTacan(vorFacilityData.tacan());
+                vor.setMagVar(vorFacilityData.magVar());
+                vor.setType(vorFacilityData.type());
                 TableModelEvent event = new TableModelEvent(this, i, i, ALL_COLUMNS, TableModelEvent.UPDATE);
                 listeners.forEach(listeners -> listeners.tableChanged(event));
                 break;
