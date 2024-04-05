@@ -6,6 +6,7 @@
     <artifactId>simconnect-java-util</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <url>https://github.com/chrlembeck/simconnect-java-util</url>
 
     <developers>
         <developer>
@@ -22,10 +23,15 @@
         </license>
     </licenses>
 
+    <scm>
+        <connection>scm:git:https://github.com/chrlembeck/simconnect-java-util.git</connection>
+        <developerConnection>scm:git:https://github.com/chrlembeck/simconnect-java-util.git</developerConnection>
+        <url>https://github.com/chrlembeck/simconnect-java-util</url>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <junit-jupiter.version>5.10.2</junit-jupiter.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-surefire-plugin>3.2.5</maven-surefire-plugin>

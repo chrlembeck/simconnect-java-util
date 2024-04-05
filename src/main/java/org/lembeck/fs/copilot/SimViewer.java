@@ -60,6 +60,7 @@ public class SimViewer extends JFrame implements SimListener {
     private final JToggleButton tbParkingBrakes;
 
     private final AirportsPanel airportsPanel;
+    private final VORsPanel vorsPanel;
 
     private LatLonAlt position;
 
@@ -278,10 +279,13 @@ public class SimViewer extends JFrame implements SimListener {
         controller = new SimController();
         airportsPanel = new AirportsPanel(controller.getSimConnect(), this);
         airportsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Nearest Airports"));
+        vorsPanel = new VORsPanel(controller.getSimConnect(), this);
+        vorsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Nearest VOR stations"));
 
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new GridLayout(2, 1));
         rightPanel.add(airportsPanel);
+        rightPanel.add(vorsPanel);
 
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, leftPanel, rightPanel);

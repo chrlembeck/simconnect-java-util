@@ -244,3 +244,12 @@ specification are not implemented.
 
 It is possible that some methods are backwards compatible with FSX and these can be used for connections to FSX.
 However, this has not been tested and correct functioning cannot be guaranteed.
+
+## Examples of what you can do with the interface
+
+You can build a panel showing some information about your plane and additional infos of your flight including some
+switches and instruments to show and use them on another machine or a secondary screen as i did in the following
+example:
+
+![SimViewer.java](/docs/simviewer.png)
+
