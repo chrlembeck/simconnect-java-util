@@ -11,6 +11,7 @@ import org.lembeck.fs.simconnect.response.RecvOpenResponse;
 import org.lembeck.fs.simconnect.response.RecvSimobjectDataResponse;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +63,7 @@ public class SimController {
 
     private final List<SimListener> listeners = new ArrayList<>();
 
-    public SimController() {
+    public SimController(InetSocketAddress address) {
         try {
             simConnect = new SimConnect();
 
@@ -71,7 +72,7 @@ public class SimController {
             simConnect.getRequestReceiver().addEventHandler(this::handleEvent);
             simConnect.getRequestReceiver().addSimobjectDataHandler(this::handleSimObject);
 
-            simConnect.connect("localhost", 26010, "SimController");
+            simConnect.connect(address, "SimController");
 
             simConnect.subscribeToSystemEvent(CLIENT_EVENT_ID_SIM, "Sim");
             simConnect.subscribeToSystemEvent(CLIENT_EVENT_ID_4_SEC, "4sec");

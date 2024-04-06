@@ -8,8 +8,10 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.InetSocketAddress;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.prefs.Preferences;
 
 import static javax.swing.SwingConstants.CENTER;
 import static org.lembeck.fs.copilot.GraphicsUtil.DECIMAL_0;
@@ -279,7 +281,9 @@ public class SimViewer extends JFrame implements SimListener {
 
         leftPanel.add(valuesPanel);
 
-        controller = new SimController();
+        InetSocketAddress address = showAddressDialog();
+
+        controller = new SimController(address);
         airportsPanel = new AirportsPanel(controller.getSimConnect(), this);
         airportsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED), "Nearest Airports"));
         vorsPanel = new VORsPanel(controller.getSimConnect(), this);
@@ -297,6 +301,31 @@ public class SimViewer extends JFrame implements SimListener {
         pack();
         controller.addListener(this);
 
+    }
+
+    private InetSocketAddress showAddressDialog() {
+        Preferences preferences = Preferences.userNodeForPackage(SimViewer.class);
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new GridBagLayout());
+        String hostname = preferences.get("hostname", "");
+        int port = preferences.getInt("port", 0);
+        JTextField hostnameField = new JTextField(hostname);
+        JTextField portField = new JTextField(port == 0 ? "" : Integer.toString(port));
+        inputPanel.add(new JLabel("hostname"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 10, 0, 5), 0, 0));
+        inputPanel.add(hostnameField, new GridBagConstraints(1, 0, 1, 1, 1, 0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 0, 0, 10), 0, 0));
+        inputPanel.add(new JLabel("port"), new GridBagConstraints(0, 1, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 10, 5, 5), 0, 0));
+        inputPanel.add(portField, new GridBagConstraints(1, 1, 1, 1, 1, 0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 0, 5, 10), 0, 0));
+
+        int result = JOptionPane.showConfirmDialog(this, inputPanel, "Please enter the servers network address", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            hostname = hostnameField.getText();
+            port = Integer.parseInt(portField.getText());
+            preferences.put("hostname", hostname);
+            preferences.putInt("port", port);
+            return new InetSocketAddress(hostname, Integer.parseInt(portField.getText()));
+        } else {
+            return null;
+        }
     }
 
     JToggleButton createToggleButton(String text) {

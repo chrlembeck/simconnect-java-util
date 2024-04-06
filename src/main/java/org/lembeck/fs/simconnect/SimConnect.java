@@ -6,6 +6,7 @@ import org.lembeck.fs.simconnect.request.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -40,7 +41,11 @@ public class SimConnect {
     }
 
     public void connect(String hostname, int port, String appName) throws IOException {
-        channel = SocketChannel.open(new InetSocketAddress(hostname, port));
+        connect(new InetSocketAddress(hostname, port), appName);
+    }
+
+    public void connect(SocketAddress address, String appName) throws IOException {
+        channel = SocketChannel.open(address);
         responseReceiver.setChannel(channel);
         write(new HelloRequest(appName));
         responseReceiverThread = new Thread(responseReceiver);

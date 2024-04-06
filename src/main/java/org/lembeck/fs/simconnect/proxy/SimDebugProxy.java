@@ -8,15 +8,6 @@ import java.nio.channels.SocketChannel;
 
 public class SimDebugProxy {
 
-    private final int listeningPort;
-
-    private final SocketAddress simulatorAddress;
-
-    public SimDebugProxy(int listeningPort, SocketAddress simulatorAddress) {
-        this.listeningPort = listeningPort;
-        this.simulatorAddress = simulatorAddress;
-    }
-
     public static void main(String[] args) throws Exception{
         if (args.length != 3) {
             printHelp();
@@ -29,6 +20,15 @@ public class SimDebugProxy {
         } catch (NumberFormatException nfe) {
             printHelp();
         }
+    }
+
+    private final int listeningPort;
+
+    private final SocketAddress simulatorAddress;
+
+    public SimDebugProxy(int listeningPort, SocketAddress simulatorAddress) {
+        this.listeningPort = listeningPort;
+        this.simulatorAddress = simulatorAddress;
     }
 
     private static void printHelp() {

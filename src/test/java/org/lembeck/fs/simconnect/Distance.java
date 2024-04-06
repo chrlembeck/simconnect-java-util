@@ -1,7 +1,6 @@
-package org.lembeck.fs;
+package org.lembeck.fs.simconnect;
 
 import org.junit.jupiter.api.Test;
-import org.lembeck.fs.simconnect.SimUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
