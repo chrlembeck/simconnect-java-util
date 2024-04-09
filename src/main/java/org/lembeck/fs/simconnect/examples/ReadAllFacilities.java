@@ -1,7 +1,7 @@
 package org.lembeck.fs.simconnect.examples;
 
 import org.lembeck.fs.simconnect.SimConnect;
-import org.lembeck.fs.simconnect.request.FacilityListType;
+import org.lembeck.fs.simconnect.constants.FacilityListType;
 import org.lembeck.fs.simconnect.response.*;
 import java.io.IOException;
 import java.util.ArrayList;

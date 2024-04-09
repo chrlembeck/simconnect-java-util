@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 
 public class SetNotificationGroupPriorityRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static int TYPE_ID = 0xf0000009;
 
     private final int notificationGroupID;
@@ -35,6 +38,11 @@ public class SetNotificationGroupPriorityRequest extends SimRequest {
         return priority;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

@@ -1,11 +1,13 @@
 package org.lembeck.fs.simconnect.request;
 
 import org.lembeck.fs.simconnect.SimUtil;
-
 import java.nio.ByteBuffer;
 
 public class AISetAircraftFlightPlanRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0x0000002d;
 
     private final int objectID;
@@ -47,6 +49,11 @@ public class AISetAircraftFlightPlanRequest extends SimRequest {
         return requestID;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +

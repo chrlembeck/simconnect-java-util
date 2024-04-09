@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 
 public class CameraSetRelative6DofRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf0000030;
 
     private final float deltaX;
@@ -67,6 +70,11 @@ public class CameraSetRelative6DofRequest extends SimRequest {
         return headingDeg;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

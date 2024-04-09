@@ -1,7 +1,6 @@
 package org.lembeck.fs.simconnect.response;
 
 import org.lembeck.fs.simconnect.constants.ExceptionType;
-
 import java.nio.ByteBuffer;
 
 public class RecvExceptionResponse extends SimResponse {
@@ -33,6 +32,11 @@ public class RecvExceptionResponse extends SimResponse {
         return ExceptionType.ofId(exceptionTypeIdx);
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

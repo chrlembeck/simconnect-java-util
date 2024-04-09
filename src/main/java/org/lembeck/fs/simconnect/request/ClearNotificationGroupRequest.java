@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 
 public class ClearNotificationGroupRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf000000a;
 
     private final int notificationGroupID;
@@ -27,6 +30,11 @@ public class ClearNotificationGroupRequest extends SimRequest {
         return notificationGroupID;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

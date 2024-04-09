@@ -1,11 +1,13 @@
 package org.lembeck.fs.simconnect.request;
 
 import org.lembeck.fs.simconnect.SimUtil;
-
 import java.nio.ByteBuffer;
 
 public class MapClientEventToSimEventRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf0000004;
 
     private final int eventID;
@@ -37,6 +39,11 @@ public class MapClientEventToSimEventRequest extends SimRequest {
         return eventName;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

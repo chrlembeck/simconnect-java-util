@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 
 public class CreateClientDataRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf0000038;
 
     private final int clientDataID;
@@ -43,6 +46,11 @@ public class CreateClientDataRequest extends SimRequest {
         return readonly;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +

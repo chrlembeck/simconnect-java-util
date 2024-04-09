@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 
 public class AIRemoveObjectRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0x0000002c;
 
     private final int objectID;
@@ -36,6 +39,11 @@ public class AIRemoveObjectRequest extends SimRequest {
         return requestID;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +

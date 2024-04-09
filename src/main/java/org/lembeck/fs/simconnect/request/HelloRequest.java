@@ -1,11 +1,13 @@
 package org.lembeck.fs.simconnect.request;
 
 import org.lembeck.fs.simconnect.SimUtil;
-
 import java.nio.ByteBuffer;
 
 public class HelloRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf0000001;
 
     public final int MAJOR_VERSION = 11;
@@ -85,6 +87,11 @@ public class HelloRequest extends SimRequest {
         return minorBuildVersion;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

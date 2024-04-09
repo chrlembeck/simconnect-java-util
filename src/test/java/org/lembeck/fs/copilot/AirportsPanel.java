@@ -3,9 +3,9 @@ package org.lembeck.fs.copilot;
 import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.SimUtil;
 import org.lembeck.fs.simconnect.constants.FacilityDataType;
+import org.lembeck.fs.simconnect.constants.FacilityListType;
 import org.lembeck.fs.simconnect.constants.RunwayDesignator;
 import org.lembeck.fs.simconnect.constants.RunwaySurface;
-import org.lembeck.fs.simconnect.request.FacilityListType;
 import org.lembeck.fs.simconnect.response.*;
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
@@ -213,6 +213,11 @@ public class AirportsPanel extends JPanel {
                               RunwayDesignator secondaryDesignator, float heading, float length,
                               RunwaySurface surface) {
 
+        /**
+         * Returns a string representation of the object.
+         *
+         * @return A string representation of the object.
+         */
         @Override
         public String toString() {
             return primaryNumber + primaryDesignator.getShortName() + "/" +

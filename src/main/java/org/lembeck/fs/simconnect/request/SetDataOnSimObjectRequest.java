@@ -1,14 +1,17 @@
 package org.lembeck.fs.simconnect.request;
 
+import org.lembeck.fs.simconnect.constants.DataSetFlag;
 import org.lembeck.fs.simconnect.response.SimResponse;
-
 import java.nio.ByteBuffer;
 
-import static org.lembeck.fs.simconnect.request.DataSetFlag.NOT_TAGGED;
-import static org.lembeck.fs.simconnect.request.DataSetFlag.TAGGED;
+import static org.lembeck.fs.simconnect.constants.DataSetFlag.NOT_TAGGED;
+import static org.lembeck.fs.simconnect.constants.DataSetFlag.TAGGED;
 
 public class SetDataOnSimObjectRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf0000010;
 
     private final int dataDefinitionID;
@@ -74,6 +77,11 @@ public class SetDataOnSimObjectRequest extends SimRequest {
         return data;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

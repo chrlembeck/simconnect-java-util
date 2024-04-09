@@ -1,7 +1,6 @@
 package org.lembeck.fs.simconnect.response;
 
 import org.lembeck.fs.simconnect.SimUtil;
-
 import java.nio.ByteBuffer;
 
 import static org.lembeck.fs.simconnect.SimUtil.UNKNOWN_GROUP;
@@ -32,6 +31,11 @@ public class RecvEventFilenameResponse extends RecvEventResponse {
         return flags;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

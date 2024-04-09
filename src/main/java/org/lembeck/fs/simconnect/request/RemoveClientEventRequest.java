@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 
 public class RemoveClientEventRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf0000008;
 
     private final int notificationGroupID;
@@ -36,6 +39,11 @@ public class RemoveClientEventRequest extends SimRequest {
         return clientEventID;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

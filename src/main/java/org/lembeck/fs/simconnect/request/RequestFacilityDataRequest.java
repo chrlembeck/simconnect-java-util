@@ -1,11 +1,13 @@
 package org.lembeck.fs.simconnect.request;
 
 import org.lembeck.fs.simconnect.SimUtil;
-
 import java.nio.ByteBuffer;
 
 public class RequestFacilityDataRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf0000046;
     private final int defineID;
     private final int requestID;
@@ -36,7 +38,11 @@ public class RequestFacilityDataRequest extends SimRequest {
         SimUtil.writeString(outBuffer, region, 4);
     }
 
-
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +

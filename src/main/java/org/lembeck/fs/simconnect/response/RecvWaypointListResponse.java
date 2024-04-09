@@ -1,7 +1,6 @@
 package org.lembeck.fs.simconnect.response;
 
 import org.lembeck.fs.simconnect.SimUtil;
-
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
@@ -27,6 +26,11 @@ public class RecvWaypointListResponse extends RecvFacilitiesListResponse {
         return waypointList;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

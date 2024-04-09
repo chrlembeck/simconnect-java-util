@@ -1,7 +1,6 @@
 package org.lembeck.fs.simconnect.response;
 
 import org.lembeck.fs.simconnect.constants.FacilityDataType;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
@@ -68,6 +67,11 @@ public class RecvFacilityDataResponse extends SimResponse {
         return buffer;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +

@@ -1,9 +1,9 @@
 package org.lembeck.fs.copilot;
 
 import org.lembeck.fs.simconnect.SimConnect;
+import org.lembeck.fs.simconnect.constants.DataType;
+import org.lembeck.fs.simconnect.constants.EventFlag;
 import org.lembeck.fs.simconnect.constants.SimconnectPeriod;
-import org.lembeck.fs.simconnect.request.DataType;
-import org.lembeck.fs.simconnect.request.EventFlag;
 import org.lembeck.fs.simconnect.request.Priority;
 import org.lembeck.fs.simconnect.response.RecvEventResponse;
 import org.lembeck.fs.simconnect.response.RecvExceptionResponse;

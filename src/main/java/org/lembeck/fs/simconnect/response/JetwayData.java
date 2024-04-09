@@ -1,7 +1,6 @@
 package org.lembeck.fs.simconnect.response;
 
 import org.lembeck.fs.simconnect.SimUtil;
-
 import java.nio.ByteBuffer;
 
 public class JetwayData {
@@ -98,6 +97,11 @@ public class JetwayData {
         return attachedObjectID;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +

@@ -7,6 +7,9 @@ import java.util.Arrays;
 
 public class SetInputEventRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf0000051;
     private final long hash;
     private final int unitSize;
@@ -69,6 +72,11 @@ public class SetInputEventRequest extends SimRequest {
         return new String(data, 0, data.length - 1, StandardCharsets.UTF_8);
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +

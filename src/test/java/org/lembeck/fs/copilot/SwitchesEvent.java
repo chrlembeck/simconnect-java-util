@@ -93,6 +93,11 @@ public class SwitchesEvent {
         return brakeParkingPosition;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return "SwitchesEvent{" +

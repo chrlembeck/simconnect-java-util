@@ -9,6 +9,11 @@ public class RecvEventMultiplayerServerStartedResponse extends RecvEventResponse
         super(buffer);
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

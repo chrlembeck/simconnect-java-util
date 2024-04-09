@@ -1,7 +1,6 @@
 package org.lembeck.fs.simconnect.request;
 
 import org.lembeck.fs.simconnect.response.SimResponse;
-
 import java.nio.ByteBuffer;
 
 public class UnknownRequest extends SimRequest {
@@ -23,6 +22,11 @@ public class UnknownRequest extends SimRequest {
         return data;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() +

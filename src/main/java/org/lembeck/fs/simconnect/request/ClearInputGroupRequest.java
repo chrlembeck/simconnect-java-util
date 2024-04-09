@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 
 public class ClearInputGroupRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf0000014;
 
     private final int groupID;

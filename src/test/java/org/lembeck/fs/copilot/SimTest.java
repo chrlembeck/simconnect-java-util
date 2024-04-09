@@ -2,8 +2,9 @@ package org.lembeck.fs.copilot;
 
 import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.SimUtil;
+import org.lembeck.fs.simconnect.constants.DataType;
+import org.lembeck.fs.simconnect.constants.FacilityListType;
 import org.lembeck.fs.simconnect.constants.SimconnectPeriod;
-import org.lembeck.fs.simconnect.request.DataType;
 import org.lembeck.fs.simconnect.response.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -51,7 +52,7 @@ public class SimTest {
             inSim = e.getData() == 1;
         } else if (e.getEventID() == 2 && inSim) {
             try {
-                msc.requestFacilitiesList(org.lembeck.fs.simconnect.request.FacilityListType.AIRPORT, 3);
+                msc.requestFacilitiesList(FacilityListType.AIRPORT, 3);
             } catch (IOException e1) {
             }
         }
@@ -70,6 +71,11 @@ public class SimTest {
 
         double altitude;
 
+        /**
+         * Returns a string representation of the object.
+         *
+         * @return A string representation of the object.
+         */
         @Override
         public String toString() {
             return icao + " (" + df.format(dist / 1000.0) + " nm)";

@@ -4,6 +4,9 @@ import java.nio.ByteBuffer;
 
 public class ClearClientDataDefinitionRequest extends SimRequest {
 
+    /**
+     * Internally used ID of this simconnect request.
+     */
     public static final int TYPE_ID = 0xf000003a;
 
     private final int defineID;
@@ -27,6 +30,11 @@ public class ClearClientDataDefinitionRequest extends SimRequest {
         return defineID;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +

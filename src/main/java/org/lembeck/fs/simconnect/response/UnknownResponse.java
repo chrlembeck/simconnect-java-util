@@ -16,6 +16,11 @@ public class UnknownResponse extends SimResponse {
         return data;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + " {Typ: " + Integer.toHexString(getTypeID()) + ", Länge=" + getSize() + ", Version=" + getVersion() + ", data=" + toString(data) + "}";

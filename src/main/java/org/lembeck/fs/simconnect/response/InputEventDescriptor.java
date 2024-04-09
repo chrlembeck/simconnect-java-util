@@ -2,7 +2,6 @@ package org.lembeck.fs.simconnect.response;
 
 import org.lembeck.fs.simconnect.SimUtil;
 import org.lembeck.fs.simconnect.constants.InputEventType;
-
 import java.nio.ByteBuffer;
 
 public class InputEventDescriptor {
@@ -29,6 +28,11 @@ public class InputEventDescriptor {
         return inputEventType;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +

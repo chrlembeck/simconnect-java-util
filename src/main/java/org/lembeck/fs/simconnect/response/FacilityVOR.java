@@ -24,6 +24,11 @@ public class FacilityVOR extends FacilityNDB {
         this.glideSlopeAngle = glideSlopeAngle;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +
