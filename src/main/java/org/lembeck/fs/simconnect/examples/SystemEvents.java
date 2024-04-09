@@ -4,10 +4,13 @@ import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.constants.SystemEventName;
 import org.lembeck.fs.simconnect.response.RecvEventFilenameResponse;
 import org.lembeck.fs.simconnect.response.RecvEventResponse;
-
 import java.io.IOException;
 
 public class SystemEvents {
+
+    public String hostname = "localhost";
+
+    public int port = 26010;
 
     int counter = 0;
 
@@ -21,7 +24,7 @@ public class SystemEvents {
         simConnect = new SimConnect();
         simConnect.getRequestReceiver().addEventHandler(this::handleEvent);
         simConnect.getRequestReceiver().addEventFilenameHandler(this::handleEventFilename);
-        simConnect.connect("localhost", 26010, "SystemEvents");
+        simConnect.connect(hostname, port, "SystemEvents");
         simConnect.subscribeToSystemEvent(1, SystemEventName.PAUSE);
         simConnect.subscribeToSystemEvent(2, SystemEventName.FOUR_SEC);
         simConnect.subscribeToSystemEvent(3, SystemEventName.FLIGHT_LOADED);

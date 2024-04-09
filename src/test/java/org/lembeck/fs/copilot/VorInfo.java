@@ -31,7 +31,8 @@ public class VorInfo {
 
     private float magVar;
 
-    public VorInfo(String icao, String regionCode, double latitude, double longitude, double altitude, double distanceNM, double heading) {
+    public VorInfo(String icao, String regionCode, double latitude, double longitude, double altitude,
+            double distanceNM, double heading) {
         this.icao = icao;
         this.regionCode = regionCode;
         this.latitude = latitude;

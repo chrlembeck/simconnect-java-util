@@ -14,9 +14,9 @@ import static org.lembeck.fs.copilot.GraphicsUtil.initGraphics;
 
 public class BasicVerticalSpeedIndicatorUI extends VerticalSpeedIndicatorUI implements MouseWheelListener {
 
-    private final int BORDER_WIDTH = 2;
+    private final static int BORDER_WIDTH = 2;
 
-    private final float GAP_WIDTH = 4;
+    private final static float GAP_WIDTH = 4;
 
     public static ComponentUI createUI(JComponent comp) {
         return new BasicVerticalSpeedIndicatorUI();
@@ -67,8 +67,8 @@ public class BasicVerticalSpeedIndicatorUI extends VerticalSpeedIndicatorUI impl
         float degreePer100 = (360 - rightSideGap) / (2f * vsMax);
         float degreePerTick = (180 - rightSideGap / 2f) / ticks;
         float degreePerTickBetween = (180 - rightSideGap / 2f) / ticks / (ticksBetween + 1);
-        Shape line = new Line2D.Double(centerX - radius + BORDER_WIDTH / 2 + GAP_WIDTH, centerY, centerX - radius + BORDER_WIDTH / 2 + GAP_WIDTH + scalaLength, centerY);
-        Shape betweenLine = new Line2D.Double(centerX - radius + BORDER_WIDTH / 2 + GAP_WIDTH, centerY, centerX - radius + BORDER_WIDTH / 2 + GAP_WIDTH + scalaLength / 2, centerY);
+        Shape line = new Line2D.Double(centerX - radius + BORDER_WIDTH / 2f + GAP_WIDTH, centerY, centerX - radius + BORDER_WIDTH / 2f + GAP_WIDTH + scalaLength, centerY);
+        Shape betweenLine = new Line2D.Double(centerX - radius + BORDER_WIDTH / 2f + GAP_WIDTH, centerY, centerX - radius + BORDER_WIDTH / 2f + GAP_WIDTH + scalaLength / 2f, centerY);
         for (int i = 0; i <= ticks; i++) {
             g.setStroke(new BasicStroke(4));
             AffineTransform atUp = AffineTransform.getRotateInstance(i * degreePerTick * Math.PI / 180, centerX, centerY);
@@ -113,12 +113,12 @@ public class BasicVerticalSpeedIndicatorUI extends VerticalSpeedIndicatorUI impl
         int arrowWidth = 4;
         Path2D ind = new Path2D.Float();
         float arrowLength = radius - BORDER_WIDTH - scalaLength - GAP_WIDTH;
-        ind.moveTo(centerX, centerY + arrowWidth / 2);
-        ind.lineTo(centerX - arrowLength * 3 / 4 + GAP_WIDTH, centerY +   arrowWidth);
+        ind.moveTo(centerX, centerY + arrowWidth / 2f);
+        ind.lineTo(centerX - arrowLength * 3 / 4 + GAP_WIDTH, centerY + arrowWidth);
         ind.lineTo(centerX - arrowLength, centerY);
-        ind.lineTo(centerX - arrowLength * 3 / 4 + GAP_WIDTH, centerY -   arrowWidth);
-        ind.lineTo(centerX, centerY - arrowWidth / 2);
-        ind.lineTo(centerX, centerY + arrowWidth / 2);
+        ind.lineTo(centerX - arrowLength * 3 / 4 + GAP_WIDTH, centerY - arrowWidth);
+        ind.lineTo(centerX, centerY - arrowWidth / 2f);
+        ind.lineTo(centerX, centerY + arrowWidth / 2f);
 
         AffineTransform at = AffineTransform.getRotateInstance(degreePer100 * verticalSpeed * Math.PI / 180, centerX, centerY);
 
@@ -132,13 +132,13 @@ public class BasicVerticalSpeedIndicatorUI extends VerticalSpeedIndicatorUI impl
         int bugHeight = 14;
         Path2D bug = new Path2D.Float();
 
-        bug.moveTo(centerX + BORDER_WIDTH - radius, centerY - bugWidth / 2);
-        bug.lineTo(centerX + BORDER_WIDTH - radius + bugHeight, centerY - bugWidth / 2);
+        bug.moveTo(centerX + BORDER_WIDTH - radius, centerY - bugWidth / 2f);
+        bug.lineTo(centerX + BORDER_WIDTH - radius + bugHeight, centerY - bugWidth / 2f);
         bug.lineTo(centerX + BORDER_WIDTH - radius + BORDER_WIDTH, centerY - BORDER_WIDTH);
         bug.lineTo(centerX + BORDER_WIDTH - radius + BORDER_WIDTH, centerY + BORDER_WIDTH);
-        bug.lineTo(centerX + BORDER_WIDTH - radius + bugHeight, centerY + bugWidth / 2);
-        bug.lineTo(centerX + BORDER_WIDTH - radius, centerY + bugWidth / 2);
-        bug.lineTo(centerX + BORDER_WIDTH - radius, centerY - bugWidth / 2);
+        bug.lineTo(centerX + BORDER_WIDTH - radius + bugHeight, centerY + bugWidth / 2f);
+        bug.lineTo(centerX + BORDER_WIDTH - radius, centerY + bugWidth / 2f);
+        bug.lineTo(centerX + BORDER_WIDTH - radius, centerY - bugWidth / 2f);
 
         AffineTransform autoTransform = AffineTransform.getRotateInstance(degreePer100 * verticalSpeedAutopilot * Math.PI / 180, centerX, centerY);
 

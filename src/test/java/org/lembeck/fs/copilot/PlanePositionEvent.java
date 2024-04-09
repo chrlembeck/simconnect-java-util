@@ -18,7 +18,8 @@ public class PlanePositionEvent {
     private final double headingDegreesTrue;
 
     public PlanePositionEvent(double userLat, double userLon, double altitudeInFeet, double altitudeAboveGroundInFeet,
-            double altitudeAboveGroundMinusCenterOfGravityInFeet, double verticalSpeedFeetPerSecond, double airspeedIndicated,
+            double altitudeAboveGroundMinusCenterOfGravityInFeet, double verticalSpeedFeetPerSecond,
+            double airspeedIndicated,
             double airspeedTrue, double bankDegrees, double pitchDegrees, double headingDegreesGyro,
             double headingDegreesMagnetic, double headingDegreesTrue) {
         this.latitude = userLat;
@@ -33,7 +34,7 @@ public class PlanePositionEvent {
         this.pitchDegrees = pitchDegrees;
         this.airspeedIndicated = airspeedIndicated;
         this.airspeedTrue = airspeedTrue;
-        this.verticalSpeedFeetPerSecond =verticalSpeedFeetPerSecond;
+        this.verticalSpeedFeetPerSecond = verticalSpeedFeetPerSecond;
     }
 
     public double getLatitude() {

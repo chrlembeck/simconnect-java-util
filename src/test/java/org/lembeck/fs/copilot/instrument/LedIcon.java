@@ -26,7 +26,7 @@ public class LedIcon implements Icon {
         initGraphics(g);
         g.setStroke(new BasicStroke(1));
         Ellipse2D circle = new Ellipse2D.Float(x + 0.5f, y + 0.5f, size - 1, size - 1);
-        Paint paint = new GradientPaint(x+0.2f*size, y+0.2f*size, color.brighter(), x+0.8f*size, y+0.8f*size, color.darker());
+        Paint paint = new GradientPaint(x + 0.2f * size, y + 0.2f * size, color.brighter(), x + 0.8f * size, y + 0.8f * size, color.darker());
         g.setPaint(paint);
         g.fill(circle);
         g.setColor(borderColor);

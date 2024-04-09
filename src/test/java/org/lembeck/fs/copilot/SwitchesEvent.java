@@ -17,7 +17,8 @@ public class SwitchesEvent {
     private final boolean brakeParkingPosition;
 
     public SwitchesEvent(boolean electricalMasterBattery, boolean generalEngineMasterAlternator1,
-            boolean generalEngineFuelPumpSwitch1, boolean lightLanding, boolean lightNav, boolean lightCabin, boolean lightStrobe,
+            boolean generalEngineFuelPumpSwitch1, boolean lightLanding, boolean lightNav, boolean lightCabin,
+            boolean lightStrobe,
             boolean lightBeacon, boolean lightTaxi, boolean lightRecognition, boolean pitotHeatSwitch1,
             boolean avionicsMasterSwitch1, boolean brakeParkingIndicator, boolean brakeParkingPosition) {
         this.electricalMasterBattery = electricalMasterBattery;

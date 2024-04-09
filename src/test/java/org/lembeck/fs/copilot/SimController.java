@@ -9,7 +9,6 @@ import org.lembeck.fs.simconnect.response.RecvEventResponse;
 import org.lembeck.fs.simconnect.response.RecvExceptionResponse;
 import org.lembeck.fs.simconnect.response.RecvOpenResponse;
 import org.lembeck.fs.simconnect.response.RecvSimobjectDataResponse;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;

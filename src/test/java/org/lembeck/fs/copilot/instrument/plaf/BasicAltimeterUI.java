@@ -2,8 +2,6 @@ package org.lembeck.fs.copilot.instrument.plaf;
 
 import org.lembeck.fs.copilot.instrument.Altimeter;
 import org.lembeck.fs.copilot.instrument.AltimeterModel;
-import org.lembeck.fs.copilot.instrument.Compass;
-import org.lembeck.fs.copilot.instrument.CompassModel;
 import javax.swing.*;
 import javax.swing.plaf.ComponentUI;
 import java.awt.*;
@@ -97,11 +95,11 @@ public class BasicAltimeterUI extends AltimeterUI {
         // 10000-er Pfeil
         Path2D p1000 = new Path2D.Double();
         float pSize = 17;
-        p1000.moveTo(centerX-pSize/2, centerY-radius+BORDER_WIDTH);
-        p1000.lineTo(centerX+pSize/2, centerY-radius+BORDER_WIDTH);
-        p1000.lineTo(centerX, centerY-radius+BORDER_WIDTH+pSize);
-        p1000.lineTo(centerX-pSize/2, centerY-radius-BORDER_WIDTH);
-        double deg10000 = altitude*36 / 10000;
+        p1000.moveTo(centerX - pSize / 2, centerY - radius + BORDER_WIDTH);
+        p1000.lineTo(centerX + pSize / 2, centerY - radius + BORDER_WIDTH);
+        p1000.lineTo(centerX, centerY - radius + BORDER_WIDTH + pSize);
+        p1000.lineTo(centerX - pSize / 2, centerY - radius - BORDER_WIDTH);
+        double deg10000 = altitude * 36 / 10000;
         AffineTransform at3 = AffineTransform.getRotateInstance(deg10000 * Math.PI / 180, centerX, centerY);
 
         g.setPaint(new Color(236, 15, 85));

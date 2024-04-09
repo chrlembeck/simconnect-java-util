@@ -5,7 +5,6 @@ import org.lembeck.fs.simconnect.SimUtil;
 import org.lembeck.fs.simconnect.constants.SimconnectPeriod;
 import org.lembeck.fs.simconnect.request.DataType;
 import org.lembeck.fs.simconnect.response.*;
-
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.text.DecimalFormat;

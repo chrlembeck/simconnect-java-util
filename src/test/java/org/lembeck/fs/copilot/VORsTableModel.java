@@ -1,7 +1,6 @@
 package org.lembeck.fs.copilot;
 
 import org.lembeck.fs.simconnect.SimUtil;
-
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;

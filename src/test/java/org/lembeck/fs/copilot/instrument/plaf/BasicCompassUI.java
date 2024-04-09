@@ -77,7 +77,7 @@ public class BasicCompassUI extends CompassUI implements MouseWheelListener {
 
         Font biggerFont = font.deriveFont(font.getSize2D() * 1.3f);
         for (int i = 0; i < 12; i++) {
-            Font cFont = i%3 ==0?biggerFont:font;
+            Font cFont = i % 3 == 0 ? biggerFont : font;
             GlyphVector vector = cFont.createGlyphVector(g.getFontRenderContext(), calcText(i * 3));
 
             float absDir = -direction + i * 30;
@@ -87,7 +87,7 @@ public class BasicCompassUI extends CompassUI implements MouseWheelListener {
             AffineTransform at2 = AffineTransform.getRotateInstance(absDir * Math.PI / 180, centerX, centerY);
             shape = at.createTransformedShape(shape);
             shape = at2.createTransformedShape(shape);
-            g.setPaint(i % 3 == 0 ? new Color(240,220,0) : Color.LIGHT_GRAY);
+            g.setPaint(i % 3 == 0 ? new Color(240, 220, 0) : Color.LIGHT_GRAY);
             g.fill(shape);
         }
 

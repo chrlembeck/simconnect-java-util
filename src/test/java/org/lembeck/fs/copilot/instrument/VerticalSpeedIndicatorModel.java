@@ -14,6 +14,7 @@ public class VerticalSpeedIndicatorModel {
     public void addChangeListener(VerticalSpeedChangeListener listener) {
         listeners.add(listener);
     }
+
     public void removeChangeListener(VerticalSpeedChangeListener listener) {
         listeners.remove(listener);
     }

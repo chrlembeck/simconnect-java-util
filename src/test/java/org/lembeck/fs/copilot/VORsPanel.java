@@ -7,7 +7,6 @@ import org.lembeck.fs.simconnect.constants.VorType;
 import org.lembeck.fs.simconnect.request.FacilityListType;
 import org.lembeck.fs.simconnect.request.RequestFacilityDataEx1Request;
 import org.lembeck.fs.simconnect.response.*;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

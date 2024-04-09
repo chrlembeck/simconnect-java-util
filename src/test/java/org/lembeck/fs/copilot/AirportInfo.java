@@ -21,7 +21,8 @@ public class AirportInfo {
 
     private final List<AirportsPanel.RunwayFacilityData> runways = new ArrayList<>(1);
 
-    public AirportInfo(String icao, double latitude, double longitude, double altitude, double distance, double heading) {
+    public AirportInfo(String icao, double latitude, double longitude, double altitude, double distance,
+            double heading) {
         this.icao = icao;
         this.latitude = latitude;
         this.longitude = longitude;

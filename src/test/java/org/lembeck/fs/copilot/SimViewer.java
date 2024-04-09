@@ -2,7 +2,6 @@ package org.lembeck.fs.copilot;
 
 import org.lembeck.fs.copilot.instrument.*;
 import org.lembeck.fs.simconnect.response.LatLonAlt;
-
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
@@ -170,7 +169,6 @@ public class SimViewer extends JFrame implements SimListener {
         switchesPanel1.add(tbPitotHeat1);
 
 
-
         compass = new Compass();
         compass.setSize(compass.getPreferredSize());
         compass.getModel().addChangeListener(new CompassChangeListener() {
@@ -193,7 +191,7 @@ public class SimViewer extends JFrame implements SimListener {
 
             @Override
             public void verticalSpeedAutopilitChanged(double verticalSpeedAutopilot) {
-                controller.setVerticalSpeedAutopilotVar((int)Math.round(verticalSpeedAutopilot), 0);
+                controller.setVerticalSpeedAutopilotVar((int) Math.round(verticalSpeedAutopilot), 0);
             }
         });
 
@@ -223,7 +221,7 @@ public class SimViewer extends JFrame implements SimListener {
         vsPanel.add(verticalSpeedIndicator, BorderLayout.CENTER);
         JPanel vsValuesPanel = new JPanel();
         vsPanel.add(vsValuesPanel, BorderLayout.SOUTH);
-        vsValuesPanel.setLayout(new GridLayout(1,2));
+        vsValuesPanel.setLayout(new GridLayout(1, 2));
         vsValuesPanel.add(tfVerticalSpeed);
         vsValuesPanel.add(tfAutopilotVerticalHoldVar);
         tfVerticalSpeed.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5), BorderFactory.createLoweredBevelBorder()));
@@ -352,10 +350,10 @@ public class SimViewer extends JFrame implements SimListener {
             tfAltitudeAboveGroundMinusCG.setText(nf.format(planePositionEvent.getAltitudeAboveGroundMinusCenterOfGravityInFeet()));
             tfAirspeed.setText(nf.format(planePositionEvent.getAirspeedIndicated()));
             tfAirspeedTrue.setText(nf.format(planePositionEvent.getAirspeedTrue()));
-            tfVerticalSpeed.setText(DECIMAL_0.format(planePositionEvent.getVerticalSpeedFeetPerSecond()*60));
+            tfVerticalSpeed.setText(DECIMAL_0.format(planePositionEvent.getVerticalSpeedFeetPerSecond() * 60));
             tfBank.setText(nf.format(planePositionEvent.getBankDegrees()));
             tfPitch.setText(nf.format(planePositionEvent.getPitchDegrees()));
-            tfHeadingGyro.setText(DECIMAL_0.format(planePositionEvent.getHeadingDegreesGyro())+"°");
+            tfHeadingGyro.setText(DECIMAL_0.format(planePositionEvent.getHeadingDegreesGyro()) + "°");
             tfHeadingMagnetic.setText(DECIMAL_2.format(planePositionEvent.getHeadingDegreesMagnetic()));
             tfHeadingTrue.setText(DECIMAL_2.format(planePositionEvent.getHeadingDegreesTrue()));
             compass.getModel().setDirection((float) planePositionEvent.getHeadingDegreesGyro());

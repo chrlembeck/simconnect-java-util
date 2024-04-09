@@ -3,7 +3,6 @@ package org.lembeck.fs.simconnect.examples;
 import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.request.FacilityListType;
 import org.lembeck.fs.simconnect.response.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +10,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ReadAllFacilities {
+
+    public String hostname = "localhost";
+
+    public int port = 26010;
 
     private final SimConnect simConnect = new SimConnect();
 
@@ -28,7 +31,7 @@ public class ReadAllFacilities {
         simConnect.getRequestReceiver().addWaypointListHandler(this::handleWaypoints);
         simConnect.getRequestReceiver().addNdbListHandler(this::handleNDBs);
         simConnect.getRequestReceiver().addVorListHandler(this::handleVORs);
-        simConnect.connect("localhost", 26010, "ReadAllFacilities");
+        simConnect.connect(hostname, port, "ReadAllFacilities");
 
         simConnect.requestFacilitiesList(FacilityListType.AIRPORT, 1);
         simConnect.requestFacilitiesList(FacilityListType.WAYPOINT, 2);

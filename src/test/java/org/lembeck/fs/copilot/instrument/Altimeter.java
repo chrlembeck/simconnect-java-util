@@ -2,8 +2,6 @@ package org.lembeck.fs.copilot.instrument;
 
 import org.lembeck.fs.copilot.instrument.plaf.AltimeterUI;
 import org.lembeck.fs.copilot.instrument.plaf.BasicAltimeterUI;
-import org.lembeck.fs.copilot.instrument.plaf.BasicCompassUI;
-import org.lembeck.fs.copilot.instrument.plaf.CompassUI;
 import javax.swing.*;
 import java.util.Objects;
 
@@ -46,7 +44,7 @@ public class Altimeter extends JComponent implements AltimeterChangeListener {
     }
 
     public void updateUI() {
-        setUI((AltimeterUI) UIManager.getUI(this));
+        setUI(UIManager.getUI(this));
         invalidate();
     }
 
