@@ -1,7 +1,7 @@
 # simconnect-java-util
 
-The simconnect-java-util project contains a java client for the simconnect interface of the microsoft flight simulator
-2020.
+The simconnect-java-util project contains a java client for the simconnect interface of the microsoft flight
+simulator 2020.
 The client connects to the flight simulator directly over an IP network connection, so that it is able to run on the
 same machine as
 the simulator or on another machine in the local network.

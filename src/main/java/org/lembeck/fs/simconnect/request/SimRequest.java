@@ -120,6 +120,15 @@ public abstract class SimRequest {
         };
     }
 
+    /**
+     * Transforms the request into its byte sequence representation and writes it to the outgoing ByteBuffer.
+     * Subclasses of this class have to implement the {@link SimRequest#writeRequest(ByteBuffer)} method to send their
+     * specific data.
+     *
+     * @param outBuffer The buffer, the bytes are written into. The buffer will be used to send the data to the
+     *                  simconnect socket stream.
+     * @see SimRequest#writeRequest(ByteBuffer)
+     */
     public final void write(ByteBuffer outBuffer) {
         outBuffer.position(4);
         outBuffer.putInt(version);
@@ -130,6 +139,15 @@ public abstract class SimRequest {
         outBuffer.putInt(0, size);
     }
 
+    /**
+     * Transforms content of the request into its byte sequence representation and writes it to the outgoing ByteBuffer.
+     * Implementors of this method do not have to worry about the four components size, protocol version,
+     * request type id and request identifier. These four information are handled by the superclass SimRequest.
+     *
+     * @param outBuffer The buffer, the bytes are written into. The buffer will be used to send the data to the
+     *                  simconnect socket stream.
+     * @see SimRequest#write(ByteBuffer)
+     */
     protected abstract void writeRequest(ByteBuffer outBuffer);
 
     public void setIdentifier(int identifier) {
