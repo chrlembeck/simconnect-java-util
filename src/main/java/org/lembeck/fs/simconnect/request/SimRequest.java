@@ -140,7 +140,7 @@ public abstract class SimRequest {
     }
 
     /**
-     * Transforms content of the request into its byte sequence representation and writes it to the outgoing ByteBuffer.
+     * Transforms the content of the request into its byte sequence representation and writes it to the outgoing ByteBuffer.
      * Implementors of this method do not have to worry about the four components size, protocol version,
      * request type id and request identifier. These four information are handled by the superclass SimRequest.
      *
