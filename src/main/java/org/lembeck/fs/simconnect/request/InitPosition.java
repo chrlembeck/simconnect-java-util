@@ -2,6 +2,10 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SIMCONNECT_DATA_INITPOSITION structure is used to initialize the position of the user aircraft, AI controlled
+ * aircraft, or other simulation object.
+ */
 public class InitPosition {
 
     /**
@@ -41,6 +45,19 @@ public class InitPosition {
         airspeed = buffer.getInt();
     }
 
+    /**
+     * Creates a new init position.
+     *
+     * @param latitude  Latitude in degrees.
+     * @param longitude Longitude in degrees.
+     * @param altitude  Altitude in feet.
+     * @param pitch     Pitch in degrees.
+     * @param bank      Bank in degrees.
+     * @param heading   Heading in degrees.
+     * @param onGround  Set this to true to place the object on the ground, or false if the object is to be airborne.
+     * @param airspeed  The airspeed in knots, or one of the following special values
+     *                  {@link #INITPOSITION_AIRSPEED_CRUISE} or {@link #INITPOSITION_AIRSPEED_KEEP}
+     */
     public InitPosition(double latitude, double longitude, double altitude, double pitch, double bank, double heading, boolean onGround, int airspeed) {
         super();
         this.latitude = latitude;
@@ -53,7 +70,7 @@ public class InitPosition {
         this.airspeed = airspeed;
     }
 
-    public void write(ByteBuffer outBuffer) {
+    void write(ByteBuffer outBuffer) {
         outBuffer.putDouble(latitude);
         outBuffer.putDouble(longitude);
         outBuffer.putDouble(altitude);
@@ -64,34 +81,75 @@ public class InitPosition {
         outBuffer.putInt(airspeed);
     }
 
+    /**
+     * Returns the latitude in degrees.
+     *
+     * @return Latitude in degrees.
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * Returns the longitude in degrees.
+     *
+     * @return Longitude in degrees.
+     */
     public double getLongitude() {
         return longitude;
     }
 
+    /**
+     * Returns the altitude in feet.
+     *
+     * @return Altitude in feet.
+     */
     public double getAltitude() {
         return altitude;
     }
 
+    /**
+     * Returns the pitch in degrees.
+     *
+     * @return Pitch in degrees.
+     */
     public double getPitch() {
         return pitch;
     }
 
+    /**
+     * Returns the bank in degrees.
+     *
+     * @return Bank in degrees.
+     */
     public double getBank() {
         return bank;
     }
 
+    /**
+     * Returns the heading in degrees.
+     *
+     * @return Heading in degrees.
+     */
     public double getHeading() {
         return heading;
     }
 
+    /**
+     * Returns whether the object is on the ground or not.
+     *
+     * @return true means, the object is in the ground, false means, the object is airborne.
+     */
     public boolean isOnGround() {
         return onGround;
     }
 
+    /**
+     * Returns the airspeed in knots.
+     *
+     * @return The airspeed in knots, or one of the following special values: {@link #INITPOSITION_AIRSPEED_KEEP} or
+     * {@link #INITPOSITION_AIRSPEED_CRUISE}.
+     */
     public int getAirspeed() {
         return airspeed;
     }
