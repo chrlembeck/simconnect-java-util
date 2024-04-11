@@ -707,9 +707,9 @@ public class SimConnect {
      * @return The Object that represents the message that was sent to the simulator.
      * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm</a>
      */
-    public RequestFacilitesListRequest requestFacilitiesList(FacilityListType facilityListType,
-                                                             int requestId) throws IOException {
-        return write(new RequestFacilitesListRequest(facilityListType, requestId));
+    public RequestFacilitiesListRequest requestFacilitiesList(FacilityListType facilityListType,
+                                                              int requestId) throws IOException {
+        return write(new RequestFacilitiesListRequest(facilityListType, requestId));
     }
 
     /**

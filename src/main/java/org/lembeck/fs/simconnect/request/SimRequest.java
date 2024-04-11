@@ -142,7 +142,7 @@ public abstract class SimRequest {
             // 0x40 is deprecated
             case 0xf0000041 -> new SubscribeToFacilitiesRequest(buffer);
             case 0xf0000042 -> new UnsubscribeToFacilitiesRequest(buffer);
-            case 0xf0000043 -> new RequestFacilitesListRequest(buffer);
+            case 0xf0000043 -> new RequestFacilitiesListRequest(buffer);
             case 0xf0000044 -> new TransmitClientEventEx1Request(buffer);
             case 0xf0000045 -> new AddToFacilityDefinitionRequest(buffer);
             case 0xf0000046 -> new RequestFacilityDataRequest(buffer);

@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
  *
  * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm</a>
  */
-public class RequestFacilitesListRequest extends SimRequest {
+public class RequestFacilitiesListRequest extends SimRequest {
 
     /**
      * Internally used ID of this simconnect request.
@@ -20,7 +20,7 @@ public class RequestFacilitesListRequest extends SimRequest {
     private final FacilityListType facilityListType;
     private final int dataRequestId;
 
-    RequestFacilitesListRequest(ByteBuffer buffer) {
+    RequestFacilitiesListRequest(ByteBuffer buffer) {
         super(buffer);
         facilityListType = FacilityListType.ofId(buffer.getInt());
         dataRequestId = buffer.getInt();
@@ -34,7 +34,7 @@ public class RequestFacilitesListRequest extends SimRequest {
      * @param requestId        Specifies the client defined request ID. This will be returned along with the data.
      * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm</a>
      */
-    public RequestFacilitesListRequest(FacilityListType facilityListType, int requestId) {
+    public RequestFacilitiesListRequest(FacilityListType facilityListType, int requestId) {
         super(TYPE_ID);
         this.dataRequestId = requestId;
         this.facilityListType = facilityListType;
