@@ -2,6 +2,12 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_ClearDataDefinition function is used to remove all simulation variables from a client defined data
+ * definition.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearDataDefinition.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearDataDefinition.htm</a>
+ */
 public class ClearDataDefinitionRequest extends SimRequest {
 
     /**
@@ -16,6 +22,13 @@ public class ClearDataDefinitionRequest extends SimRequest {
         dataDefinitionID = buffer.getInt();
     }
 
+    /**
+     * The SimConnect_ClearDataDefinition function is used to remove all simulation variables from a client defined data
+     * definition.
+     *
+     * @param dataDefinitionID Specifies the ID of the client defined data definition.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearDataDefinition.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearDataDefinition.htm</a>
+     */
     public ClearDataDefinitionRequest(int dataDefinitionID) {
         super(TYPE_ID);
         this.dataDefinitionID = dataDefinitionID;
@@ -26,6 +39,11 @@ public class ClearDataDefinitionRequest extends SimRequest {
         outBuffer.putInt(dataDefinitionID);
     }
 
+    /**
+     * Returns the ID of the client defined data definition.
+     *
+     * @return ID of the client defined data definition.
+     */
     public int getDataDefinitionID() {
         return dataDefinitionID;
     }

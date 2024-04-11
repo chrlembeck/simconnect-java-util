@@ -9,6 +9,7 @@ import org.lembeck.fs.simconnect.response.RecvEventResponse;
 import org.lembeck.fs.simconnect.response.RecvExceptionResponse;
 import org.lembeck.fs.simconnect.response.RecvOpenResponse;
 import org.lembeck.fs.simconnect.response.RecvSimobjectDataResponse;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.lembeck.fs.simconnect.SimUtil.OBJECT_ID_USER;
+import static org.lembeck.fs.simconnect.constants.DataRequestFlag.DATA_REQUEST_FLAG_CHANGED;
 
 public class SimController {
 
@@ -90,7 +92,7 @@ public class SimController {
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_PLANE_POSITION, "PLANE HEADING DEGREES GYRO", "DEGREES", DataType.FLOAT64, 0);
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_PLANE_POSITION, "PLANE HEADING DEGREES MAGNETIC", "DEGREES", DataType.FLOAT64, 0);
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_PLANE_POSITION, "PLANE HEADING DEGREES TRUE", "DEGREES", DataType.FLOAT64, 0);
-            simConnect.requestDataOnSimObject(DATA_REQUEST_ID_PLANE_POSITION, DATA_DEFINITION_ID_PLANE_POSITION, OBJECT_ID_USER, SimconnectPeriod.SIM_FRAME, RecvSimobjectDataResponse.DATA_REQUEST_FLAG_CHANGED, 0, 0, 0);
+            simConnect.requestDataOnSimObject(DATA_REQUEST_ID_PLANE_POSITION, DATA_DEFINITION_ID_PLANE_POSITION, OBJECT_ID_USER, SimconnectPeriod.SIM_FRAME, DATA_REQUEST_FLAG_CHANGED, 0, 0, 0);
 
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_AUTOPILOT_STATE, "AUTOPILOT MASTER", "BOOL", DataType.INT32, 0);
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_AUTOPILOT_STATE, "AUTOPILOT HEADING LOCK", "BOOL", DataType.INT32, 0);
@@ -100,7 +102,7 @@ public class SimController {
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_AUTOPILOT_STATE, "AUTOPILOT VERTICAL HOLD VAR", "feet/minute", DataType.FLOAT64, 0);
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_AUTOPILOT_STATE, "AUTOPILOT ALTITUDE LOCK", "BOOL", DataType.INT32, 0);
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_AUTOPILOT_STATE, "AUTOPILOT ALTITUDE LOCK VAR", "FEET", DataType.FLOAT64, 0);
-            simConnect.requestDataOnSimObject(DATA_REQUEST_ID_AUTOPILOT_STATE, DATA_DEFINITION_ID_AUTOPILOT_STATE, OBJECT_ID_USER, SimconnectPeriod.SIM_FRAME, RecvSimobjectDataResponse.DATA_REQUEST_FLAG_CHANGED, 0, 0, 0);
+            simConnect.requestDataOnSimObject(DATA_REQUEST_ID_AUTOPILOT_STATE, DATA_DEFINITION_ID_AUTOPILOT_STATE, OBJECT_ID_USER, SimconnectPeriod.SIM_FRAME, DATA_REQUEST_FLAG_CHANGED, 0, 0, 0);
 
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_SWITCHES, "ELECTRICAL MASTER BATTERY", "BOOL", DataType.INT32, 0);
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_SWITCHES, "GENERAL ENG MASTER ALTERNATOR:1", "BOOL", DataType.INT32, 0);
@@ -116,7 +118,7 @@ public class SimController {
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_SWITCHES, "AVIONICS MASTER SWITCH:1", "BOOL", DataType.INT32, 0);
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_SWITCHES, "BRAKE PARKING INDICATOR", "BOOL", DataType.INT32, 0);
             simConnect.addToDataDefinition(DATA_DEFINITION_ID_SWITCHES, "BRAKE PARKING POSITION", "BOOL", DataType.INT32, 0);
-            simConnect.requestDataOnSimObject(DATA_REQUEST_ID_SWITCHES, DATA_DEFINITION_ID_SWITCHES, OBJECT_ID_USER, SimconnectPeriod.SIM_FRAME, RecvSimobjectDataResponse.DATA_REQUEST_FLAG_CHANGED, 0, 0, 0);
+            simConnect.requestDataOnSimObject(DATA_REQUEST_ID_SWITCHES, DATA_DEFINITION_ID_SWITCHES, OBJECT_ID_USER, SimconnectPeriod.SIM_FRAME, DATA_REQUEST_FLAG_CHANGED, 0, 0, 0);
 
             simConnect.mapClientEventToSimEvent(CLIENT_EVENT_ID_AP_MASTER, "AP_MASTER");
             simConnect.mapClientEventToSimEvent(CLIENT_EVENT_ID_AP_ALT_HOLD, "AP_ALT_HOLD");

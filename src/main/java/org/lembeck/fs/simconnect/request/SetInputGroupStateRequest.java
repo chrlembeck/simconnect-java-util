@@ -1,7 +1,14 @@
 package org.lembeck.fs.simconnect.request;
 
+import org.lembeck.fs.simconnect.constants.State;
+
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_SetInputGroupState function is used to turn requests for input event information from the server on and off.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetInputGroupState.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetInputGroupState.htm</a>
+ */
 public class SetInputGroupStateRequest extends SimRequest {
 
     /**
@@ -11,15 +18,23 @@ public class SetInputGroupStateRequest extends SimRequest {
 
     private final int groupID;
 
-    private final int state;
+    private final State state;
 
     SetInputGroupStateRequest(ByteBuffer buffer) {
         super(buffer);
         this.groupID = buffer.getInt();
-        this.state = buffer.getInt();
+        this.state = State.ofId(buffer.getInt());
     }
 
-    public SetInputGroupStateRequest(int groupID, int state) {
+    /**
+     * The SimConnect_SetInputGroupState function is used to turn requests for input event information from the server on and off.
+     *
+     * @param groupID Specifies the ID of the client defined input group that is to have its state changed.
+     * @param state   Double word containing the new state. One member of the SIMCONNECT_STATE enumeration type.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetInputGroupState.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetInputGroupState.htm</a>
+     * @see State
+     */
+    public SetInputGroupStateRequest(int groupID, State state) {
         super(TYPE_ID);
         this.groupID = groupID;
         this.state = state;
@@ -28,14 +43,24 @@ public class SetInputGroupStateRequest extends SimRequest {
     @Override
     protected void writeRequest(ByteBuffer outBuffer) {
         outBuffer.putInt(groupID);
-        outBuffer.putInt(state);
+        outBuffer.putInt(state.ordinal());
     }
 
+    /**
+     * Returns the ID of the client defined input group that is to have its state changed.
+     *
+     * @return ID of the client defined input group that is to have its state changed.
+     */
     public int getGroupID() {
         return groupID;
     }
 
-    public int getState() {
+    /**
+     * Returns the new state. One member of the SIMCONNECT_STATE enumeration type.
+     *
+     * @return New state. One member of the SIMCONNECT_STATE enumeration type.
+     */
+    public State getState() {
         return state;
     }
 

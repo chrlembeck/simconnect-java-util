@@ -3,6 +3,7 @@ package org.lembeck.fs.simconnect;
 
 import org.lembeck.fs.simconnect.constants.*;
 import org.lembeck.fs.simconnect.request.*;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -174,7 +175,7 @@ public class SimConnect {
      * @see EventFlag
      */
     public TransmitClientEventRequest transmitClientEvent(int objectID, int clientEventID, int data, Priority priority,
-            int eventFlag) throws IOException {
+                                                          int eventFlag) throws IOException {
         return write(new TransmitClientEventRequest(objectID, clientEventID, data, priority, eventFlag));
     }
 
@@ -206,7 +207,7 @@ public class SimConnect {
      * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/SimConnect_API_Reference.htm#simconnect-priorities">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/SimConnect_API_Reference.htm#simconnect-priorities</a>
      */
     public AddClientEventToNotificationGroupRequest addClientEventToNotificationGroup(int notificationGroupID,
-            int clientEventID, boolean maskable) throws IOException {
+                                                                                      int clientEventID, boolean maskable) throws IOException {
         return write(new AddClientEventToNotificationGroupRequest(notificationGroupID, clientEventID, maskable));
     }
 
@@ -231,7 +232,7 @@ public class SimConnect {
      * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/General/SimConnect_SetNotificationGroupPriority.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/General/SimConnect_SetNotificationGroupPriority.htm</a>
      */
     public SetNotificationGroupPriorityRequest setNotificationGroupPriority(int notificationGroupID,
-            Priority priority) throws IOException {
+                                                                            Priority priority) throws IOException {
         return write(new SetNotificationGroupPriorityRequest(notificationGroupID, priority));
     }
 
@@ -247,67 +248,279 @@ public class SimConnect {
         return write(new ClearNotificationGroupRequest(notificationGroupID));
     }
 
+    /**
+     * The SimConnect_RequestNotificationGroup function is used to request events are transmitted from a notification
+     * group, when the simulation is in Dialog Mode.
+     *
+     * @param notificationGroupID Specifies the ID of the client defined input group that is to have all its events removed.
+     * @param reserved            Reserved for future use.
+     * @param flags               Reserved for future use.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RequestNotificationGroup.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RequestNotificationGroup.htm</a>
+     */
     public RequestNotificationGroupRequest requestNotificationGroup(int notificationGroupID, int reserved,
-            int flags) throws IOException {
+                                                                    int flags) throws IOException {
         return write(new RequestNotificationGroupRequest(notificationGroupID, reserved, flags));
     }
 
+    /**
+     * The SimConnect_AddToDataDefinition function is used to add a Microsoft Flight Simulator simulation variable name
+     * to a client defined object definition.
+     *
+     * @param defineID  Specifies the ID of the client defined data definition.
+     * @param datumName Specifies the name of the Microsoft Flight Simulator simulation variable. See the Simulation
+     *                  Variables documents for tables of variable names. If an index is required then it should be
+     *                  appended to the variable name following a colon, see the example for DEFINITION_2 below.
+     *                  Indexes are numbered from 1 (not zero). Simulation variable names are not case-sensitive
+     *                  (so can be entered in upper or lower case).
+     * @param unitsName Specifies the units of the variable. See Simulation Variable Units for tables of acceptable unit
+     *                  names. It is possible to specify different units to receive the data in, from those specified in
+     *                  the Simulation Variables document. The alternative units must come under the same heading (such
+     *                  as Angular Velocity, or Volume, as specified in the Units of Measurement section of the
+     *                  Simulation Variables document). For strings and structures enter "NULL" for this parameter.
+     * @param datumType One member of the SIMCONNECT_DATATYPE enumeration type. This parameter is used to determine
+     *                  what datatype should be used to return the data. The default is SIMCONNECT_DATATYPE_FLOAT64.
+     *                  Note that the structure data types are legitimate parameters here.
+     * @param epsilon   If data is requested only when it changes (see the flags parameter of
+     *                  SimConnect_RequestDataOnSimObject) a change will only be reported if it is greater than the
+     *                  value of this parameter (not greater than or equal to). The default is zero, so even the tiniest
+     *                  change will initiate the transmission of data. Set this value appropriately so insignificant
+     *                  changes are not transmitted. This can be used with integer data, the floating point fEpsilon
+     *                  value is first truncated to its integer component before the comparison is made (for example,
+     *                  an fEpsilon value of 2.9 truncates to 2, so a data change of 2 will not trigger a transmission,
+     *                  and a change of 3 will do so).
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_AddToDataDefinition.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_AddToDataDefinition.htm</a>
+     */
     public AddToDataDefinitionRequest addToDataDefinition(int defineID, String datumName, String unitsName,
-            DataType datumType, float epsilon) throws IOException {
+                                                          DataType datumType, float epsilon) throws IOException {
         return write(new AddToDataDefinitionRequest(defineID, datumName, unitsName, datumType, epsilon));
     }
 
+    /**
+     * The SimConnect_AddToDataDefinition function is used to add a Microsoft Flight Simulator simulation variable name
+     * to a client defined object definition.
+     *
+     * @param defineID  Specifies the ID of the client defined data definition.
+     * @param datumName Specifies the name of the Microsoft Flight Simulator simulation variable. See the Simulation
+     *                  Variables documents for tables of variable names. If an index is required then it should be
+     *                  appended to the variable name following a colon, see the example for DEFINITION_2 below.
+     *                  Indexes are numbered from 1 (not zero). Simulation variable names are not case-sensitive
+     *                  (so can be entered in upper or lower case).
+     * @param unitsName Specifies the units of the variable. See Simulation Variable Units for tables of acceptable unit
+     *                  names. It is possible to specify different units to receive the data in, from those specified in
+     *                  the Simulation Variables document. The alternative units must come under the same heading (such
+     *                  as Angular Velocity, or Volume, as specified in the Units of Measurement section of the
+     *                  Simulation Variables document). For strings and structures enter "NULL" for this parameter.
+     * @param datumType One member of the SIMCONNECT_DATATYPE enumeration type. This parameter is used to determine
+     *                  what datatype should be used to return the data. The default is SIMCONNECT_DATATYPE_FLOAT64.
+     *                  Note that the structure data types are legitimate parameters here.
+     * @param epsilon   If data is requested only when it changes (see the flags parameter of
+     *                  SimConnect_RequestDataOnSimObject) a change will only be reported if it is greater than the
+     *                  value of this parameter (not greater than or equal to). The default is zero, so even the tiniest
+     *                  change will initiate the transmission of data. Set this value appropriately so insignificant
+     *                  changes are not transmitted. This can be used with integer data, the floating point fEpsilon
+     *                  value is first truncated to its integer component before the comparison is made (for example,
+     *                  an fEpsilon value of 2.9 truncates to 2, so a data change of 2 will not trigger a transmission,
+     *                  and a change of 3 will do so).
+     * @param datumID   Specifies a client defined datum ID. The default is zero. Use this to identify the data received
+     *                  if the data is being returned in tagged format (see the flags parameter of
+     *                  SimConnect_RequestDataOnSimObject. There is no need to specify datum IDs if the data is not
+     *                  being returned in tagged format.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_AddToDataDefinition.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_AddToDataDefinition.htm</a>
+     */
     public AddToDataDefinitionRequest addToDataDefinition(int defineID, String datumName, String unitsName,
-            DataType datumType, float epsilon, int datumID) throws IOException {
+                                                          DataType datumType, float epsilon, int datumID) throws IOException {
         return write(new AddToDataDefinitionRequest(defineID, datumName, unitsName, datumType, epsilon, datumID));
     }
 
+    /**
+     * The SimConnect_ClearDataDefinition function is used to remove all simulation variables from a client defined data
+     * definition.
+     *
+     * @param dataDefinitionID Specifies the ID of the client defined data definition.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearDataDefinition.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearDataDefinition.htm</a>
+     */
     public ClearDataDefinitionRequest clearDataDefinition(int dataDefinitionID) throws IOException {
         return write(new ClearDataDefinitionRequest(dataDefinitionID));
     }
 
+    /**
+     * The SimConnect_RequestDataOnSimObject function is used to request when the SimConnect client is to receive data
+     * values for a specific object.
+     *
+     * @param dataRequestID    Specifies the ID of the client defined group.
+     * @param dataDefinitionID Specifies the ID of the client defined data definition.
+     * @param objectID         Specifies the ID of the Microsoft Flight Simulator object that the data should be about.
+     *                         This ID can be SIMCONNECT_OBJECT_ID_USER (to specify the user's aircraft) or obtained
+     *                         from a SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE structure after a call to
+     *                         SimConnect_RequestDataOnSimObjectType. Also refer to the note on developing clients for
+     *                         multiplayer mode in the Remarks section below.
+     * @param period           One member of the SIMCONNECT_PERIOD enumeration type, specifying how often the data is to
+     *                         be sent by the server and received by the client.
+     * @param dataRequestFlags A DWORD containing one or more of the values shown in the table below this one.
+     * @param origin           The number of Period events that should elapse before transmission of the data begins.
+     *                         The default is zero, which means transmissions will start immediately.
+     * @param interval         The number of Period events that should elapse between transmissions of the data. The
+     *                         default is zero, which means the data is transmitted every Period.
+     * @param limit            The number of times the data should be transmitted before this communication is ended.
+     *                         The default is zero, which means the data should be transmitted endlessly.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see DataRequestFlag
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RequestDataOnSimObject.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RequestDataOnSimObject.htm</a>
+     */
     public RequestDataOnSimObjectRequest requestDataOnSimObject(int dataRequestID, int dataDefinitionID, int objectID,
-            SimconnectPeriod period, int dataRequestFlags, int origin, int interval, int limit) throws IOException {
+                                                                SimconnectPeriod period, int dataRequestFlags, int origin, int interval, int limit) throws IOException {
         return write(new RequestDataOnSimObjectRequest(dataRequestID, dataDefinitionID, objectID, period,
                 dataRequestFlags, origin, interval, limit));
     }
 
+    /**
+     * The SimConnect_RequestDataOnSimObjectType function is used to retrieve information about simulation objects of a
+     * given type that are within a specified radius of the user's aircraft.
+     *
+     * @param requestID    Specifies the ID of the client defined request. This is used later by the client to identify
+     *                     which data has been received. This value should be unique for each request, re-using a
+     *                     RequestID will overwrite any previous request using the same ID.
+     * @param defineID     Specifies the ID of the client defined data definition.
+     * @param radiusMeters Double word containing the radius in meters. If this is set to zero only information on the
+     *                     user aircraft will be returned, although this value is ignored if type is set to
+     *                     SIMCONNECT_SIMOBJECT_TYPE_USER. The error SIMCONNECT_EXCEPTION_OUT_OF_BOUNDS will be returned
+     *                     if a radius is given and it exceeds the maximum allowed (200,000 meters, or 200 Km).
+     * @param type         Specifies the type of object to receive information on. One member of the
+     *                     SIMCONNECT_SIMOBJECT_TYPE enumeration type
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RequestDataOnSimObjectType.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RequestDataOnSimObjectType.htm</a>
+     */
     public RequestDataOnSimObjectTypeRequest requestDataOnSimObjectType(int requestID, int defineID, int radiusMeters,
-            SimObjectType type) throws IOException {
+                                                                        SimObjectType type) throws IOException {
         return write(new RequestDataOnSimObjectTypeRequest(requestID, defineID, radiusMeters, type));
     }
 
+    /**
+     * The SimConnect_SetDataOnSimObject function is used to make changes to the data properties of an object.
+     *
+     * @param dataDefinitionID Specifies the ID of the client defined data definition.
+     * @param objectID         Specifies the ID of the Microsoft Flight Simulator object that the data should be about.
+     *                         This ID can be SIMCONNECT_OBJECT_ID_USER (to specify the user's aircraft) or obtained from
+     *                         a SIMCONNECT_RECV_SIMOBJECT_DATA_BYTYPE structure after a call to
+     *                         SimConnect_RequestDataOnSimObjectType. Also refer to the note on "multiplayer mode" at
+     *                         the end of the remarks for SimConnect_RequestDataOnSimObject.
+     * @param dataSetFlag      Default or tagged format.
+     * @param arrayCount       Specifies the number of elements in the data array. A count of zero is interpreted as one
+     *                         element. Ensure that the data array has been initialized completely before transmitting it
+     *                         to Microsoft Flight Simulator. Failure to properly initialize all array elements may
+     *                         result in unexpected behavior.
+     * @param unitSize         Specifies the size of each element in the data array in bytes.
+     * @param data             Pointer to the data that is to be written. If the data is not in tagged format, this
+     *                         should point to the block of data. If the data is in tagged format this should point to
+     *                         the first tag name (datumID), which is always four bytes long, which should be followed
+     *                         by the data itself. Any number of tag name/value pairs can be specified this way, the
+     *                         server will use the cbUnitSize parameter to determine how much data has been sent.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetDataOnSimObject.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetDataOnSimObject.htm</a>
+     */
     public SetDataOnSimObjectRequest setDataOnSimObject(int dataDefinitionID, int objectID, DataSetFlag dataSetFlag,
-            int arrayCount, int unitSize, byte[] data) throws IOException {
+                                                        int arrayCount, int unitSize, byte[] data) throws IOException {
         return write(new SetDataOnSimObjectRequest(dataDefinitionID, objectID, dataSetFlag, arrayCount, unitSize, data));
     }
 
-    public SetInputGroupPriorityRequest setInputGroupPriority(int groupID, int priority) throws IOException {
+    /**
+     * The SimConnect_SetInputGroupPriority function is used to set the priority for a specified input group object.
+     *
+     * @param groupID  Specifies the ID of the client defined input group that the priority setting is to apply to.
+     * @param priority Specifies the priority setting for the input group. See the explanation of SimConnect Priorities.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetInputGroupPriority.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetInputGroupPriority.htm</a>
+     */
+    public SetInputGroupPriorityRequest setInputGroupPriority(int groupID, Priority priority) throws IOException {
         return write(new SetInputGroupPriorityRequest(groupID, priority));
     }
 
+    /**
+     * The SimConnect_RemoveInputEvent function is used to remove an input event from a specified input group object.
+     *
+     * @param groupID         Specifies the ID of the client defined input group from which the event is to be removed.
+     * @param inputDefinition String containing the input definition.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RemoveInputEvent.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RemoveInputEvent.htm</a>
+     */
     public RemoveInputEventRequest removeInputEvent(int groupID, String inputDefinition) throws IOException {
         return write(new RemoveInputEventRequest(groupID, inputDefinition));
     }
 
+    /**
+     * The SimConnect_ClearInputGroup function is used to remove all the input events from a specified input group object.
+     *
+     * @param groupID Specifies the ID of the client defined input group that is to have all its events removed.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearInputGroup.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearInputGroup.htm</a>
+     */
     public ClearInputGroupRequest clearInputGroup(int groupID) throws IOException {
         return write(new ClearInputGroupRequest(groupID));
     }
 
-    public SetInputGroupStateRequest SetInputGroupState(int groupID, int state) throws IOException {
+    /**
+     * The SimConnect_SetInputGroupState function is used to turn requests for input event information from the server
+     * on and off.
+     *
+     * @param groupID Specifies the ID of the client defined input group that is to have its state changed.
+     * @param state   Double word containing the new state. One member of the SIMCONNECT_STATE enumeration type.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetInputGroupState.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetInputGroupState.htm</a>
+     * @see State
+     */
+    public SetInputGroupStateRequest SetInputGroupState(int groupID, State state) throws IOException {
         return write(new SetInputGroupStateRequest(groupID, state));
     }
 
+    /**
+     * The SimConnect_RequestReservedKey function is used to request a specific keyboard TAB-key combination applies
+     * only to this client.
+     *
+     * @param eventID    Specifies the client defined event ID.
+     * @param keyChoice1 String containing the first key choice. Refer to the list below for all the choices that can
+     *                   be entered for these three parameters.
+     * @param keyChoice2 String containing the second key choice.
+     * @param keyChoice3 String containing the third key choice.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RequestReservedKey.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RequestReservedKey.htm</a>
+     */
     public RequestReservedKeyRequest requestReservedKey(int eventID, String keyChoice1, String keyChoice2,
-            String keyChoice3) throws IOException {
+                                                        String keyChoice3) throws IOException {
         return write(new RequestReservedKeyRequest(eventID, keyChoice1, keyChoice2, keyChoice3));
     }
 
+    /**
+     * The SimConnect_SubscribeToSystemEvent function is used to request that a specific system event is notified to
+     * the client.
+     *
+     * @param eventID   Specifies the ID of the client event.
+     * @param eventName The string name for the requested system event (note that the event names are not
+     *                  case-sensitive). Unless otherwise stated in the Description,
+     *                  notifications of the event are returned in a SIMCONNECT_RECV_EVENT structure (identify the event
+     *                  from the EventID given with this function).
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SubscribeToSystemEvent.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SubscribeToSystemEvent.htm</a>
+     */
     public SubscribeToSystemEventRequest subscribeToSystemEvent(int eventID,
-            SystemEventName eventName) throws IOException {
+                                                                SystemEventName eventName) throws IOException {
         return write(new SubscribeToSystemEventRequest(eventID, eventName));
     }
 
+    /**
+     * The SimConnect_SubscribeToSystemEvent function is used to request that a specific system event is notified to
+     * the client.
+     *
+     * @param eventID   Specifies the ID of the client event.
+     * @param eventName The system event. Unless otherwise stated in the Description,
+     *                  notifications of the event are returned in a SIMCONNECT_RECV_EVENT structure (identify the event
+     *                  from the EventID given with this function).
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SubscribeToSystemEvent.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SubscribeToSystemEvent.htm</a>
+     */
     public SubscribeToSystemEventRequest subscribeToSystemEvent(int eventID, String eventName) throws IOException {
         return write(new SubscribeToSystemEventRequest(eventID, eventName));
     }
@@ -324,24 +537,24 @@ public class SimConnect {
     }
 
     public AICreateParkedATCAircraftRequest aiCreateParkedATCAircraft(String containerTitle, String tailNumber,
-            String airportIcaoID, int requestID) throws IOException {
+                                                                      String airportIcaoID, int requestID) throws IOException {
         return write(new AICreateParkedATCAircraftRequest(containerTitle, tailNumber, airportIcaoID, requestID));
     }
 
     public AICreateEnrouteATCAircraftRequest aiCreateEnrouteATCAircraft(String containerTitle, String tailNumber,
-            int flightNumber, String flightPlanPath, float flightPlanPosition, boolean touchAndGo,
-            int requestID) throws IOException {
+                                                                        int flightNumber, String flightPlanPath, float flightPlanPosition, boolean touchAndGo,
+                                                                        int requestID) throws IOException {
         return write(new AICreateEnrouteATCAircraftRequest(containerTitle, tailNumber, flightNumber, flightPlanPath,
                 flightPlanPosition, touchAndGo, requestID));
     }
 
     public AICreateNonATCAircraftRequest aiCreateNonATCAircraft(String containerTitle, String tailNumber,
-            InitPosition initPosition, int requestID) throws IOException {
+                                                                InitPosition initPosition, int requestID) throws IOException {
         return write(new AICreateNonATCAircraftRequest(containerTitle, tailNumber, initPosition, requestID));
     }
 
     public AICreateSimulatedObjectRequest aiCreateSimulatedObject(String containerTitle, InitPosition initPosition,
-            int requestID) throws IOException {
+                                                                  int requestID) throws IOException {
         return write(new AICreateSimulatedObjectRequest(containerTitle, initPosition, requestID));
     }
 
@@ -354,12 +567,12 @@ public class SimConnect {
     }
 
     public AISetAircraftFlightPlanRequest aiSetAircraftFlightPlan(int objectID, String flightPlanPath,
-            int requestID) throws IOException {
+                                                                  int requestID) throws IOException {
         return write(new AISetAircraftFlightPlanRequest(objectID, flightPlanPath, requestID));
     }
 
     public CameraSetRelative6DofRequest cameraSetRelative6DOF(float deltaX, float deltaY, float deltaZ, float pitchDeg,
-            float bankDeg, float headingDeg) throws IOException {
+                                                              float bankDeg, float headingDeg) throws IOException {
         return write(new CameraSetRelative6DofRequest(deltaX, deltaY, deltaZ, pitchDeg, bankDeg, headingDeg));
     }
 
@@ -391,22 +604,22 @@ public class SimConnect {
     }
 
     public SetSystemStateRequest setSystemState(String state, int intParam, float floatParam,
-            String stringParam) throws IOException {
+                                                String stringParam) throws IOException {
         return write(new SetSystemStateRequest(state, intParam, floatParam, stringParam));
     }
 
     public MapClientDataNameToIDRequest mapClientDataNameToID(String clientDataName,
-            int clientDataID) throws IOException {
+                                                              int clientDataID) throws IOException {
         return write(new MapClientDataNameToIDRequest(clientDataName, clientDataID));
     }
 
     public CreateClientDataRequest createClientData(int clientDataID, int dataSize,
-            boolean readonly) throws IOException {
+                                                    boolean readonly) throws IOException {
         return write(new CreateClientDataRequest(clientDataID, dataSize, readonly));
     }
 
     public AddToClientDataDefinitionRequest addToClientDataDefinition(int defineID, int offset, int sizeOrType,
-            float epsilon, int datumID) throws IOException {
+                                                                      float epsilon, int datumID) throws IOException {
         return write(new AddToClientDataDefinitionRequest(defineID, offset, sizeOrType, epsilon, datumID));
     }
 
@@ -415,13 +628,13 @@ public class SimConnect {
     }
 
     public RequestClientDataRequest requestClientData(int clientDataID, int requestID, int defineID,
-            SimconnectPeriod period, int flags, int origin, int interval, int limit) throws IOException {
+                                                      SimconnectPeriod period, int flags, int origin, int interval, int limit) throws IOException {
         return write(new RequestClientDataRequest(clientDataID, requestID, defineID, period, flags, origin, interval,
                 limit));
     }
 
     public SetClientDataDefinitionRequest setClientDataDefinition(int clientDataID, int defineID, boolean tagged,
-            int reserved, int dataSize, byte[] data) throws IOException {
+                                                                  int reserved, int dataSize, byte[] data) throws IOException {
         return write(new SetClientDataDefinitionRequest(clientDataID, defineID, tagged, reserved, dataSize, data));
     }
 
@@ -430,7 +643,7 @@ public class SimConnect {
     }
 
     public FlightSaveRequest flightSave(String filename, String title, String description,
-            int flags) throws IOException {
+                                        int flags) throws IOException {
         return write(new FlightSaveRequest(filename, title, description, flags));
     }
 
@@ -439,7 +652,7 @@ public class SimConnect {
     }
 
     public SubscribeToFacilitiesRequest subscribeToFacilities(FacilityListType facilityListType,
-            int requestId) throws IOException {
+                                                              int requestId) throws IOException {
         return write(new SubscribeToFacilitiesRequest(facilityListType, requestId));
     }
 
@@ -466,7 +679,7 @@ public class SimConnect {
      * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm</a>
      */
     public RequestFacilitesListRequest requestFacilitiesList(FacilityListType facilityListType,
-            int requestId) throws IOException {
+                                                             int requestId) throws IOException {
         return write(new RequestFacilitesListRequest(facilityListType, requestId));
     }
 
@@ -512,7 +725,7 @@ public class SimConnect {
      * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/Event_IDs/Event_IDs.htm">https://docs.flightsimulator.com/html/Programming_Tools/Event_IDs/Event_IDs.htm</a>
      */
     public TransmitClientEventEx1Request transmitClientEventEx1(int objectID, int eventID, Priority priority,
-            int eventFlag, int data0, int data1, int data2, int data3, int data4) throws IOException {
+                                                                int eventFlag, int data0, int data1, int data2, int data3, int data4) throws IOException {
         return write(new TransmitClientEventEx1Request(objectID, eventID, priority, eventFlag, data0, data1, data2,
                 data3, data4));
     }
@@ -522,12 +735,12 @@ public class SimConnect {
     }
 
     public RequestFacilityDataRequest RequestFacilityData(int defineID, int requestID, String icao,
-            String region) throws IOException {
+                                                          String region) throws IOException {
         return write(new RequestFacilityDataRequest(defineID, requestID, icao, region));
     }
 
     public SubscribeToFacilitiesEx1Request subscribeToFacilitiesEx1(FacilityListType type, int newElemInRangeRequestID,
-            int oldElemOutRangeRequestID) throws IOException {
+                                                                    int oldElemOutRangeRequestID) throws IOException {
         return write(new SubscribeToFacilitiesEx1Request(type, newElemInRangeRequestID, oldElemOutRangeRequestID));
     }
 
@@ -541,17 +754,17 @@ public class SimConnect {
      * @return The Object that represents the message that was sent to the simulator.
      */
     public UnsubscribeToFacilitiesEx1Request unsubscribeToFacilitiesEx1(FacilityListType type,
-            boolean unsubscribeNewInRange, boolean unsubscribeOldOutRange) throws IOException {
+                                                                        boolean unsubscribeNewInRange, boolean unsubscribeOldOutRange) throws IOException {
         return write(new UnsubscribeToFacilitiesEx1Request(type, unsubscribeNewInRange, unsubscribeOldOutRange));
     }
 
     public RequestFacilitiesListEx1Request requestFacilitiesListEx1(FacilityListType type,
-            int requestID) throws IOException {
+                                                                    int requestID) throws IOException {
         return write(new RequestFacilitiesListEx1Request(type, requestID));
     }
 
     public RequestFacilityDataEx1Request requestFacilityDataEx1(int defineID, int requestID, String icao, String region,
-            RequestFacilityDataEx1Request.FacilityType type) throws IOException {
+                                                                RequestFacilityDataEx1Request.FacilityType type) throws IOException {
         return write(new RequestFacilityDataEx1Request(defineID, requestID, icao, region, type));
     }
 
@@ -564,7 +777,7 @@ public class SimConnect {
     }
 
     public MapInputEventToClientEventEx1Request mapInputEventToClientEventEx1(int groupID, String inputDefinition,
-            int downEventID, int downValue, int upEventID, int upValue, boolean bMaskable) throws IOException {
+                                                                              int downEventID, int downValue, int upEventID, int upValue, boolean bMaskable) throws IOException {
         return write(new MapInputEventToClientEventEx1Request(groupID, inputDefinition, downEventID, downValue,
                 upEventID, upValue, bMaskable));
     }
@@ -618,7 +831,7 @@ public class SimConnect {
      * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_AddFacilityDataDefinitionFilter.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_AddFacilityDataDefinitionFilter.htm</a>
      */
     public AddFacilityDataDefinitionFilterRequest addFacilityDataDefinitionFilter(int defineID, String filterPath,
-            byte[] filterData) throws IOException {
+                                                                                  byte[] filterData) throws IOException {
         return write(new AddFacilityDataDefinitionFilterRequest(defineID, filterPath, filterData));
     }
 
