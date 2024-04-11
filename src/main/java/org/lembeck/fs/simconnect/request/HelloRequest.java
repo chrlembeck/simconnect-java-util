@@ -1,6 +1,7 @@
 package org.lembeck.fs.simconnect.request;
 
 import org.lembeck.fs.simconnect.SimUtil;
+
 import java.nio.ByteBuffer;
 
 public class HelloRequest extends SimRequest {
@@ -10,12 +11,33 @@ public class HelloRequest extends SimRequest {
      */
     public static final int TYPE_ID = 0xf0000001;
 
+    /**
+     * Major version of the current simconnect client.
+     */
     public final int MAJOR_VERSION = 11;
+    /**
+     * Minor version of the current simconnect client.
+     */
     public final int MINOR_VERSION = 0;
+
+    /**
+     * Major build version of the current simconnect client.
+     */
     public final int MAJOR_BUILD_VERSION = 62651;
+
+    /**
+     * Minor build version of the current simconnect client.
+     */
     public final int MINOR_BUILD_VERSION = 3;
 
+    /**
+     * Magic key for FSX.
+     */
     public static final int MAGIC_FSX = (byte) 'F' << 24 | (byte) 'S' << 16 | (byte) 'X' << 8 | 0;
+
+    /**
+     * Magic key for FS 2020.
+     */
     public final int MAGIC_FS2020 = 0x4b4b00;
 
     private final String name;

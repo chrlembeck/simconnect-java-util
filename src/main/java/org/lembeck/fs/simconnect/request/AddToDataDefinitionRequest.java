@@ -18,6 +18,9 @@ public class AddToDataDefinitionRequest extends SimRequest {
      */
     public static final int TYPE_ID = 0xf000000c;
 
+    /**
+     * Specifies the unused datumID.
+     */
     public static final int UNUSED = 0xffffffff;
 
     private final int defineID;

@@ -32,11 +32,11 @@ public class SubscribeToSystemEventRequest extends SimRequest {
      * The SimConnect_SubscribeToSystemEvent function is used to request that a specific system event is notified to
      * the client.
      *
-     * @param eventName Specifies the ID of the client event.
-     * @param eventName The string name for the requested system event (note that the event names are not
-     *                  case-sensitive). Unless otherwise stated in the Description, notifications of the event are
-     *                  returned in a SIMCONNECT_RECV_EVENT structure (identify the event from the EventID given with
-     *                  this function).
+     * @param clientEventID Specifies the ID of the client event.
+     * @param eventName     The string name for the requested system event (note that the event names are not
+     *                      case-sensitive). Unless otherwise stated in the Description, notifications of the event are
+     *                      returned in a SIMCONNECT_RECV_EVENT structure (identify the event from the EventID given
+     *                      with this function).
      * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SubscribeToSystemEvent.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SubscribeToSystemEvent.htm</a>
      */
     public SubscribeToSystemEventRequest(int clientEventID, String eventName) {

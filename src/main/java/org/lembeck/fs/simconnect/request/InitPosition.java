@@ -4,16 +4,30 @@ import java.nio.ByteBuffer;
 
 public class InitPosition {
 
+    /**
+     * The aircraft's design cruising speed.
+     */
     public static final int INITPOSITION_AIRSPEED_CRUISE = -1;
+
+    /**
+     * Maintain the current airspeed.
+     */
     public static final int INITPOSITION_AIRSPEED_KEEP = -2;
 
     private final double latitude;
+
     private final double longitude;
+
     private final double altitude;
+
     private final double pitch;
+
     private final double bank;
+
     private final double heading;
+
     private final boolean onGround;
+
     private final int airspeed;
 
     InitPosition(ByteBuffer buffer) {

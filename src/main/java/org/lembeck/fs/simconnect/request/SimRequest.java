@@ -4,14 +4,29 @@ import java.nio.ByteBuffer;
 
 import static org.lembeck.fs.simconnect.SimUtil.SIMCONNECT_PROTOCOL_FS2020;
 
+/**
+ * Superclass of all requests that can be sent to the simulator using the simconnect interface.
+ */
 public abstract class SimRequest {
 
+    /**
+     * Size of the request in bytes.
+     */
     protected int size = -1;
 
+    /**
+     * Used protocol version of the conversation.
+     */
     protected final int version;
 
+    /**
+     * Type of the request.
+     */
     protected final int typeID;
 
+    /**
+     * Unique identifier of the request.
+     */
     protected int identifier;
 
     SimRequest(int size, int version, int typeID, int identifier) {
@@ -28,28 +43,59 @@ public abstract class SimRequest {
                 buffer.getInt()); // identifier
     }
 
-    public SimRequest(int typeID) {
+    /**
+     * Creates a new SimRequest object of the given type.
+     *
+     * @param typeID Type of the request.
+     */
+    protected SimRequest(int typeID) {
         this.typeID = typeID;
         this.version = SIMCONNECT_PROTOCOL_FS2020;
     }
 
+    /**
+     * Returns the size of this request in bytes.
+     *
+     * @return Size of this request in bytes.
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Returns the protocol version of the conversation.
+     *
+     * @return Used protocol version of the conversation.
+     */
     public int getVersion() {
         return version;
     }
 
+    /**
+     * Returns the type id of this request.
+     *
+     * @return Type id of this request.
+     */
     public int getTypeID() {
         return typeID;
     }
 
+    /**
+     * Returns the unique identifier of this request.
+     *
+     * @return Unique identifier of this request.
+     */
     public int getIdentifier() {
         return identifier;
     }
 
-    public static SimRequest parseRequest(int size, ByteBuffer buffer) {
+    /**
+     * Reads the next request out of the given byte buffer and transforms it into a specific SimRequest object.
+     *
+     * @param buffer The buffer to read the bytes of the request from.
+     * @return SimRequest object representing the type and content of the request.
+     */
+    public static SimRequest parseRequest(ByteBuffer buffer) {
         int typeId = buffer.getInt(8);
         return switch (typeId) {
             case 0xf0000001 -> new HelloRequest(buffer);
@@ -150,6 +196,12 @@ public abstract class SimRequest {
      */
     protected abstract void writeRequest(ByteBuffer outBuffer);
 
+    /**
+     * Updates the unique identifier of this request. The method will be called, when the message is sent to the
+     * simulator.
+     *
+     * @param identifier The new unique identifier.
+     */
     public void setIdentifier(int identifier) {
         this.identifier = identifier;
     }

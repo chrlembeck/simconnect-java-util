@@ -2,6 +2,7 @@ package org.lembeck.fs.simconnect.proxy;
 
 import org.lembeck.fs.simconnect.request.SimRequest;
 import org.lembeck.fs.simconnect.response.SimResponse;
+
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.ByteBuffer;
@@ -66,7 +67,7 @@ public class ChannelConnector implements Runnable {
                 buffer.position(0);
                 buffer.mark();
                 if (direction == Direction.REQUEST) {
-                    SimRequest request = SimRequest.parseRequest(size, buffer);
+                    SimRequest request = SimRequest.parseRequest(buffer);
                     synchronized (debugStream) {
                         debugStream.println(request);
                     }
