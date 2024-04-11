@@ -2,6 +2,11 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_RemoveClientEvent function is used to remove a client defined event from a notification group.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RemoveClientEvent.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RemoveClientEvent.htm</a>
+ */
 public class RemoveClientEventRequest extends SimRequest {
 
     /**
@@ -19,6 +24,13 @@ public class RemoveClientEventRequest extends SimRequest {
         clientEventID = buffer.getInt();
     }
 
+    /**
+     * The SimConnect_RemoveClientEvent function is used to remove a client defined event from a notification group.
+     *
+     * @param notificationGroupID Specifies the ID of the client defined group.
+     * @param clientEventID       Specifies the ID of the client defined event ID that is to be removed from the group.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RemoveClientEvent.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_RemoveClientEvent.htm</a>
+     */
     public RemoveClientEventRequest(int notificationGroupID, int clientEventID) {
         super(TYPE_ID);
         this.notificationGroupID = notificationGroupID;
@@ -31,10 +43,19 @@ public class RemoveClientEventRequest extends SimRequest {
         outBuffer.putInt(clientEventID);
     }
 
+    /**
+     * Returns the ID of the client defined group.
+     *
+     * @return ID of the client defined group.
+     */
     public int getNotificationGroupID() {
         return notificationGroupID;
     }
 
+    /**
+     * Returns the ID of the client defined event ID that is to be removed from the group.
+     * @return ID of the client defined event ID that is to be removed from the group.
+     */
     public int getClientEventID() {
         return clientEventID;
     }

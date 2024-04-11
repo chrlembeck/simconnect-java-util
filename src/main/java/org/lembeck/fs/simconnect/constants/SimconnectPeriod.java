@@ -1,5 +1,9 @@
 package org.lembeck.fs.simconnect.constants;
 
+/**
+ * The SIMCONNECT_PERIOD enumeration type is used with the SimConnect_RequestDataOnSimObject call to specify how often
+ * data is to be sent to the client.
+ */
 public enum SimconnectPeriod {
 
 
@@ -29,8 +33,17 @@ public enum SimconnectPeriod {
      */
     SECOND,
 
+    /**
+     * Specified an unknown period (should not be used).
+     */
     UNKNOWN;
 
+    /**
+     * Returns the simconnect period specified by the given identifier.
+     *
+     * @param id The identifier of the period.
+     * @return Simconnect period specified by the given identifier.
+     */
     public static SimconnectPeriod ofId(int id) {
         return switch (id) {
             case 0 -> NEVER;

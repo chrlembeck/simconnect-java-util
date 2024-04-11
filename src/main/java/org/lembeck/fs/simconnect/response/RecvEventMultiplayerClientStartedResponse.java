@@ -4,7 +4,13 @@ import java.nio.ByteBuffer;
 
 import static org.lembeck.fs.simconnect.SimUtil.UNKNOWN_GROUP;
 
+
+/**
+ * The SIMCONNECT_RECV_EVENT_MULTIPLAYER_CLIENT_STARTED structure is sent to a client when they have successfully joined
+ * a multi-player race.
+ */
 public class RecvEventMultiplayerClientStartedResponse extends RecvEventResponse {
+
     RecvEventMultiplayerClientStartedResponse(ByteBuffer buffer) {
         super(buffer);
     }

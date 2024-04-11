@@ -2,6 +2,12 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_UnsubscribeFromSystemEvent function is used to request that notifications are no longer received for
+ * the specified system event.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_UnsubscribeFromSystemEvent.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_UnsubscribeFromSystemEvent.htm</a>
+ */
 public class UnsubscribeFromSystemEventRequest extends SimRequest {
 
     /**
@@ -16,6 +22,12 @@ public class UnsubscribeFromSystemEventRequest extends SimRequest {
         this.clientEventID = buffer.getInt();
     }
 
+    /**
+     * The SimConnect_UnsubscribeFromSystemEvent function is used to request that notifications are no longer received
+     * for the specified system event.
+     *
+     * @param clientEventID Specifies the ID of the client event.
+     */
     public UnsubscribeFromSystemEventRequest(int clientEventID) {
         super(TYPE_ID);
         this.clientEventID = clientEventID;
@@ -26,6 +38,11 @@ public class UnsubscribeFromSystemEventRequest extends SimRequest {
         outBuffer.putInt(clientEventID);
     }
 
+    /**
+     * Returns the ID of the client event.
+     *
+     * @return ID of the client event.
+     */
     public int getClientEventID() {
         return clientEventID;
     }

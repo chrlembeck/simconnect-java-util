@@ -7,7 +7,14 @@ import java.nio.ByteBuffer;
  */
 public class RecvAssignedObjectIdResponse extends SimResponse {
 
+    /**
+     * Double word containing the client defined request ID.
+     */
     private final int requestId;
+
+    /**
+     * Double word containing the server defined object ID.
+     */
     private final int objectId;
 
     RecvAssignedObjectIdResponse(ByteBuffer buffer) {
@@ -16,10 +23,20 @@ public class RecvAssignedObjectIdResponse extends SimResponse {
         objectId = buffer.getInt();
     }
 
+    /**
+     * Returns the Double word containing the client defined request ID.
+     *
+     * @return Double word containing the client defined request ID.
+     */
     public int getRequestId() {
         return requestId;
     }
 
+    /**
+     * Returns the Double word containing the server defined object ID.
+     *
+     * @return Double word containing the server defined object ID.
+     */
     public int getObjectId() {
         return objectId;
     }

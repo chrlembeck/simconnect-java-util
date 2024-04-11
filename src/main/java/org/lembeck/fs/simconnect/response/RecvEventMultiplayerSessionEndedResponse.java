@@ -4,7 +4,12 @@ import java.nio.ByteBuffer;
 
 import static org.lembeck.fs.simconnect.SimUtil.UNKNOWN_GROUP;
 
+/**
+ * The SIMCONNECT_RECV_EVENT_MULTIPLAYER_SESSION_ENDED structure is sent to a client when they have requested to leave
+ * a race, or to all players when the session is terminated by the host.
+ */
 public class RecvEventMultiplayerSessionEndedResponse extends RecvEventResponse {
+
     RecvEventMultiplayerSessionEndedResponse(ByteBuffer buffer) {
         super(buffer);
     }

@@ -1,9 +1,61 @@
 package org.lembeck.fs.simconnect.constants;
 
+/**
+ * Enumeration of the possible runway designators.
+ */
 public enum RunwayDesignator {
 
-    NONE, LEFT, RIGHT, CENTER, WATER, A, B, LAST, UNKNOWN;
+    /**
+     * Runway has no specific designator.
+     */
+    NONE,
 
+    /**
+     * Left runway.
+     */
+    LEFT,
+
+    /**
+     * Right runway.
+     */
+    RIGHT,
+
+    /**
+     * Center runway.
+     */
+    CENTER,
+
+    /**
+     * Water runway.
+     */
+    WATER,
+
+    /**
+     * Runway A.
+     */
+    A,
+
+    /**
+     * Runway B.
+     */
+    B,
+
+    /**
+     * Last runway.
+     */
+    LAST,
+
+    /**
+     * Unknown runway designator.
+     */
+    UNKNOWN;
+
+    /**
+     * Returns the runway designator specified by the given identifier.
+     *
+     * @param id Identifier of the runway designator.
+     * @return The runway designator specified by the given identifier.
+     */
     public static RunwayDesignator ofId(int id) {
         return switch (id) {
             case 0 -> NONE;
@@ -18,6 +70,11 @@ public enum RunwayDesignator {
         };
     }
 
+    /**
+     * Returns a short name of the runway designator.
+     *
+     * @return Short name of the designator (like 'L' for left...).
+     */
     public String getShortName() {
         return switch (this) {
             case A -> "A";

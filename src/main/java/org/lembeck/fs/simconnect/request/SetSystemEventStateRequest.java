@@ -3,6 +3,12 @@ package org.lembeck.fs.simconnect.request;
 import org.lembeck.fs.simconnect.constants.State;
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_SetSystemEventState function is used to turn requests for event information from the server on and
+ * off.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetSystemEventState.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetSystemEventState.htm</a>
+ */
 public class SetSystemEventStateRequest extends SimRequest {
 
     /**
@@ -18,6 +24,14 @@ public class SetSystemEventStateRequest extends SimRequest {
         state = State.ofId(buffer.getInt());
     }
 
+    /**
+     * The SimConnect_SetSystemEventState function is used to turn requests for event information from the server on and
+     * off.
+     *
+     * @param clientEventID Specifies the ID of the client event that is to have its state changed.
+     * @param state         Double word containing the state (one member of SIMCONNECT_STATE).
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetSystemEventState.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_SetSystemEventState.htm</a>
+     */
     public SetSystemEventStateRequest(int clientEventID, State state) {
         super(TYPE_ID);
         this.clientEventID = clientEventID;
@@ -30,10 +44,20 @@ public class SetSystemEventStateRequest extends SimRequest {
         outBuffer.putInt(state.ordinal());
     }
 
+    /**
+     * Returns the ID of the client event that is to have its state changed.
+     *
+     * @return ID of the client event that is to have its state changed.
+     */
     public int getClientEventID() {
         return clientEventID;
     }
 
+    /**
+     * Returns the double word containing the state (one member of SIMCONNECT_STATE).
+     *
+     * @return Double word containing the state (one member of SIMCONNECT_STATE).
+     */
     public State getState() {
         return state;
     }

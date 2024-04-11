@@ -3,6 +3,12 @@ package org.lembeck.fs.simconnect.request;
 import org.lembeck.fs.simconnect.constants.FacilityListType;
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_RequestFacilitesList function is used to request a list of all the facilities of a given type
+ * currently in the world, or within a radius of the aircraft depending on the requested type.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm</a>
+ */
 public class RequestFacilitesListRequest extends SimRequest {
 
     /**
@@ -19,6 +25,14 @@ public class RequestFacilitesListRequest extends SimRequest {
         dataRequestId = buffer.getInt();
     }
 
+    /**
+     * The SimConnect_RequestFacilitesList function is used to request a list of all the facilities of a given type
+     * currently in the world, or within a radius of the aircraft depending on the requested type.
+     *
+     * @param facilityListType Specifies one member of the SIMCONNECT_FACILITY_LIST_TYPE enumeration type.
+     * @param requestId        Specifies the client defined request ID. This will be returned along with the data.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestFacilitesList.htm</a>
+     */
     public RequestFacilitesListRequest(FacilityListType facilityListType, int requestId) {
         super(TYPE_ID);
         this.dataRequestId = requestId;
@@ -31,10 +45,19 @@ public class RequestFacilitesListRequest extends SimRequest {
         outBuffer.putInt(dataRequestId);
     }
 
+    /**
+     * Returns one member of the SIMCONNECT_FACILITY_LIST_TYPE enumeration type.
+     *
+     * @return Member of the SIMCONNECT_FACILITY_LIST_TYPE enumeration type.
+     */
     public FacilityListType getFacilityListType() {
         return facilityListType;
     }
 
+    /**
+     * Returns the client defined request ID.
+     * @return The client defined request ID.
+     */
     public int getDataRequestId() {
         return dataRequestId;
     }

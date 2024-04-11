@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 public class ReadAllFacilities {
 
-    public String hostname = "localhost";
+    private final String hostname = "localhost";
 
-    public int port = 26010;
+    private final int port = 26010;
 
     private final SimConnect simConnect = new SimConnect();
 
@@ -26,7 +26,7 @@ public class ReadAllFacilities {
         new ReadAllFacilities().run();
     }
 
-    public void run() throws IOException {
+    private void run() throws IOException {
         simConnect.getRequestReceiver().addAirportListHandler(this::handleAirports);
         simConnect.getRequestReceiver().addWaypointListHandler(this::handleWaypoints);
         simConnect.getRequestReceiver().addNdbListHandler(this::handleNDBs);
@@ -43,7 +43,7 @@ public class ReadAllFacilities {
         simConnect.subscribeToFacilities(FacilityListType.VOR, 7);
     }
 
-    public void handleAirports(RecvAirportListResponse response) {
+    private void handleAirports(RecvAirportListResponse response) {
         Arrays.stream(response.getAirportList()).forEach(airports::add);
         if (response.getEntryNumber() == response.getOutOf() - 1) {
             System.out.println(airports.stream().map(FacilityAirport::getIcao).sorted().collect(Collectors.joining(", ")));

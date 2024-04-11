@@ -1,42 +1,188 @@
 package org.lembeck.fs.simconnect.constants;
 
+/**
+ * The type of pavement used by the runway.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_AddToFacilityDefinition.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_AddToFacilityDefinition.htm</a>
+ */
 public enum RunwaySurface {
 
+    /**
+     * Specifies the runways surface to be concrete.
+     */
     CONCRETE,
+
+    /**
+     * Specifies the runways surface to be grass.
+     */
     GRASS,
+
+    /**
+     * Specifies the runways surface to be water.
+     */
     WATER_FSX,
+
+    /**
+     * Specifies the runways surface to be bumpy grass.
+     */
     GRASS_BUMPY,
+
+    /**
+     * Specifies the runways surface to be asphalt.
+     */
     ASPHALT,
+
+    /**
+     * Specifies the runways surface to be short grass.
+     */
     SHORT_GRASS,
+
+    /**
+     * Specifies the runways surface to be long grass.
+     */
     LONG_GRASS,
+
+    /**
+     * Specifies the runways surface to be hard turf.
+     */
     HARD_TURF,
+
+    /**
+     * Specifies the runways surface to be snow.
+     */
     SNOW,
+
+    /**
+     * Specifies the runways surface to be ice.
+     */
     ICE,
+
+    /**
+     * Specifies the runways surface to be urban.
+     */
     URBAN,
+
+    /**
+     * Specifies the runways surface to be forest.
+     */
     FOREST,
+
+    /**
+     * Specifies the runways surface to be dirt.
+     */
     DIRT,
+
+    /**
+     * Specifies the runways surface to be coral.
+     */
     CORAL,
+
+    /**
+     * Specifies the runways surface to be gravel.
+     */
     GRAVEL,
+
+    /**
+     * Specifies the runways surface to be oil treated.
+     */
     OIL_TREATED,
+
+    /**
+     * Specifies the runways surface to be steel mats.
+     */
     STEEL_MATS,
+
+    /**
+     * Specifies the runways surface to be bituminous.
+     */
     BITUMINUS,
+
+    /**
+     * Specifies the runways surface to be brick.
+     */
     BRICK,
+
+    /**
+     * Specifies the runways surface to be macadam.
+     */
     MACADAM,
+
+    /**
+     * Specifies the runways surface to be planks.
+     */
     PLANKS,
+
+    /**
+     * Specifies the runways surface to be sand.
+     */
     SAND,
+
+    /**
+     * Specifies the runways surface to be shale.
+     */
     SHALE,
+
+    /**
+     * Specifies the runways surface to be tarmac.
+     */
     TARMAC,
+
+    /**
+     * Specifies the runways surface to be wright flyer track.
+     */
     WRIGHT_FLYER_TRACK,
+
+    /**
+     * Specifies the runways surface to be an ocean.
+     */
     OCEAN,
+
+    /**
+     * Specifies the runways surface to be water.
+     */
     WATER,
+
+    /**
+     * Specifies the runways surface to be a pond.
+     */
     POND,
+
+    /**
+     * Specifies the runways surface to be a lake.
+     */
     LAKE,
+
+    /**
+     * Specifies the runways surface to be a river.
+     */
     RIVER,
+
+    /**
+     * Specifies the runways surface to be waste water.
+     */
     WASTE_WATER,
+
+    /**
+     * Specifies the runways surface to be paint.
+     */
     PAINT,
+
+    /**
+     * Specifies the runways surface to be unknown.
+     */
     UNKNOWN,
+
+    /**
+     * Specifies the runways surface to be undefined (should not be used).
+     */
     UNDEFINED;
 
+    /**
+     * Returns the runway surface specified by the given identifier.
+     *
+     * @param id Identifier of the runway surface.
+     * @return The runway surface specified by the given identifier.
+     */
     public static RunwaySurface ofId(int id) {
         return switch (id) {
             case 0 -> CONCRETE;

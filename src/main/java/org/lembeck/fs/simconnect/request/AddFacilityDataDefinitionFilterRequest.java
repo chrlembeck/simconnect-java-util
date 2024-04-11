@@ -4,6 +4,13 @@ import org.lembeck.fs.simconnect.SimUtil;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+/**
+ * The SimConnect_AddFacilityDataDefinitionFilter function is used add a filter on a node in the
+ * FacilityDataDefinition to block sending data according to this filter, thus reduce the amount of data received
+ * and limit it to only that which is required.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_AddFacilityDataDefinitionFilter.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_AddFacilityDataDefinitionFilter.htm</a>
+ */
 public class AddFacilityDataDefinitionFilterRequest extends SimRequest {
 
     /**
@@ -26,6 +33,16 @@ public class AddFacilityDataDefinitionFilterRequest extends SimRequest {
         buffer.get(filterData);
     }
 
+    /**
+     * The SimConnect_AddFacilityDataDefinitionFilter function is used add a filter on a node in the
+     * FacilityDataDefinition to block sending data according to this filter, thus reduce the amount of data received
+     * and limit it to only that which is required.
+     *
+     * @param defineID   Specifies the ID of the client defined data definition.
+     * @param filterPath Defines the node and member that you wish to apply the filter to.
+     * @param filterData Filter data as bytes (will be cast to the right type later).
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_AddFacilityDataDefinitionFilter.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_AddFacilityDataDefinitionFilter.htm</a>
+     */
     public AddFacilityDataDefinitionFilterRequest(int defineID, String filterPath, byte[] filterData) {
         super(TYPE_ID);
         this.defineID = defineID;
@@ -41,14 +58,29 @@ public class AddFacilityDataDefinitionFilterRequest extends SimRequest {
         outBuffer.put(filterData);
     }
 
+    /**
+     * Returns the ID of the client defined data definition.
+     *
+     * @return ID of the client defined data definition.
+     */
     public int getDefineID() {
         return defineID;
     }
 
+    /**
+     * Returns the node and member that you wish to apply the filter to.
+     *
+     * @return Node and member that you wish to apply the filter to.
+     */
     public String getFilterPath() {
         return filterPath;
     }
 
+    /**
+     * Returns the filter data as bytes (will be cast to the right type later).
+     *
+     * @return Filter data as bytes (will be cast to the right type later).
+     */
     public byte[] getFilterData() {
         return filterData;
     }

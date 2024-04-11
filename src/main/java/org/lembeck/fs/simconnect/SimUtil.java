@@ -162,4 +162,23 @@ public final class SimUtil {
     public static double nmToMeter(double nauticalMiles) {
         return nauticalMiles * METERS_PER_NAUTICAL_MILE;
     }
+
+    /**
+     * Converts the passed byte array to a human-readable form.
+     *
+     * @param data Array of bytes to be converted.
+     * @return Human-readable representation of the byte array to use it in debug messages.
+     */
+    public static String byteArrayToString(byte[] data) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < data.length; i++) {
+            sb.append(data[i] & 0xff);
+            if (i < data.length - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }

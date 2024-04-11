@@ -2,15 +2,35 @@ package org.lembeck.fs.simconnect.response;
 
 import java.nio.ByteBuffer;
 
+/**
+ * Superclass of all responses that will be received from the simulator over the simconnect interface.
+ * Contains the data that is common to all kinds of response types as its size, the current version and its type id.
+ */
 public abstract class SimResponse {
 
+    /**
+     * The total size of the returned structure in bytes (that is, not usually the size of the SIMCONNECT_RECV structure, but of the structure that inherits it).
+     */
     protected final int size;
 
+    /**
+     * The version number of the SimConnect server.
+     */
     protected final int version;
 
+    /**
+     * The ID of the returned structure. One member of SIMCONNECT_RECV_ID.
+     */
     protected final int typeId;
 
-    public SimResponse(int size, int version, int typeId) {
+    /**
+     * Creates a new response instance.
+     *
+     * @param size    The total size of the returned structure in bytes (that is, not usually the size of the SIMCONNECT_RECV structure, but of the structure that inherits it).
+     * @param version The version number of the SimConnect server.
+     * @param typeId  The ID of the returned structure. One member of SIMCONNECT_RECV_ID.
+     */
+    protected SimResponse(int size, int version, int typeId) {
         this.size = size;
         this.version = version;
         this.typeId = typeId;
@@ -22,19 +42,40 @@ public abstract class SimResponse {
                 buffer.getInt()); // typeId
     }
 
+    /**
+     * Returns the total size of the returned structure in bytes.
+     *
+     * @return The total size of the returned structure in bytes (that is, not usually the size of the SIMCONNECT_RECV structure, but of the structure that inherits it).
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * returns the version number of the SimConnect server.
+     *
+     * @return The version number of the SimConnect server.
+     */
     public int getVersion() {
         return version;
     }
 
+    /**
+     * Returns the ID of the returned structure.
+     *
+     * @return The ID of the returned structure. One member of SIMCONNECT_RECV_ID.
+     */
     public int getTypeID() {
         return typeId;
     }
 
-    public static SimResponse parseResponse(int size, ByteBuffer buffer) {
+    /**
+     * Reads the next response from the given byte buffer and transforms it into its specific SimResponse implementation.
+     *
+     * @param buffer The buffer from which to read the data from.
+     * @return Object representation of the read simconnect response. If the type is new or not yet implemented, the result will be of type {@link UnknownResponse}.
+     */
+    public static SimResponse parseResponse(ByteBuffer buffer) {
         int typeId = buffer.getInt(8);
         return switch (typeId) {
             case 0x01 -> new RecvExceptionResponse(buffer);
@@ -77,18 +118,5 @@ public abstract class SimResponse {
 
             default -> new UnknownResponse(buffer);
         };
-    }
-
-    public static String toString(byte[] data) {
-        StringBuffer sb = new StringBuffer();
-        sb.append("[");
-        for (int i = 0; i < data.length; i++) {
-            sb.append(data[i] & 0xff);
-            if (i < data.length-1) {
-                sb.append(", ");
-            }
-        }
-        sb.append("]");
-        return sb.toString();
     }
 }

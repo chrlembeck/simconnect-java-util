@@ -2,6 +2,11 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_ClearNotificationGroup function is used to remove all the client defined events from a notification group.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearNotificationGroup.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearNotificationGroup.htm</a>
+ */
 public class ClearNotificationGroupRequest extends SimRequest {
 
     /**
@@ -16,6 +21,12 @@ public class ClearNotificationGroupRequest extends SimRequest {
         notificationGroupID = buffer.getInt();
     }
 
+    /**
+     * The SimConnect_ClearNotificationGroup function is used to remove all the client defined events from a notification group.
+     *
+     * @param notificationGroupID Specifies the ID of the client defined group that is to have all its events removed.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearNotificationGroup.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Events_And_Data/SimConnect_ClearNotificationGroup.htm</a>
+     */
     public ClearNotificationGroupRequest(int notificationGroupID) {
         super(TYPE_ID);
         this.notificationGroupID = notificationGroupID;
@@ -26,6 +37,11 @@ public class ClearNotificationGroupRequest extends SimRequest {
         outBuffer.putInt(notificationGroupID);
     }
 
+    /**
+     * Returns the ID of the client defined group that is to have all its events removed.
+     *
+     * @return ID of the client defined group that is to have all its events removed.
+     */
     public int getNotificationGroupID() {
         return notificationGroupID;
     }

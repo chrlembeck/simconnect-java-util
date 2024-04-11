@@ -2,6 +2,9 @@ package org.lembeck.fs.simconnect.response;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SIMCONNECT_RECV_QUIT is an identical structure to the SIMCONNECT_RECV structure.
+ */
 public class RecvQuitResponse extends SimResponse {
 
     RecvQuitResponse(ByteBuffer buffer) {

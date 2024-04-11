@@ -8,11 +8,11 @@ import java.io.IOException;
 
 public class SystemEvents {
 
-    public String hostname = "localhost";
+    private final String hostname = "localhost";
 
-    public int port = 26010;
+    private final int port = 26010;
 
-    int counter = 0;
+    private int counter = 0;
 
     private SimConnect simConnect;
 

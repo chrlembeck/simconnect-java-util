@@ -2,6 +2,11 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_SetNotificationGroupPriority function is used to set the priority for a notification group.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/General/SimConnect_SetNotificationGroupPriority.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/General/SimConnect_SetNotificationGroupPriority.htm</a>
+ */
 public class SetNotificationGroupPriorityRequest extends SimRequest {
 
     /**
@@ -10,15 +15,22 @@ public class SetNotificationGroupPriorityRequest extends SimRequest {
     public static int TYPE_ID = 0xf0000009;
 
     private final int notificationGroupID;
-    private final int priority;
+    private final Priority priority;
 
     SetNotificationGroupPriorityRequest(ByteBuffer buffer) {
         super(buffer);
         notificationGroupID = buffer.getInt();
-        priority = buffer.getInt();
+        priority = new Priority(buffer.getInt());
     }
 
-    public SetNotificationGroupPriorityRequest(int notificationGroupID, int priority) {
+    /**
+     * The SimConnect_SetNotificationGroupPriority function is used to set the priority for a notification group.
+     *
+     * @param notificationGroupID Specifies the ID of the client defined group.
+     * @param priority            The group's priority. See the explanation of SimConnect Priorities.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/General/SimConnect_SetNotificationGroupPriority.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/General/SimConnect_SetNotificationGroupPriority.htm</a>
+     */
+    public SetNotificationGroupPriorityRequest(int notificationGroupID, Priority priority) {
         super(TYPE_ID);
         this.notificationGroupID = notificationGroupID;
         this.priority = priority;
@@ -27,14 +39,24 @@ public class SetNotificationGroupPriorityRequest extends SimRequest {
     @Override
     protected void writeRequest(ByteBuffer outBuffer) {
         outBuffer.putInt(notificationGroupID);
-        outBuffer.putInt(priority);
+        outBuffer.putInt(priority.getPriorityValue());
     }
 
+    /**
+     * Returns the ID of the client defined group.
+     *
+     * @return ID of the client defined group.
+     */
     public int getNotificationGroupID() {
         return notificationGroupID;
     }
 
-    public int getPriority() {
+    /**
+     * Returns the group's priority. See the explanation of SimConnect Priorities.
+     *
+     * @return Group's priority. See the explanation of SimConnect Priorities.
+     */
+    public Priority getPriority() {
         return priority;
     }
 

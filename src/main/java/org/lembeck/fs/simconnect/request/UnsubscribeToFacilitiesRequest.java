@@ -3,6 +3,12 @@ package org.lembeck.fs.simconnect.request;
 import org.lembeck.fs.simconnect.constants.FacilityListType;
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_UnsubscribeToFacilities function is used to request that notifications of additions to the facilities
+ * cache are no longer sent.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_UnsubscribeToFacilities.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_UnsubscribeToFacilities.htm</a>
+ */
 public class UnsubscribeToFacilitiesRequest extends SimRequest {
 
     /**
@@ -10,25 +16,37 @@ public class UnsubscribeToFacilitiesRequest extends SimRequest {
      */
     public static final int TYPE_ID = 0xf0000042;
 
-    private final FacilityListType facilitiesListType;
+    private final FacilityListType facilityListType;
 
     UnsubscribeToFacilitiesRequest(ByteBuffer buffer) {
         super(buffer);
-        facilitiesListType = FacilityListType.ofId(buffer.getInt());
+        facilityListType = FacilityListType.ofId(buffer.getInt());
     }
 
-    public UnsubscribeToFacilitiesRequest(FacilityListType facilitiesListType) {
+    /**
+     * The SimConnect_UnsubscribeToFacilities function is used to request that notifications of additions to the
+     * facilities cache are no longer sent.
+     *
+     * @param facilityListType Specifies one member of the SIMCONNECT_FACILITY_LIST_TYPE enumeration type.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_UnsubscribeToFacilities.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_UnsubscribeToFacilities.htm</a>
+     */
+    public UnsubscribeToFacilitiesRequest(FacilityListType facilityListType) {
         super(TYPE_ID);
-        this.facilitiesListType = facilitiesListType;
+        this.facilityListType = facilityListType;
     }
 
     @Override
     protected void writeRequest(ByteBuffer outBuffer) {
-        outBuffer.putInt(facilitiesListType.ordinal());
+        outBuffer.putInt(facilityListType.ordinal());
     }
 
-    public FacilityListType getFacilitiesListType() {
-        return facilitiesListType;
+    /**
+     * Returns the type of facilities no further additions to the cache should be sent for.
+     *
+     * @return The type of facilities no further additions to the cache should be sent for.
+     */
+    public FacilityListType getFacilityListType() {
+        return facilityListType;
     }
 
     /**
@@ -43,7 +61,7 @@ public class UnsubscribeToFacilitiesRequest extends SimRequest {
                 ", size=" + getSize() +
                 ", version=" + getVersion() +
                 ", identifier=" + getIdentifier() +
-                ", facilitiesListType=" + facilitiesListType +
+                ", facilityListType=" + facilityListType +
                 "}";
     }
 }

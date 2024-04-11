@@ -1,13 +1,17 @@
 package org.lembeck.fs.simconnect.request;
 
-import org.lembeck.fs.simconnect.response.SimResponse;
+import org.lembeck.fs.simconnect.SimUtil;
 import java.nio.ByteBuffer;
 
+/**
+ * Represents a request that is new and not yet implemented in this framework. Will only be used by proxying
+ * simconnect interface communication.
+ */
 public class UnknownRequest extends SimRequest {
 
     private final byte[] data;
 
-    public UnknownRequest(ByteBuffer buffer) {
+    UnknownRequest(ByteBuffer buffer) {
         super(buffer);
         data = new byte[buffer.remaining()];
         buffer.get(data);
@@ -18,6 +22,11 @@ public class UnknownRequest extends SimRequest {
         outBuffer.put(data);
     }
 
+    /**
+     * Returns the data that was contained in the request.
+     *
+     * @return The requests contained data.
+     */
     public byte[] getData() {
         return data;
     }
@@ -34,7 +43,7 @@ public class UnknownRequest extends SimRequest {
                 ", size=" + getSize() +
                 ", version=" + getVersion() +
                 ", identifier=" + getIdentifier() +
-                ", data=" + SimResponse.toString(data) +
+                ", data=" + SimUtil.byteArrayToString(data) +
                 "}";
     }
 }

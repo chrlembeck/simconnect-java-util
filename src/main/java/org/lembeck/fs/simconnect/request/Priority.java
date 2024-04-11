@@ -51,4 +51,14 @@ public class Priority {
     public int getPriorityValue() {
         return priorityValue;
     }
+
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return A string representation of the object.
+     */
+    @Override
+    public String toString() {
+        return Integer.toString(priorityValue);
+    }
 }

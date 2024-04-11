@@ -82,7 +82,7 @@ public class ResponseReceiver implements Runnable {
                 }
 
                 readBuffer.position(0);
-                SimResponse response = SimResponse.parseResponse(size, readBuffer);
+                SimResponse response = SimResponse.parseResponse(readBuffer);
                 handleResponse(response);
             }
         } catch (ClosedChannelException cce) {

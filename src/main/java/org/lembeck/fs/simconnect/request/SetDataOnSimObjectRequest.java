@@ -1,7 +1,7 @@
 package org.lembeck.fs.simconnect.request;
 
+import org.lembeck.fs.simconnect.SimUtil;
 import org.lembeck.fs.simconnect.constants.DataSetFlag;
-import org.lembeck.fs.simconnect.response.SimResponse;
 import java.nio.ByteBuffer;
 
 import static org.lembeck.fs.simconnect.constants.DataSetFlag.NOT_TAGGED;
@@ -94,7 +94,7 @@ public class SetDataOnSimObjectRequest extends SimRequest {
                 ", dataSetFlag=" + dataSetFlag +
                 ", arrayCount=" + arrayCount +
                 ", unitSize=" + unitSize +
-                ", data=" + SimResponse.toString(data) +
+                ", data=" + SimUtil.byteArrayToString(data) +
                 "}";
     }
 }

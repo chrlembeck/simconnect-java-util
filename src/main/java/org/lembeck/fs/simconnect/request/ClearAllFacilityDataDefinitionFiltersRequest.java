@@ -2,6 +2,11 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_ClearAllFacilityDataDefinitionFilters function is used to clear all applied facility definition filters.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_ClearAllFacilityDataDefinitionFilters.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_ClearAllFacilityDataDefinitionFilters.htm</a>
+ */
 public class ClearAllFacilityDataDefinitionFiltersRequest extends SimRequest {
 
     /**
@@ -16,6 +21,12 @@ public class ClearAllFacilityDataDefinitionFiltersRequest extends SimRequest {
         defineID = buffer.getInt();
     }
 
+    /**
+     * The SimConnect_ClearAllFacilityDataDefinitionFilters function is used to clear all applied facility definition filters.
+     *
+     * @param defineID Specifies the ID of the client defined data definition.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_ClearAllFacilityDataDefinitionFilters.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_ClearAllFacilityDataDefinitionFilters.htm</a>
+     */
     public ClearAllFacilityDataDefinitionFiltersRequest(int defineID) {
         super(TYPE_ID);
         this.defineID = defineID;
@@ -26,6 +37,11 @@ public class ClearAllFacilityDataDefinitionFiltersRequest extends SimRequest {
         outBuffer.putInt(defineID);
     }
 
+    /**
+     * Returns the ID of the client defined data definition.
+     *
+     * @return ID of the client defined data definition.
+     */
     public int getDefineID() {
         return defineID;
     }

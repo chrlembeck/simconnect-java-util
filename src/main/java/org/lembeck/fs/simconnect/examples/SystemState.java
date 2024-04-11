@@ -6,9 +6,9 @@ import java.io.IOException;
 
 public class SystemState {
 
-    public String hostname = "localhost";
+    private final String hostname = "localhost";
 
-    public int port = 26010;
+    private final int port = 26010;
 
     public static void main(String[] args) throws IOException {
         new SystemState().run();
