@@ -1,6 +1,7 @@
 package org.lembeck.fs.simconnect.request;
 
 import org.lembeck.fs.simconnect.SimUtil;
+
 import java.nio.ByteBuffer;
 
 /**
@@ -54,6 +55,7 @@ public class MapClientEventToSimEventRequest extends SimRequest {
 
     /**
      * Returns the ID of the client event.
+     *
      * @return ID of the client event.
      */
     public int getEventID() {
@@ -62,6 +64,7 @@ public class MapClientEventToSimEventRequest extends SimRequest {
 
     /**
      * Returns the event name.
+     *
      * @return The event name.
      * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/Event_IDs/Event_IDs.htm">https://docs.flightsimulator.com/html/Programming_Tools/Event_IDs/Event_IDs.htm</a>
      */

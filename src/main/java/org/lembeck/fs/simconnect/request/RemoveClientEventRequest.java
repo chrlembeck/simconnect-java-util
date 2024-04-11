@@ -54,6 +54,7 @@ public class RemoveClientEventRequest extends SimRequest {
 
     /**
      * Returns the ID of the client defined event ID that is to be removed from the group.
+     *
      * @return ID of the client defined event ID that is to be removed from the group.
      */
     public int getClientEventID() {

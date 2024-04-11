@@ -1,6 +1,7 @@
 package org.lembeck.fs.simconnect.request;
 
 import org.lembeck.fs.simconnect.constants.FacilityListType;
+
 import java.nio.ByteBuffer;
 
 /**
@@ -56,6 +57,7 @@ public class RequestFacilitesListRequest extends SimRequest {
 
     /**
      * Returns the client defined request ID.
+     *
      * @return The client defined request ID.
      */
     public int getDataRequestId() {

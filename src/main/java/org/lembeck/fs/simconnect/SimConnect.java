@@ -638,15 +638,44 @@ public class SimConnect {
         return write(new SetClientDataDefinitionRequest(clientDataID, defineID, tagged, reserved, dataSize, data));
     }
 
+    /**
+     * The SimConnect_FlightLoad function is used to load an existing flight file.
+     *
+     * @param filename String containing the path to the flight file.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Flights/SimConnect_FlightLoad.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Flights/SimConnect_FlightLoad.htm</a>
+     */
     public FlightLoadRequest flightLoad(String filename) throws IOException {
         return write(new FlightLoadRequest(filename));
     }
 
+    /**
+     * The SimConnect_FlightSave function is used to save the current state of a flight to a flight file.
+     *
+     * @param filename    String containing the path to the flight file. Flight files have the extension .FLT, but no
+     *                    need to enter an extension here.
+     * @param title       String containing the title of the flight file. If this is NULL then the szFileName parameter
+     *                    is used as the title.
+     * @param description String containing the text to the description field of the flight file.
+     * @param flags       Unused.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Flights/SimConnect_FlightSave.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Flights/SimConnect_FlightSave.htm</a>
+     */
     public FlightSaveRequest flightSave(String filename, String title, String description,
                                         int flags) throws IOException {
         return write(new FlightSaveRequest(filename, title, description, flags));
     }
 
+    /**
+     * The SimConnect_FlightPlanLoad function is used to load an existing flight plan file.
+     *
+     * @param filename String containing the path to the flight plan file. Flight plans have the extension .PLN, but no
+     *                 need to enter an extension here. The easiest way to create flight plans is to create them from
+     *                 within Microsoft Flight Simulator itself, and then save them off for use by the user or AI
+     *                 controlled aircraft.
+     * @return The Object that represents the message that was sent to the simulator.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Flights/SimConnect_FlightPlanLoad.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Flights/SimConnect_FlightPlanLoad.htm</a>
+     */
     public FlightPlanLoadRequest flightPlanLoad(String filename) throws IOException {
         return write(new FlightPlanLoadRequest(filename));
     }
