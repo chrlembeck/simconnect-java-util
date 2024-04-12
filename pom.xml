@@ -4,9 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.lembeck</groupId>
     <artifactId>simconnect-java-util</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <packaging>jar</packaging>
     <url>https://github.com/chrlembeck/simconnect-java-util</url>
+    <description>The simconnect-java-util project contains a java client for the simconnect interface of the microsoft
+        flight simulator 2020.
+    </description>
 
     <developers>
         <developer>

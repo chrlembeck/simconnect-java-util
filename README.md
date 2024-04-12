@@ -170,7 +170,7 @@ projects `pom.xml`:
     <dependency>
         <groupId>org.lembeck</groupId>
         <artifactId>simconnect-java-util</artifactId>
-        <version><!-- Replace this with the lates version of the dependency --></version>
+        <version>0.1</version>
     </dependency>
 </dependencies
 ```
