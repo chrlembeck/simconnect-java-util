@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <module name="JavadocPackage"/>
+    <module name="TreeWalker">
+        <module name="InvalidJavadocPosition">
+        </module>
+        <module name="AtclauseOrder">
+            <property name="tagOrder"
+                      value="@author, @since, @version, @param, @return, @throws, @exception, @deprecated, @see, @serial, @serialField, @serialData"/>
+            <property name="violateExecutionOnNonTightHtml" value="true"/>
+        </module>
+        <module name="JavadocBlockTagLocation"/>
+        <module name="JavadocContentLocation"/>
+        <module name="JavadocMethod"/>
+        <module name="MissingJavadocMethod">
+            <property name="scope" value="protected"/>
+        </module>
+        <module name="MissingJavadocPackage"/>
+        <module name="MissingJavadocType">
+            <property name="scope" value="protected"/>
+        </module>
+        <module name="JavadocMissingLeadingAsterisk"/>
+        <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+        <module name="JavadocStyle">
+            <property name="scope" value="protected"/>
+        </module>
+        <module name="JavadocVariable">
+            <property name="scope" value="protected"/>
+        </module>
+        <module name="NonEmptyAtclauseDescription"/>
+        <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+        <module name="SingleLineJavadoc"/>
+        <module name="SummaryJavadocCheck"/>
+        <module name="FallThrough"/>
+    </module>
+
+</module>
