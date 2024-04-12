@@ -4,6 +4,11 @@ import org.lembeck.fs.simconnect.SimUtil;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+/**
+ * The SimConnect_RequestJetwayData function is used to request data from one or more jetways.
+ *
+ * @see <a href="https://docs.flightsimulator.com/flighting/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestJetwayData.htm">https://docs.flightsimulator.com/flighting/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestJetwayData.htm</a>
+ */
 public class RequestJetwayDataRequest extends SimRequest {
 
     /**
@@ -25,6 +30,13 @@ public class RequestJetwayDataRequest extends SimRequest {
         }
     }
 
+    /**
+     * The SimConnect_RequestJetwayData function is used to request data from one or more jetways.
+     *
+     * @param icao    The airport ICAO to check.
+     * @param indexes An array of parking indices.
+     * @see <a href="https://docs.flightsimulator.com/flighting/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestJetwayData.htm">https://docs.flightsimulator.com/flighting/html/Programming_Tools/SimConnect/API_Reference/Facilities/SimConnect_RequestJetwayData.htm</a>
+     */
     public RequestJetwayDataRequest(String icao, int... indexes) {
         super(TYPE_ID);
         this.icao = icao;
@@ -44,10 +56,20 @@ public class RequestJetwayDataRequest extends SimRequest {
         }
     }
 
+    /**
+     * Returns the airport ICAO.
+     *
+     * @return The airport ICAO.
+     */
     public String getIcao() {
         return icao;
     }
 
+    /**
+     * Returne the array of parking indices.
+     *
+     * @return Array of parking indices.
+     */
     public int[] getIndexes() {
         return indexes;
     }

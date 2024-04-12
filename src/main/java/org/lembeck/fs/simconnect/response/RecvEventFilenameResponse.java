@@ -5,6 +5,11 @@ import java.nio.ByteBuffer;
 
 import static org.lembeck.fs.simconnect.SimUtil.UNKNOWN_GROUP;
 
+/**
+ * The SIMCONNECT_RECV_EVENT_FILENAME structure is used to return a filename and an event ID to the client.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_EVENT_FILENAME.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_EVENT_FILENAME.htm</a>
+ */
 public class RecvEventFilenameResponse extends RecvEventResponse {
 
     /**
@@ -23,10 +28,20 @@ public class RecvEventFilenameResponse extends RecvEventResponse {
         flags = buffer.getInt();
     }
 
+    /**
+     * returns the filename.
+     *
+     * @return Name of the file.
+     */
     public String getFilename() {
         return filename;
     }
 
+    /**
+     * Reserved. Should be 0.
+     *
+     * @return Reserved value.
+     */
     public int getFlags() {
         return flags;
     }

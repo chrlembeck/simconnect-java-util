@@ -2,6 +2,12 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_EnumerateControllers function is used to retrieve a list of every device that is currently plugged
+ * into the simulation.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/InputEvents/SimConnect_EnumerateControllers.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/InputEvents/SimConnect_EnumerateControllers.htm</a>
+ */
 public class EnumerateControllersRequest extends SimRequest {
 
     /**
@@ -13,6 +19,12 @@ public class EnumerateControllersRequest extends SimRequest {
         super(buffer);
     }
 
+    /**
+     * The SimConnect_EnumerateControllers function is used to retrieve a list of every device that is currently plugged
+     * into the simulation.
+     *
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/InputEvents/SimConnect_EnumerateControllers.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/InputEvents/SimConnect_EnumerateControllers.htm</a>
+     */
     public EnumerateControllersRequest() {
         super(TYPE_ID);
     }

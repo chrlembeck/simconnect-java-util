@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static org.lembeck.fs.simconnect.proxy.ChannelConnector.Direction.REQUEST;
 import static org.lembeck.fs.simconnect.proxy.ChannelConnector.Direction.RESPONSE;
 
-public class SocketHandler implements Runnable {
+class SocketHandler implements Runnable {
 
     private static final AtomicInteger counter = new AtomicInteger(0);
 
@@ -25,7 +25,7 @@ public class SocketHandler implements Runnable {
         this.debugStream = debugStream;
     }
 
-    public static void create(SocketChannel socketChannel, SocketAddress simulatorAddress) throws IOException {
+    static void create(SocketChannel socketChannel, SocketAddress simulatorAddress) throws IOException {
         SocketHandler handler = new SocketHandler(socketChannel, simulatorAddress, System.out);
         Thread thread = new Thread(handler, "Socket Handler " + counter.incrementAndGet());
         thread.setDaemon(false);

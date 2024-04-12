@@ -2,7 +2,6 @@ package org.lembeck.fs.simconnect.proxy;
 
 import org.lembeck.fs.simconnect.request.SimRequest;
 import org.lembeck.fs.simconnect.response.SimResponse;
-
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.ByteBuffer;
@@ -11,7 +10,7 @@ import java.nio.channels.AsynchronousCloseException;
 import java.nio.channels.SocketChannel;
 import java.util.Objects;
 
-public class ChannelConnector implements Runnable {
+class ChannelConnector implements Runnable {
 
     private final SocketChannel sourceChannel;
 
@@ -33,7 +32,8 @@ public class ChannelConnector implements Runnable {
         this.direction = direction;
     }
 
-    public static void create(String name, SocketChannel sourceChannel, SocketChannel targetChannel, Direction direction, PrintStream debugStream) {
+    static void create(String name, SocketChannel sourceChannel, SocketChannel targetChannel, Direction direction,
+            PrintStream debugStream) {
         ChannelConnector connector = new ChannelConnector(name, sourceChannel, targetChannel, direction, debugStream);
         new Thread(connector, name).start();
     }

@@ -4,8 +4,16 @@ import org.lembeck.fs.simconnect.SimUtil;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+/**
+ * The SIMCONNECT_RECV_NDB_LIST structure is used to return a list of SIMCONNECT_DATA_FACILITY_NDB structures.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_NDB_LIST.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_NDB_LIST.htm</a>
+ */
 public class RecvNdbListResponse extends RecvFacilitiesListResponse {
 
+    /**
+     * Array of SIMCONNECT_DATA_FACILITY_NDB structures.
+     */
     protected final FacilityNDB[] ndbList;
 
     RecvNdbListResponse(ByteBuffer buffer) {
@@ -23,6 +31,11 @@ public class RecvNdbListResponse extends RecvFacilitiesListResponse {
         }
     }
 
+    /**
+     * Returns the Array of SIMCONNECT_DATA_FACILITY_NDB structures.
+     *
+     * @return Array of SIMCONNECT_DATA_FACILITY_NDB structures.
+     */
     public FacilityNDB[] getNdbList() {
         return ndbList;
     }

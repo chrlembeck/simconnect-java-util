@@ -3,11 +3,16 @@ package org.lembeck.fs.simconnect.response;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+/**
+ * The SIMCONNECT_RECV_ENUMERATE_INPUT_EVENTS structure is used to return a single page of data about an input event.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_ENUMERATE_INPUT_EVENTS.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_ENUMERATE_INPUT_EVENTS.htm</a>
+ */
 public class RecvEnumerateInputEventsResponse extends RecvListTemplate {
 
     private final InputEventDescriptor[] inputEventDescriptors;
 
-    public RecvEnumerateInputEventsResponse(ByteBuffer buffer) {
+    RecvEnumerateInputEventsResponse(ByteBuffer buffer) {
         super(buffer);
         inputEventDescriptors = new InputEventDescriptor[getArraySize()];
         for (int i = 0; i < getArraySize(); i++) {
@@ -15,6 +20,11 @@ public class RecvEnumerateInputEventsResponse extends RecvListTemplate {
         }
     }
 
+    /**
+     * Returns the array of SIMCONNECT_INPUT_EVENT_DESCRIPTOR structures.
+     *
+     * @return Array of SIMCONNECT_INPUT_EVENT_DESCRIPTOR structures.
+     */
     public InputEventDescriptor[] getInputEventDescriptors() {
         return inputEventDescriptors;
     }

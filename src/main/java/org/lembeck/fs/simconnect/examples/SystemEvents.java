@@ -6,6 +6,9 @@ import org.lembeck.fs.simconnect.response.RecvEventFilenameResponse;
 import org.lembeck.fs.simconnect.response.RecvEventResponse;
 import java.io.IOException;
 
+/**
+ * Reads some system events.
+ */
 public class SystemEvents {
 
     private final String hostname = "localhost";
@@ -16,6 +19,11 @@ public class SystemEvents {
 
     private SimConnect simConnect;
 
+    /**
+     * Main method.
+     *
+     * @param args unused.
+     */
     public static void main(String[] args) throws IOException {
         new SystemEvents().run();
     }

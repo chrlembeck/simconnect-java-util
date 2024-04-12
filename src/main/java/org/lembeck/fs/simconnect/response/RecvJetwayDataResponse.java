@@ -3,6 +3,11 @@ package org.lembeck.fs.simconnect.response;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+/**
+ * The SIMCONNECT_RECV_JETWAY_DATA structure is used to return a list of SIMCONNECT_JETWAY_DATA structures.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_JETWAY_DATA.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_JETWAY_DATA.htm</a>
+ */
 public class RecvJetwayDataResponse extends RecvListTemplate {
 
     private final JetwayData[] jetways;
@@ -15,6 +20,11 @@ public class RecvJetwayDataResponse extends RecvListTemplate {
         }
     }
 
+    /**
+     * Returns the Array of SIMCONNECT_JETWAY_DATA structures.
+     *
+     * @return Array of SIMCONNECT_JETWAY_DATA structures.
+     */
     public JetwayData[] getJetways() {
         return jetways;
     }

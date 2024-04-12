@@ -3,6 +3,11 @@ package org.lembeck.fs.simconnect.request;
 import org.lembeck.fs.simconnect.SimUtil;
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_AICreateSimulatedObject function is used to create AI controlled objects other than aircraft.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/AI_Object/SimConnect_AICreateSimulatedObject.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/AI_Object/SimConnect_AICreateSimulatedObject.htm</a>
+ */
 public class AICreateSimulatedObjectRequest extends SimRequest {
 
     /**
@@ -23,6 +28,15 @@ public class AICreateSimulatedObjectRequest extends SimRequest {
         requestID = buffer.getInt();
     }
 
+    /**
+     * The SimConnect_AICreateSimulatedObject function is used to create AI controlled objects other than aircraft.
+     *
+     * @param containerTitle String containing the container title. The container title is case-sensitive and can be
+     *                       found in the sim.cfg file.
+     * @param initPosition   Specifies the initial position, using a SIMCONNECT_DATA_INITPOSITION structure.
+     * @param requestID      Specifies the client defined request ID.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/AI_Object/SimConnect_AICreateSimulatedObject.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/AI_Object/SimConnect_AICreateSimulatedObject.htm</a>
+     */
     public AICreateSimulatedObjectRequest(String containerTitle, InitPosition initPosition, int requestID) {
         super(TYPE_ID);
         this.containerTitle = containerTitle;
@@ -37,14 +51,30 @@ public class AICreateSimulatedObjectRequest extends SimRequest {
         outBuffer.putInt(requestID);
     }
 
+    /**
+     * Returns a string containing the container title. The container title is case-sensitive and can be found in the
+     * sim.cfg file.
+     *
+     * @return The container title.
+     */
     public String getContainerTitle() {
         return containerTitle;
     }
 
+    /**
+     * Returns the initial position, using a SIMCONNECT_DATA_INITPOSITION structure.
+     *
+     * @return The initial position.
+     */
     public InitPosition getInitPosition() {
         return initPosition;
     }
 
+    /**
+     * Returns the client defined request ID.
+     *
+     * @return Client defined request ID.
+     */
     public int getRequestID() {
         return requestID;
     }

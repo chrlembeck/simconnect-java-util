@@ -6,9 +6,18 @@ import java.net.SocketAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
+/**
+ * Simple proxy server for simconnect communications. Can be used to log all traffic between a simconnect client and the
+ * simulator.
+ */
 public class SimDebugProxy {
 
-    public static void main(String[] args) throws Exception{
+    /**
+     * Main method. Starts the debug proxy.
+     *
+     * @param args Array of arguments. should be filled with the three elements 'listening Port', 'servername' and 'server port'.
+     */
+    public static void main(String[] args) throws Exception {
         if (args.length != 3) {
             printHelp();
         }
@@ -26,6 +35,12 @@ public class SimDebugProxy {
 
     private final SocketAddress simulatorAddress;
 
+    /**
+     * Creates a new debug proxy.
+     *
+     * @param listeningPort    Port this proxy is listening on this machine.
+     * @param simulatorAddress Network address of the server, the proxy should forward the requests to.
+     */
     public SimDebugProxy(int listeningPort, SocketAddress simulatorAddress) {
         this.listeningPort = listeningPort;
         this.simulatorAddress = simulatorAddress;
@@ -38,7 +53,10 @@ public class SimDebugProxy {
         System.exit(-1);
     }
 
-    public void startServer() throws Exception{
+    /**
+     * Creates and opens a new server socket and starts listening for incoming connections.
+     */
+    public void startServer() throws Exception {
         try (ServerSocketChannel server = ServerSocketChannel.open()) {
             server.bind(new InetSocketAddress(listeningPort));
             System.out.println("proxy listening on port 26010");

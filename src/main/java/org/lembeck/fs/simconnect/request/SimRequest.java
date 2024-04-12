@@ -135,7 +135,7 @@ public abstract class SimRequest {
             case 0xf0000039 -> new AddToClientDataDefinitionRequest(buffer);
             case 0xf000003a -> new ClearClientDataDefinitionRequest(buffer);
             case 0xf000003b -> new RequestClientDataRequest(buffer);
-            case 0xf000003c -> new SetClientDataDefinitionRequest(buffer);
+            case 0xf000003c -> new SetClientDataRequest(buffer);
             case 0xf000003d -> new FlightLoadRequest(buffer);
             case 0xf000003e -> new FlightSaveRequest(buffer);
             case 0xf000003f -> new FlightPlanLoadRequest(buffer);

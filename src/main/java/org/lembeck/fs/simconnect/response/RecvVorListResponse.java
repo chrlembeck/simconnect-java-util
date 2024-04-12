@@ -4,8 +4,16 @@ import org.lembeck.fs.simconnect.SimUtil;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-public class RecvVorListResponse extends RecvFacilitiesListResponse {
+/**
+ * The SIMCONNECT_RECV_VOR_LIST structure is used to return a list of SIMCONNECT_DATA_FACILITY_VOR structures.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_VOR_LIST.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_VOR_LIST.htm</a>
+ */
+public class RecvVorListResponse<T> extends RecvFacilitiesListResponse {
 
+    /**
+     * Array of the contained vor stations.
+     */
     protected final FacilityVOR[] vorList;
 
     RecvVorListResponse(ByteBuffer buffer) {
@@ -29,6 +37,11 @@ public class RecvVorListResponse extends RecvFacilitiesListResponse {
         }
     }
 
+    /**
+     * Returns the contained VOR stations.
+     *
+     * @return The contained VOR stations.
+     */
     public FacilityVOR[] getVorList() {
         return vorList;
     }

@@ -2,6 +2,12 @@ package org.lembeck.fs.simconnect.request;
 
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_GetInputEvent function is used to retrieve the value of a specific input event (identified by its
+ * hash).
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/InputEvents/SimConnect_GetInputEvent.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/InputEvents/SimConnect_GetInputEvent.htm</a>
+ */
 public class GetInputEventRequest extends SimRequest {
 
     /**
@@ -19,6 +25,14 @@ public class GetInputEventRequest extends SimRequest {
         hash = buffer.getLong();
     }
 
+    /**
+     * The SimConnect_GetInputEvent function is used to retrieve the value of a specific input event (identified by its
+     * hash).
+     *
+     * @param requestID The ID that will identify the current request in the response event.
+     * @param hash      Hash ID that will identify the desired inputEvent.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/InputEvents/SimConnect_GetInputEvent.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/InputEvents/SimConnect_GetInputEvent.htm</a>
+     */
     public GetInputEventRequest(int requestID, long hash) {
         super(TYPE_ID);
         this.requestID = requestID;
@@ -31,10 +45,20 @@ public class GetInputEventRequest extends SimRequest {
         outBuffer.putLong(hash);
     }
 
+    /**
+     * Returns the ID that will identify the current request in the response event.
+     *
+     * @return ID that will identify the current request in the response event.
+     */
     public int getRequestID() {
         return requestID;
     }
 
+    /**
+     * Returns the hash ID that will identify the desired inputEvent.
+     *
+     * @return Hash ID that will identify the desired inputEvent.
+     */
     public long getHash() {
         return hash;
     }

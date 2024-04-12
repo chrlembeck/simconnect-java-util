@@ -4,12 +4,21 @@ import org.lembeck.fs.simconnect.SimConnect;
 import org.lembeck.fs.simconnect.response.RecvSystemStateResponse;
 import java.io.IOException;
 
+/**
+ * Reads some system states.
+ */
 public class SystemState {
 
     private final String hostname = "localhost";
 
     private final int port = 26010;
 
+
+    /**
+     * Main method.
+     *
+     * @param args Unused.
+     */
     public static void main(String[] args) throws IOException {
         new SystemState().run();
     }

@@ -4,8 +4,16 @@ import org.lembeck.fs.simconnect.SimUtil;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+/**
+ * The SIMCONNECT_RECV_WAYPOINT_LIST structure is used to return a list of SIMCONNECT_DATA_FACILITY_WAYPOINT structures.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_WAYPOINT_LIST.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_WAYPOINT_LIST.htm</a>
+ */
 public class RecvWaypointListResponse extends RecvFacilitiesListResponse {
 
+    /**
+     * Array of SIMCONNECT_DATA_FACILITY_WAYPOINT structures.
+     */
     protected final FacilityWaypoint[] waypointList;
 
     RecvWaypointListResponse(ByteBuffer buffer) {
@@ -22,6 +30,11 @@ public class RecvWaypointListResponse extends RecvFacilitiesListResponse {
         }
     }
 
+    /**
+     * Returns the array of SIMCONNECT_DATA_FACILITY_WAYPOINT structures.
+     *
+     * @return Array of SIMCONNECT_DATA_FACILITY_WAYPOINT structures.
+     */
     public FacilityWaypoint[] getWaypointList() {
         return waypointList;
     }

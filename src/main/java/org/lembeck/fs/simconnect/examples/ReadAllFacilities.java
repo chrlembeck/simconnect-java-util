@@ -9,6 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Reading some facilities.
+ */
 public class ReadAllFacilities {
 
     private final String hostname = "localhost";
@@ -18,10 +21,18 @@ public class ReadAllFacilities {
     private final SimConnect simConnect = new SimConnect();
 
     private final List<FacilityAirport> airports = new ArrayList<>();
+
     private final List<FacilityWaypoint> waypoints = new ArrayList<>();
+
     private final List<FacilityNDB> ndbs = new ArrayList<>();
+
     private final List<FacilityVOR> vors = new ArrayList<>();
 
+    /**
+     * Main method.
+     *
+     * @param args unused.
+     */
     public static void main(String[] args) throws IOException {
         new ReadAllFacilities().run();
     }

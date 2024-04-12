@@ -3,6 +3,12 @@ package org.lembeck.fs.simconnect.request;
 import org.lembeck.fs.simconnect.SimUtil;
 import java.nio.ByteBuffer;
 
+/**
+ * The SimConnect_AICreateParkedATCAircraft function is used to create an AI controlled aircraft that is currently
+ * parked and does not have a flight plan.
+ *
+ * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/AI_Object/SimConnect_AICreateParkedATCAircraft.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/AI_Object/SimConnect_AICreateParkedATCAircraft.htm</a>
+ */
 public class AICreateParkedATCAircraftRequest extends SimRequest {
 
     /**
@@ -26,7 +32,26 @@ public class AICreateParkedATCAircraftRequest extends SimRequest {
         requestID = buffer.getInt();
     }
 
-    public AICreateParkedATCAircraftRequest(String containerTitle, String tailNumber, String airportIcaoID, int requestID) {
+    /**
+     * The SimConnect_AICreateParkedATCAircraft function is used to create an AI controlled aircraft that is currently
+     * parked and does not have a flight plan.
+     *
+     * @param containerTitle String containing the container title. The container title is found in the aircraft.cfg
+     *                       file. Alternatively, the aircraft title can be obtained via the Aircraft Selector
+     *                       (DevMode->Windows->Aircraft selector). Examples of aircraft titles:
+     *                       <ul>
+     *                       <li><code>Boeing 747-8f Asobo</code></li>
+     *                       <li><code>DA62 Asobo</code></li>
+     *                       <li><code>title=VL3 Asobo</code></li>
+     *                       </ul>
+     * @param tailNumber     String containing the tail number. This should have a maximum of 12 characters.
+     * @param airportIcaoID  String containing the airport ID. This is the ICAO code string, for example, KSEA for
+     *                       SeaTac International.
+     * @param requestID      Specifies the client defined request ID.
+     * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/AI_Object/SimConnect_AICreateParkedATCAircraft.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/AI_Object/SimConnect_AICreateParkedATCAircraft.htm</a>
+     */
+    public AICreateParkedATCAircraftRequest(String containerTitle, String tailNumber, String airportIcaoID,
+            int requestID) {
         super(TYPE_ID);
         this.containerTitle = containerTitle;
         this.tailNumber = tailNumber;
@@ -42,18 +67,40 @@ public class AICreateParkedATCAircraftRequest extends SimRequest {
         outBuffer.putInt(requestID);
     }
 
+    /**
+     * Returns a string containing the container title. The container title is found in the aircraft.cfg file.
+     * Alternatively, the aircraft title can be obtained via the Aircraft Selector
+     * (DevMode->Windows->Aircraft selector).
+     *
+     * @return String containing the container title.
+     */
     public String getContainerTitle() {
         return containerTitle;
     }
 
+    /**
+     * Returns a string containing the tail number. This should have a maximum of 12 characters.
+     *
+     * @return String containing the tail number.
+     */
     public String getTailNumber() {
         return tailNumber;
     }
 
+    /**
+     * Returns the string containing the airport ID. This is the ICAO code string, for example, KSEA for SeaTac International.
+     *
+     * @return ICAO code string.
+     */
     public String getAirportIcaoID() {
         return airportIcaoID;
     }
 
+    /**
+     * Returns the client defined request ID.
+     *
+     * @return Client defined request ID.
+     */
     public int getRequestID() {
         return requestID;
     }
