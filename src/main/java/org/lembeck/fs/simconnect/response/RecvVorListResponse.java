@@ -1,6 +1,7 @@
 package org.lembeck.fs.simconnect.response;
 
 import org.lembeck.fs.simconnect.SimUtil;
+
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
@@ -9,7 +10,7 @@ import java.util.Arrays;
  *
  * @see <a href="https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_VOR_LIST.htm">https://docs.flightsimulator.com/html/Programming_Tools/SimConnect/API_Reference/Structures_And_Enumerations/SIMCONNECT_RECV_VOR_LIST.htm</a>
  */
-public class RecvVorListResponse<T> extends RecvFacilitiesListResponse {
+public class RecvVorListResponse extends RecvFacilitiesListResponse {
 
     /**
      * Array of the contained vor stations.
